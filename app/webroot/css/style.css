@@ -56,7 +56,7 @@ body {
 }
 
 .login {
-    margin: 6% auto 0;
+    margin: 8% auto 0;
     max-width: 500px;
     background: rgb(0,0,0,.4);
     border-radius: 6px;
@@ -67,20 +67,23 @@ body {
 
 .login-wrapper {
     box-shadow: 0px 0px 8px white;
-    padding: 100px 20px 20px;
+    padding: 85px 20px 20px;
     box-sizing: border-box;
     background: #2b2b2b;
     border-radius: 6px;
     position: relative;
 }
 
-.login-placeholder-img {
-    width: 85px;
-    position: absolute;
-    top: 10px;
-    left: 40%;
+.login-placeholder-icon {
+    font-size: 100px;
+    color: #929090;
+    box-shadow: 0px 0px 18px #4e4e4e;
+    width: 100px;
     border-radius: 50%;
-    box-shadow: 0px 0px 10px white;
+    position: absolute;
+    left: 38%;
+    top: -55px;
+    background: #393a39;
 }
 
 .login-field {

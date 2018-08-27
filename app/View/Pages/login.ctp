@@ -1,6 +1,8 @@
 <div class="login">
     <div class="login-wrapper">
-        <img src="/img/common/placeholder.png" class="login-placeholder-img">
+        <div class="login-placeholder">
+            <i class="fa fa-user-circle-o login-placeholder-icon"></i>
+        </div>
         <form class="login-form">
             <div class="login-field">
                 <i class="fa fa-envelope-o login-icon"></i>
