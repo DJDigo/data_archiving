@@ -23,23 +23,16 @@
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-
+		echo $this->Html->css('font-awesome-4.7.0/css/font-awesome.min.css');
 		echo $this->Html->css('style.css');
-
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
 </head>
 <body>
-	<header class="header">
-	</header>
-	
 	<main class="main-content">
 		<?php echo $this->fetch('content'); ?>
 	</main>
-
-	<footer class="footer">
-	</footer>
 </body>
 </html>

@@ -42,8 +42,109 @@ table {
 }
 
 body {
-    font: 15px/1.5 Arial, Helvetica, sans-serif;
+    font: 15px/1.5 Mongolian Baiti;
     padding: 0;
     margin: 0;
-    background-color: #f4f4f4;
+    background: url( '/img/common/background.png' ) no-repeat;
+    background-size: 100%;
+}
+
+.main-content {
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 10px 20px;
+}
+
+.login {
+    margin: 6% auto 0;
+    max-width: 500px;
+    background: rgb(0,0,0,.4);
+    border-radius: 6px;
+    box-shadow: 0px 0px 8px white;
+    padding: 100px 50px 50px;
+    box-sizing: border-box;
+}
+
+.login-wrapper {
+    box-shadow: 0px 0px 8px white;
+    padding: 100px 20px 20px;
+    box-sizing: border-box;
+    background: #2b2b2b;
+    border-radius: 6px;
+    position: relative;
+}
+
+.login-placeholder-img {
+    width: 85px;
+    position: absolute;
+    top: 10px;
+    left: 40%;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px white;
+}
+
+.login-field {
+    padding: 15px 10px 0;
+    font-size: 0;
+    position: relative;
+}
+
+.login-input {
+    padding: 12px 10px 12px 40px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px #fffafa;
+    background: #1b1b1b;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #FFF;
+}
+ 
+.login-input--password {
+    font-size: 24px;
+    padding: 7px 10px 7px 40px;    
+}
+
+.login-forgot-password,
+.login-label {
+    display: inline-block;
+    width: 60%;
+    font-size: 14px;
+    color: #FFF;
+    vertical-align: middle;
+}
+
+.login-icon {
+    font-size: large;
+    color: #b5b3b3;
+    position: absolute;
+    left: 20px;
+    bottom: 12px;
+    width: 25px;
+    text-align: center
+}
+
+.login-label {
+    width: 40%;
+    text-align: right;
+}
+
+.button-submit {
+    padding: 11px 0;
+    text-align: center;
+    background: #c7c7c7;
+    border: 1px solid #CCC;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button-submit:active {
+    background: #3d3d3d;
+    color: #FFF;
+}
+
+.login-field--button {
+    padding: 20px 10px 40px;
 }
