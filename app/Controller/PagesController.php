@@ -81,4 +81,20 @@ class PagesController extends AppController {
 	public function add_user() {
 
 	}
+
+	public function confirm_user() {
+
+	}
+
+	public function add_files() {
+		
+	}
+
+	public function confirm_added_files() {
+		
+	}
+
+	public function search_files() {
+		
+	}
 }

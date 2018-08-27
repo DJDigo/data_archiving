@@ -1,0 +1,65 @@
+<div class="container">
+    <?= $this->element('header'); ?>
+
+    <?= $this->element('sidebar'); ?>
+    
+    <div class="content">
+        <div class="content-title">
+            <h2>Add User</h2>
+        </div>
+        <div class="content-wrapper">
+           <form class="form-container">
+                <div class="form-field">
+                    <label class="form-label">File Upload:</label>
+                    <div class="form-input-wrapper">
+                        <input type="file">
+                        <!-- <span class="error-message">error</span> -->
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label class="form-label">File Name:</label>
+                    <div class="form-input-wrapper">
+                        <input type="text" class="form-input">
+                        <!-- <span class="error-message">error</span> -->
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label class="form-label">Control No:</label>
+                    <div class="form-input-wrapper">
+                        <input type="number" class="form-input">
+                        <!-- <span class="error-message">error</span> -->
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label class="form-label">Date:</label>
+                    <div class="form-input-wrapper">
+                        <input type="text" class="form-input datepicker" readonly>
+                        <!-- <span class="error-message">error</span> -->
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label class="form-label">Description:</label>
+                    <div class="form-input-wrapper">
+                        <textarea class="form-textarea"></textarea>
+                        <!-- <span class="error-message">error</span> -->
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label class="form-label">Category:</label>
+                    <div class="form-input-wrapper">
+                        <select class="form-input">
+                            <option>Category</option>
+                            <option>Category1</option>
+                            <option>Categor2</option>
+                        </select>
+                        <!-- <span class="error-message">error</span> -->
+                    </div>
+                </div>
+                <div class="form-button-wrapper">
+                    <label class="form-label"></label>
+                    <input type="submit" class="form-button" value="Create">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

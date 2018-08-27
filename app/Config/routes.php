@@ -27,6 +27,12 @@
 	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 	Router::connect('/login', array('controller' => 'pages', 'action' => 'display', 'login'));
 	Router::connect('/add_user', array('controller' => 'pages', 'action' => 'display', 'add_user'));
+	Router::connect('/confirm_user', array('controller' => 'pages', 'action' => 'display', 'confirm_user'));
+	Router::connect('/success_user', array('controller' => 'pages', 'action' => 'display', 'add_user_success'));
+	Router::connect('/add_files', array('controller' => 'pages', 'action' => 'display', 'add_files'));
+	Router::connect('/confirm_added_files', array('controller' => 'pages', 'action' => 'display', 'confirm_added_files'));
+	Router::connect('/success_added_files', array('controller' => 'pages', 'action' => 'display', 'success_added_files'));
+	Router::connect('/search_files', array('controller' => 'pages', 'action' => 'display', 'search_files'));
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */

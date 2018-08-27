@@ -5,4 +5,5 @@ $(function() {
         $('.toggle-menu').slideToggle();
     });
 
+    $('.datepicker').datepicker();
 });
