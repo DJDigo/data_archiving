@@ -4,6 +4,10 @@
             <i class="fa fa-user-circle-o login-placeholder-icon"></i>
         </div>
         <form class="login-form">
+            <div class="flash-error">
+                <i class="fa fa-exclamation error-icon"></i>
+                <span>Ako error</span>
+            </div>
             <div class="login-field">
                 <i class="fa fa-envelope-o login-icon"></i>
                 <input type="text" class="login-input" placeholder="username">

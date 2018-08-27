@@ -151,3 +151,10 @@ body {
 .login-field--button {
     padding: 20px 10px 40px;
 }
+
+.flash-error {
+    color: #FFF;
+    padding: 6px 15px;
+    background: #ff4848;
+    border-radius: 3px;
+}
