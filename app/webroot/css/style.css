@@ -320,7 +320,7 @@ body {
 }
 
 .title {
-    font-size: 34px;
+    font-size: 28px;
     display: block;
     text-align: center;
     padding: 20px;
@@ -346,7 +346,7 @@ body {
     font-size: 18px;
     padding: 6px;
     background: #565555;
-    color: #ffd200;
+    color: #fff;
 }
 
 .content {
@@ -365,7 +365,7 @@ body {
     font-size: 18px;
     padding: 6px;
     background: #565555;
-    color: #ffd200;
+    color: #fff;
 }
 
 .form-container {
