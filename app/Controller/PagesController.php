@@ -97,4 +97,8 @@ class PagesController extends AppController {
 	public function search_files() {
 		
 	}
+
+	public function activity() {
+		
+	}
 }

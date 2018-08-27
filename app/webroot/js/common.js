@@ -16,5 +16,8 @@ $(function() {
     $('.button-close').click(function() {
         $('#showModal').removeClass('modalShow');
     });
+
+    // Datatable
+    $('#activity-table').dataTable();
 });
 

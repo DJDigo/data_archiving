@@ -22,6 +22,7 @@
 		<?php echo 'Data Archiving Management System'; ?>
 	</title>
 	<link rel="stylesheet" type="text/css" href="/plugins/datepicker/datepicker.css"/>
+	<link rel="stylesheet" type="text/css" href="/plugins/datatables/datatables.min.css"/>
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css('font-awesome-4.7.0/css/font-awesome.min.css');
@@ -34,6 +35,8 @@
 		echo $this->fetch('script');
 	?>
 	<script src="/plugins/datepicker/datepicker.js"></script>
+	<script src="/plugins/datatables/datatables.net.js"></script>
+	<script src="/plugins/datatables/datatables.min.js"></script>
 </head>
 <body>
 	<main class="main-content">
