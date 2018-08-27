@@ -77,4 +77,8 @@ class PagesController extends AppController {
 	public function login() {
 
 	}
+
+	public function add_user() {
+
+	}
 }

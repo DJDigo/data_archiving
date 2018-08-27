@@ -25,6 +25,9 @@
 		echo $this->Html->meta('icon');
 		echo $this->Html->css('font-awesome-4.7.0/css/font-awesome.min.css');
 		echo $this->Html->css('style.css');
+
+		echo $this->Html->script('jquery-3.1.0.min');
+		echo $this->Html->script('common');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');

@@ -26,10 +26,10 @@
  */
 	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 	Router::connect('/login', array('controller' => 'pages', 'action' => 'display', 'login'));
+	Router::connect('/add_user', array('controller' => 'pages', 'action' => 'display', 'add_user'));
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */
-	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 
 /**
