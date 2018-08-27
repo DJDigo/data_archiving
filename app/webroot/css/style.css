@@ -179,6 +179,17 @@ body {
 
 .logo-image {
     width: 65px; 
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+.logo-name {
+    display: inline-block;
+    font-size: 30px;
+    color: #ccc9de;
+    vertical-align: middle;
+    color: #ffe721;
 }
 
 .header-login-info {

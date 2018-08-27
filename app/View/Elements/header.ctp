@@ -2,6 +2,7 @@
     <div class="logo-wrapper">
         <a href="/">
             <img src="img/common/logo.png" alt="LSPU" class="logo-image"/>
+            <span class="logo-name">LSPU</span>
         </a>
     </div>
     <div class="header-login-info">
