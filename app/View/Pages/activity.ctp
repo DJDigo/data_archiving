@@ -9,7 +9,7 @@
         </div>
         <div class="content-wrapper">
             <div class="activity-table">
-                <table id="activity-table" class="table table-bordered">
+                <table id="activity-table" class="table table-bordered stripe">
                     <thead>
                         <tr>
                             <td>File Name</td>

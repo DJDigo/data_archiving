@@ -18,6 +18,13 @@ $(function() {
     });
 
     // Datatable
-    $('#activity-table').dataTable();
+    $('#activity-table').dataTable({
+        "lengthMenu": [ 10, 50, 100 ],
+        "lengthChange": true,
+        "searching": false,
+        "info": true,
+        "iDisplayLength":10,
+        'pagingType': 'full_numbers',
+    });
 });
 
