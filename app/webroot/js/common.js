@@ -11,10 +11,12 @@ $(function() {
     // Toggle Modal
     $('.search-item').click(function() {
         $('#showModal').addClass('modalShow');
+        $('body').css('overflow','hidden');
     });
 
     $('.button-close').click(function() {
         $('#showModal').removeClass('modalShow');
+        $('body').css('overflow','auto');
     });
 
     // Datatable
