@@ -1,7 +1,7 @@
 <header class="header-wrapper">
     <div class="logo-wrapper">
-        <a href="/">
-            <img src="img/common/logo.png" alt="LSPU" class="logo-image"/>
+        <a href="/data_archiving">
+            <img src="../img/common/logo.png" alt="LSPU" class="logo-image"/>
             <span class="logo-name">LSPU</span>
         </a>
     </div>
