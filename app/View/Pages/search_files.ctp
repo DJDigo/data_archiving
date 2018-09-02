@@ -106,6 +106,25 @@
                     </div>
                 </li>
             </ul>
+            <div class="pagination">
+                <ul>
+                    <li class="pagination-list">
+                        <a href="" class="pagination-item"><</a>
+                    </li>
+                    <li class="pagination-list">
+                        <a href="" class="pagination-item pagination-item--active">1</a>
+                    </li>
+                    <li class="pagination-list">
+                        <a href="" class="pagination-item">2</a>
+                    </li>
+                    <li class="pagination-list">
+                        <a href="" class="pagination-item">3</a>
+                    </li>
+                    <li class="pagination-list">
+                        <a href="" class="pagination-item">></a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
