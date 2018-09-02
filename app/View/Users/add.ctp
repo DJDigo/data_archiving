@@ -58,7 +58,9 @@
             </div>
             <div class="form-button-wrapper">
                 <?php 
-                    echo $this->Form->end("Create", ["class" => "form-button"]);
+                    echo $this->Form->end("Create",[
+                        "class" => "form-button"
+                    ]);
                 ?>
             </div>
            <!-- <form class="form-container form-container-adduser">

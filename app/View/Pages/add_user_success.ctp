@@ -13,7 +13,7 @@
                     <span class="success-message-text">as a user</span>
                 </div>
                 <div class="form-button-wrapper">
-                    <a href="/add_user" class="form-button">Go Back</a>
+                    <a href="/data_archiving/pages/add_user" class="form-button">Go Back</a>
                 </div>
             </form>
         </div>

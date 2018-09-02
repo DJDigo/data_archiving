@@ -63,7 +63,7 @@ body {
     box-shadow: 0px 0px 8px white;
     padding: 85px 20px 20px;
     box-sizing: border-box;
-    background: #2b2b2b;
+    background: #404040;
     border-radius: 6px;
     position: relative;
 }
@@ -427,6 +427,7 @@ body {
     padding: 6px;
     height: 95px;
     resize: none;
+    box-sizing: border-box;
 }
 
 .form-button {

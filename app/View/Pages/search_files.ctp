@@ -11,97 +11,97 @@
             <ul class="search-files">
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/background.png" alt="images" class="search-image">
+                        <img src="../img/common/background.png" alt="images" class="search-image">
                     </div>
                     <span class="search-filename">File Name1File Name1File Name1</span>
                 </li>
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/logo.png" alt="images" class="search-image">
+                        <img src="../img/common/logo.png" alt="images" class="search-image">
                         <span class="search-filename">File Name2</span>
                     </div>
                 </li>
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/placeholder.png" alt="images" class="search-image">
+                        <img src="../img/common/placeholder.png" alt="images" class="search-image">
                     </div>
                     <span class="search-filename">File Name1</span>
                 </li>
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/background.png" alt="images" class="search-image">
+                        <img src="../img/common/background.png" alt="images" class="search-image">
                         <span class="search-filename">File Name2</span>
                     </div>
                 </li>
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/background.png" alt="images" class="search-image">
+                        <img src="../img/common/background.png" alt="images" class="search-image">
                     </div>
                     <span class="search-filename">File Name1</span>
                 </li>
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/background.png" alt="images" class="search-image">
+                        <img src="../img/common/background.png" alt="images" class="search-image">
                         <span class="search-filename">File Name2</span>
                     </div>
                 </li>
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/background.png" alt="images" class="search-image">
+                        <img src="../img/common/background.png" alt="images" class="search-image">
                     </div>
                     <span class="search-filename">File Name1</span>
                 </li>
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/background.png" alt="images" class="search-image">
+                        <img src="../img/common/background.png" alt="images" class="search-image">
                         <span class="search-filename">File Name2</span>
                     </div>
                 </li>
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/background.png" alt="images" class="search-image">
+                        <img src="../img/common/background.png" alt="images" class="search-image">
                     </div>
                     <span class="search-filename">File Name1</span>
                 </li>
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/background.png" alt="images" class="search-image">
+                        <img src="../img/common/background.png" alt="images" class="search-image">
                         <span class="search-filename">File Name2</span>
                     </div>
                 </li>
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/background.png" alt="images" class="search-image">
+                        <img src="../img/common/background.png" alt="images" class="search-image">
                     </div>
                     <span class="search-filename">File Name1</span>
                 </li>
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/background.png" alt="images" class="search-image">
+                        <img src="../img/common/background.png" alt="images" class="search-image">
                         <span class="search-filename">File Name2</span>
                     </div>
                 </li>
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/background.png" alt="images" class="search-image">
+                        <img src="../img/common/background.png" alt="images" class="search-image">
                     </div>
                     <span class="search-filename">File Name1</span>
                 </li>
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/background.png" alt="images" class="search-image">
+                        <img src="../img/common/background.png" alt="images" class="search-image">
                         <span class="search-filename">File Name2</span>
                     </div>
                 </li>
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/background.png" alt="images" class="search-image">
+                        <img src="../img/common/background.png" alt="images" class="search-image">
                     </div>
                     <span class="search-filename">File Name1</span>
                 </li>
                 <li class="search-list">
                     <div class="search-item">
-                        <img src="img/common/background.png" alt="images" class="search-image">
+                        <img src="../img/common/background.png" alt="images" class="search-image">
                         <span class="search-filename">File Name2</span>
                     </div>
                 </li>
@@ -113,7 +113,7 @@
 <div class="modal" id="showModal">
     <div class="modal-container">
         <div class="modal-image-wrapper">
-            <img src="/img/common/logo.png" alt="image" class="modal-image"/>
+            <img src="/../img/common/logo.png" alt="image" class="modal-image"/>
         </div>
         <div class="modal-image-content">
             <ul>

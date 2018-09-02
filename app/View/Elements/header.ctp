@@ -10,7 +10,7 @@
             <span>August 30, 2018  &nbsp;&nbsp; 10:00:00</span>
         </div>
         <div class="header-loginas">
-            <span>Welcome, Your are logged in as: Pogi</span>
+            <span>Welcome, You are logged in as: Pogi</span>
             <span class="arrow-down">
                 <i class="fa fa-chevron-down"></i>
             </span>
@@ -23,13 +23,13 @@
 <nav class="navigation">
     <ul>
         <li class="navigation-item">
-            <a href="/" class="navigation-link active">Add User</a>
+            <a href="/data_archiving/users/add" class="navigation-link active">Add User</a>
         </li>
         <li class="navigation-item">
-            <a href="/" class="navigation-link">Add Files</a>
+            <a href="/data_archiving/" class="navigation-link">Add Files</a>
         </li>
         <li class="navigation-item">
-            <a href="/" class="navigation-link">Activity</a>
+            <a href="/data_archiving/" class="navigation-link">Activity</a>
         </li>
         <li class="navigation-search-wrapper">
             <div class="navigation-search">

@@ -12,7 +12,7 @@
                     <span class="success-message-text">Menandro_oba_san.jpg</span>
                 </div>
                 <div class="form-button-wrapper">
-                    <a href="/add_files" class="form-button">Go Back</a>
+                    <a href="/data_archiving/pages/add_files" class="form-button">Go Back</a>
                 </div>
             </form>
         </div>
