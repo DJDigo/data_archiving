@@ -26,5 +26,28 @@ $(function() {
         "iDisplayLength":10,
         'pagingType': 'full_numbers',
     });
+
+    // Image Upload
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                let imageType = input.files[0]['type'];
+                if ( imageType == 'image/jpeg' || imageType == 'image/png' ) {
+                    $('.js-file-name').val(input.files[0]['name']);
+                    $('.js-error-image').hide().text('')
+                } else {
+                    $('.js-file-name').val('');
+                    $('.js-upload-image').val('')
+                    $('.js-error-image').show().text('uploaded file type is invalid')
+                }
+            }
+            reader.readAsDataURL(input.files[0]);
+         }
+    }
+
+    $(".js-upload-image").change(function(){
+        readURL(this);
+    });
 });
 

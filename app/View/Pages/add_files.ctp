@@ -10,16 +10,16 @@
         <div class="content-wrapper">
            <form class="form-container">
                 <div class="form-field">
-                    <label class="form-label">File Upload:</label>
+                    <label class="form-label">File Upload: <span class="form-note">*(accepts jpg/png only)</span></label>
                     <div class="form-input-wrapper">
-                        <input type="file">
-                        <!-- <span class="error-message">error</span> -->
+                        <input type="file" class="js-upload-image">
+                        <span class="error-message js-error-image"></span>
                     </div>
                 </div>
                 <div class="form-field">
                     <label class="form-label">File Name:</label>
                     <div class="form-input-wrapper">
-                        <input type="text" class="form-input">
+                        <input type="text" class="form-input js-file-name">
                         <!-- <span class="error-message">error</span> -->
                     </div>
                 </div>

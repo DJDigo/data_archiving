@@ -393,6 +393,12 @@ body {
     padding: 10px 10px 5px;
 }
 
+.form-note {
+    color: #f00;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
 .form-label {
     display: inline-block;
     width: 60%;
