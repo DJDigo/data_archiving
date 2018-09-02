@@ -57,10 +57,12 @@
                 </div>
             </div>
             <div class="form-button-wrapper">
-                <?php 
-                    echo $this->Form->end("Create", ["class" => "form-button"]);
-                ?>
+                <div class="form-button-wrapper">
+                    <label class="form-label"></label>
+                    <input type="submit" class="form-button" value="Create">
+                </div>
             </div>
+            <?php echo $this->Form->end(); ?>
            <!-- <form class="form-container form-container-adduser">
                 <div class="flash-error">
                     <i class="fa fa-exclamation error-icon"></i>
