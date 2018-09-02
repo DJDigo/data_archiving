@@ -7,6 +7,7 @@ class UsersController extends AppController {
     
     public function beforeFilter() {
         parent::beforeFilter();
+        $this->Auth->allow('login','logout');
     }
 
     /**
@@ -38,7 +39,7 @@ class UsersController extends AppController {
                 echo "HELLO WORLD";
                 die();
             } else {
-                $this->Flash->error('Invalid username or password.');
+                $this->Flash->error('Invalid Username or Password entered, please try again.');
             }
         }
     }

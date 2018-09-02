@@ -61,34 +61,7 @@
                 <input type="submit" class="form-button" value="Create">
             </div>
             <?php echo $this->Form->end(); ?>
-           <!-- <form class="form-container form-container-adduser">
-                <div class="flash-error">
-                    <i class="fa fa-exclamation error-icon"></i>
-                    <span>Ako error</span>
                 </div>
-                <div class="flash-success">
-                    <i class="fa fa-check error-icon"></i>
-                    <span>Ako hindi error</span>
-                </div>
-                <div class="form-field">
-                    <label class="form-label">Username:</label>
-                    <div class="form-input-wrapper">
-                        <input type="text" class="form-input">
-                        <span class="error-message">error</span>
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label class="form-label">Password:</label>
-                    <div class="form-input-wrapper">
-                        <input type="text" class="form-input">
-                        <span class="error-message">error</span>
-                    </div>
-                </div>
-                <div class="form-button-wrapper">
-                    <label class="form-label"></label>
-                    <input type="submit" class="form-button" value="Create">
-                </div>
-            </form> -->
         </div>
     </div>
 </div>

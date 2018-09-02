@@ -27,12 +27,31 @@ App::uses('Controller', 'Controller');
  * Add your application-wide methods in the class below, your controllers
  * will inherit them.
  *
- * @package		app.Controller
- * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
+ * @package     app.Controller
+ * @link        http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	public $components = [
-		'DebugKit.Toolbar',
-		'Flash'
-	];
+    public $components = [
+        'DebugKit.Toolbar',
+        'Flash',
+        'Auth' => [
+            'loginRedirect'  => ['controller' => 'users', 'action' => 'index'],
+            'logoutRedirect' => ['controller' => 'users', 'action' => 'login'],
+            'authError'      => 'You must be logged in to view this page.',
+            'loginError'     => 'Invalid Username or Password entered, please try again.',
+            'authenticate'   => [
+                'Form' => [
+                    'passwordHasher' => 'Blowfish',
+                    'fields' => [
+                        'username' => 'username',
+                        'password' => 'password'
+                    ]
+                ]
+            ],
+            'authorize' => [
+                'Actions' => ['actionPath' => 'controllers']
+            ]
+        ],
+        'Session'
+    ];
 }
