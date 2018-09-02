@@ -113,7 +113,7 @@
 <div class="modal" id="showModal">
     <div class="modal-container">
         <div class="modal-image-wrapper">
-            <img src="/../img/common/logo.png" alt="image" class="modal-image"/>
+            <img src="../img/common/logo.png" alt="image" class="modal-image"/>
         </div>
         <div class="modal-image-content">
             <ul>
@@ -150,6 +150,7 @@
             </ul>
             <div class="modal-button-wrapper">
                 <button class="button-close">Close</button>
+                <button class="button-print">Print</button>
             </div>
         </div>
     </div>

@@ -599,10 +599,20 @@ body {
 }
 
 .button-close {
+    margin-right: 15px;
     background: #ff4848;
     color: #FFF;
     border-radius: 5px;
     border: 1px solid #ff4848;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.button-print {
+    background: #122aff;
+    color: #FFF;
+    border-radius: 5px;
+    border: 1px solid #122aff;
     padding: 10px 20px;
     cursor: pointer;
 }
