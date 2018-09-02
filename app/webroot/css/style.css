@@ -45,7 +45,7 @@ body {
     font: 15px/1.5 Mongolian Baiti;
     padding: 0;
     margin: 0;
-    background: url( '/img/common/background.png' ) no-repeat;
+    background: url( '../img/common/background.png' ) no-repeat;
     background-size: 100%;
 }
 
@@ -288,7 +288,7 @@ body {
     vertical-align: middle;
 }
 .navigation-search {
-    padding: 10px;
+    padding: 10px 10px 5px;
 }
 
 .search_selectbox-wrapper {
@@ -382,6 +382,11 @@ body {
 
 .form-container-adduser {
     padding: 45px 0;
+    max-width: 450px;
+}
+
+.form-container-confirm {
+    text-align: center;
 }
 
 .form-field {
@@ -390,12 +395,13 @@ body {
 
 .form-label {
     display: inline-block;
-    width: 25%;
+    width: 60%;
     vertical-align: top;
+    padding-bottom: 3px;
 }
 
 .form-input-wrapper {
-    width: 70%;
+    width: 100%;
     display: inline-block;
     vertical-align: top;
 }
@@ -406,6 +412,11 @@ body {
     border: 1px solid #CCC;
     box-shadow: 0 0 5px #CCC;
     padding: 6px;
+    box-sizing: border-box;
+}
+
+.form-input-info {
+    font-weight: bold;
 }
 
 .form-textarea {
