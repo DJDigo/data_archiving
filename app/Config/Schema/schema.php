@@ -28,7 +28,7 @@ class AppSchema extends CakeSchema {
             'type'    => 'string', 
             'null'    => true, 
             'default' => null, 
-            'length'  => 40, 
+            'length'  => 255, 
             'collate' => 'utf8_general_ci', 
             'charset' => 'utf8',
             'comment' =>'Hash Password'
