@@ -51,5 +51,10 @@ $(function() {
     $(".js-upload-image").change(function(){
         readURL(this);
     });
-});
 
+
+    // Sidebar treeview
+    $('.sidebar-item').bind("contextmenu",function(e){
+        return false;
+      });
+});

@@ -151,6 +151,7 @@ body {
     padding: 6px 15px;
     background: #ff4848;
     border-radius: 3px;
+    font-size: 14px;
 }
 
 .flash-success {
@@ -158,6 +159,7 @@ body {
     padding: 6px 15px;
     background: #24f179;
     border-radius: 3px;
+    font-size: 14px;
 }
 
 /* container */
@@ -354,6 +356,21 @@ body {
     padding: 6px;
     background: #565555;
     color: #fff;
+    position: relative;
+}
+
+.sidebar-add {
+    position: absolute;
+    top: 0;
+    right: 0;
+    position: absolute;
+    top: 25%;
+    right: 15px;
+    cursor: pointer;
+}
+
+.sidebar-add:hover {
+    color: #ffe721;
 }
 
 .content {
@@ -670,4 +687,58 @@ body {
 .pagination-item.pagination-item--active {
     background: #ffe721;
     color: #383838;
+}
+
+/* SIDEBAR */
+.sidebar-treeview {
+    padding: 25px 10px 10px;
+    overflow: auto;
+}
+
+.sidebar-treeview-wrapper {
+    width: 1000px;
+}
+
+.sidebar-folder-icon {
+    color: yellow;
+    text-shadow: 1px 1px 4px #000;
+    font-size: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.sidebar-item {
+    cursor: pointer;
+    padding-bottom: 3px;
+}
+
+.sidebar-sublist {
+    padding-left: 20px;
+}
+
+.sidebar-item-sub {
+    padding-bottom: 3px;
+}
+
+.tooltip {
+    position: absolute;
+    background: #fff;
+    box-shadow: 0px 0px 5px #000;
+}
+
+.tooltip-text {
+    padding: 5px;
+}
+
+.tooltip-text span {
+    font-size: 14px;
+    display: block;
+    border-bottom: 1px dotted #ccc;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+.tooltip-text span:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
 }
