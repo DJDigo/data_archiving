@@ -1,7 +1,7 @@
 <div class="login">
     <div class="login-wrapper">
         <div class="login-placeholder">
-            <i class="fa fa-user-circle-o login-placeholder-icon"></i>
+            <i class="fa icon-user login-placeholder-icon"></i>
         </div>
         <?php 
             echo $this->Form->create("User", [
@@ -11,7 +11,7 @@
         ?>
         <?php echo $this->Flash->render(); ?>
         <div class="login-field">
-            <i class="fa fa-envelope-o login-icon"></i>
+            <i class="fa icon-envelope login-icon"></i>
             <?php 
                 echo $this->Form->input("username", [
                     "type"        => "text",
@@ -23,7 +23,7 @@
             ?>
         </div>
         <div class="login-field">
-            <i class="fa fa-lock login-icon"></i>
+            <i class="fa icon-lock login-icon"></i>
             <?php 
                 echo $this->Form->input("password", [
                     "type"        => "password",

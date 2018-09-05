@@ -12,7 +12,7 @@
         <div class="header-loginas">
             <span>Welcome, You are logged in as: Pogi</span>
             <span class="arrow-down">
-                <i class="fa fa-chevron-down"></i>
+                <i class="fa icon-caret-down"></i>
             </span>
             <div class="toggle-menu">
                 <a href="" class="logout-button">Logout</a>

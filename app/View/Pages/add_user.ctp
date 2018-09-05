@@ -10,11 +10,11 @@
         <div class="content-wrapper">
            <form class="form-container form-container-adduser">
                 <div class="flash-error">
-                    <i class="fa fa-exclamation error-icon"></i>
+                    <i class="fa icon-exclamation error-icon"></i>
                     <span>Ako error</span>
                 </div>
                 <div class="flash-success">
-                    <i class="fa fa-check error-icon"></i>
+                    <i class="fa icon-ok error-icon"></i>
                     <span>Ako hindi error</span>
                 </div>
                 <div class="form-field">
