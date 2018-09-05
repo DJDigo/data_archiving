@@ -1,7 +1,7 @@
 <aside class="sidebar">
     <div class="sidebar-title">
         <span>Folder Location</span>
-        <i class="fa fa-plus sidebar-add"></i>
+        <i class="fa icon-plus sidebar-add" title="Create Main Folder"></i>
     </div>
     <div class="sidebar-treeview">
         <div class="sidebar-treeview-wrapper">
@@ -65,13 +65,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="tooltip">
-        <div class="tooltip-text">
-            <span id="create">Create New Folder</span>
-            <span id="rename">Rename</span>
-            <span id="delete">Delete</span>
         </div>
     </div>
 </aside>

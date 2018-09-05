@@ -712,6 +712,7 @@ body {
 .sidebar-item {
     cursor: pointer;
     padding-bottom: 3px;
+    position: relative;
 }
 
 .sidebar-sublist {
@@ -720,27 +721,28 @@ body {
 
 .sidebar-item-sub {
     padding-bottom: 3px;
+    position: relative;
 }
 
 .tooltip {
-    position: absolute;
+    position: fixed;
     background: #fff;
     box-shadow: 0px 0px 5px #000;
-}
-
-.tooltip-text {
-    padding: 5px;
+    z-index: 999;
 }
 
 .tooltip-text span {
     font-size: 14px;
     display: block;
     border-bottom: 1px dotted #ccc;
-    padding-bottom: 5px;
     cursor: pointer;
+    padding: 5px;
+}
+
+.tooltip-text span:hover {
+    background: #ffe721;
 }
 
 .tooltip-text span:last-child {
     border-bottom: none;
-    padding-bottom: 0;
 }

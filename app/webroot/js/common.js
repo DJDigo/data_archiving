@@ -48,13 +48,27 @@ $(function() {
          }
     }
 
-    $(".js-upload-image").change(function(){
+    $(".js-upload-image").change(function() {
         readURL(this);
     });
 
 
     // Sidebar treeview
-    $('.sidebar-item').bind("contextmenu",function(e){
+    const tooltip = `<div class="tooltip">
+                        <div class="tooltip-text">
+                            <span id="create">Create New Folder</span>
+                            <span id="rename">Rename</span>
+                            <span id="delete">Delete</span>
+                        </div>
+                    </div>`;
+    $('.sidebar-item, .sidebar-item-sub').bind("contextmenu",function(e) {
+        $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
+        let tooltipPosition = $(this).offset().top + 'px';
+        $(this).append(tooltip);
+        
+        $('.tooltip').css({
+            top: tooltipPosition
+        });
         return false;
       });
 });
