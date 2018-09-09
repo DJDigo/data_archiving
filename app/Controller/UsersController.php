@@ -34,23 +34,22 @@ class UsersController extends AppController {
      * User's Login
      */
     public function login() {
-        // if ($this->request->is('POST')) {
-        //     if ($this->Auth->login()) {
-        //         echo "HELLO WORLD";
-        //         die();
-        //     } else {
-        //         $this->Flash->error('Invalid Username or Password entered, please try again.');
-        //     }
-        // }
+        if ($this->request->is('POST')) {
+            if ($this->Auth->login()) {
+                return $this->redirect('/users/add');
+            } else {
+                $this->Flash->error('Invalid Username or Password entered, please try again.');
+            }
+        }
     }
 
     /**
      * User's Logout
      */
     public function logout() {
-        // $this->autoRender = false;
-        // if ($this->Auth->logout()) {
-        //     return $this->redirect('/users/login');
-        // }
+        $this->autoRender = false;
+        if ($this->Auth->logout()) {
+            return $this->redirect('/users/login');
+        }
     }
 }

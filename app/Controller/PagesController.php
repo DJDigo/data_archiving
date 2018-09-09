@@ -87,7 +87,6 @@ class PagesController extends AppController {
 	}
 
 	public function add_files() {
-		
 	}
 
 	public function confirm_added_files() {

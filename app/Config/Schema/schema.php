@@ -53,4 +53,72 @@ class AppSchema extends CakeSchema {
             'comment' =>'Modified Date'
         ]
     ];
+
+    public $categories = [
+        'id' => [
+            'type'     => 'integer', 
+            'null'     => false, 
+            'default'  => null, 
+            'unsigned' => false, 
+            'key'      => 'primary'
+        ],
+        'name' => [
+            'type'    => 'string', 
+            'null'    => true, 
+            'default' => null, 
+            'length'  => 255, 
+            'collate' => 'utf8_general_ci', 
+            'charset' => 'utf8',
+            'comment' =>'Folder name'
+        ],
+        'created' => [
+            'type'    => 'datetime', 
+            'null'    => true, 
+            'default' => null,
+            'comment' =>'Created Date'
+        ],
+        'modified' => [
+            'type'    => 'datetime', 
+            'null'    => true, 
+            'default' => null,
+            'comment' =>'Modified Date'
+        ]
+    ];
+
+    public $locations = [
+        'id' => [
+            'type'     => 'integer', 
+            'null'     => false, 
+            'default'  => null, 
+            'unsigned' => false, 
+            'key'      => 'primary'
+        ],
+        'category_id' => [
+            'type'     => 'integer', 
+            'null'     => false, 
+            'default'  => null, 
+            'unsigned' => false, 
+        ],
+        'path' => [
+            'type'    => 'string', 
+            'null'    => true, 
+            'default' => null, 
+            'length'  => 255, 
+            'collate' => 'utf8_general_ci', 
+            'charset' => 'utf8',
+            'comment' =>'Folder location'
+        ],
+        'created' => [
+            'type'    => 'datetime', 
+            'null'    => true, 
+            'default' => null,
+            'comment' =>'Created Date'
+        ],
+        'modified' => [
+            'type'    => 'datetime', 
+            'null'    => true, 
+            'default' => null,
+            'comment' =>'Modified Date'
+        ]
+    ];
 }

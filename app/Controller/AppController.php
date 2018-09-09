@@ -47,11 +47,13 @@ class AppController extends Controller {
                         'password' => 'password'
                     ]
                 ]
-            ],
-            'authorize' => [
-                'Actions' => ['actionPath' => 'controllers']
             ]
         ],
         'Session'
     ];
+
+    public function beforeFilter() {
+        $this->Auth->allow('add_files');
+    }
+
 }
