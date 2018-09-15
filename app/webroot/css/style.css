@@ -342,6 +342,10 @@ body {
     object-fit: cover;
 }
 
+.sidebar-user-image span {
+    display: block;    
+}
+
 .sidebar-user {
     padding: 30px 0 0;
 }

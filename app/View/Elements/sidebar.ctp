@@ -5,6 +5,7 @@
     <div class="sidebar-user">
         <div class="sidebar-user-image">
             <img src="../img/common/images.png" alt="user image">
+            <span>Menandro Oba-san</span>
         </div>
         <div class="sidebar-user-logout">
             <button>Logout</button>
