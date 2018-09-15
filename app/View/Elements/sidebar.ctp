@@ -1,5 +1,16 @@
 <aside class="sidebar">
     <div class="sidebar-title">
+        <span>USER</span>
+    </div>
+    <div class="sidebar-user">
+        <div class="sidebar-user-image">
+            <img src="../img/common/images.png" alt="user image">
+        </div>
+        <div class="sidebar-user-logout">
+            <button>Logout</button>
+        </div>
+    </div>
+    <div class="sidebar-title">
         <span>Folder Location</span>
         <i class="fa icon-plus sidebar-add" title="Create Main Folder"></i>
     </div>

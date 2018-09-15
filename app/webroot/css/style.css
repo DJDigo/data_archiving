@@ -166,10 +166,7 @@ body {
 
 /* container */
 .container {
-    margin: 10px auto;
-    max-width: 950px;
     border-radius: 6px;
-    box-shadow: 0px 0px 8px white;
     font-size: 0;
     padding-bottom: 15px;
 }
@@ -177,7 +174,7 @@ body {
 /* header */
 
 .header-wrapper {
-    padding: 10px 20px;
+    padding: 10px 15px;
     background: #565555;
     font-size: 0;
 }
@@ -217,46 +214,27 @@ body {
     font-size: 14px;
 }
 
-.header-loginas {
+.header-project-title {
     position: relative;
-}
-
-.arrow-down {
-    font-size: 16px;
-    padding: 0 0px 0 2px;
-    display: inline-block;
-    vertical-align: middle;
-    cursor: pointer;
-}
-
-.toggle-menu {
-    display: none;
-    background: #a9a9a9;
-    width: 20%;
-    position: absolute;
-    right: 0;
-    top: 35px;
-    text-align: left;
-    border: 2px solid #ffe721;
-}
-
-.logout-button {
-    text-decoration: none;
-    padding: 8px 10px;
-    display: block;
-    color: #FFF;
-}
-
-.logout-button:hover {
-    background: yellow;
-    color: #a9a9a9;
+    font-size: 20px;
+    color: #ffe721;
 }
 
 /* navigation menu */
 .navigation {
-    background: #464646;
     font-size: 0;
-    padding-left: 10px;
+    position: relative;
+} 
+
+.navigation-list {
+    width: 82%;
+    display: inline-block;
+    vertical-align: top;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #464646;
+    border-top: 1px solid ;
 }
 
 .navigation-item {
@@ -335,27 +313,57 @@ body {
     display: block;
     text-align: center;
     padding: 20px;
-    font-weight: 600px;
+    font-weight: 600;
     color: #ffd200;
 }
 
 .sidebar {
     display: inline-block;
-    width: 22%;
+    width: 18%;
     vertical-align: top;
-    margin-right: 2%;
-    margin-left: 1%;
     font-size: 16px;
     background: white;
     box-sizing: border-box;
+    min-height: 550px;
+    position: fixed;
+    top: 86px;
+    left: 0;
+}
+
+.sidebar-user-image {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar-user-image img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.sidebar-user {
+    padding: 30px 0 0;
+}
+
+.sidebar-user-logout {
+    padding: 10px 0 20px;
+    text-align: center;
+}
+
+.sidebar-user-logout button {
+    padding: 5px;
+    width: 100px;
+    background: #ff5757;
+    border: 1px solid red;
     border-radius: 3px;
-    height: 400px;
-    box-shadow: 0px 0px 5px white
+    color: #fff;
+    cursor: pointer;
 }
 
 .sidebar-title {
     font-size: 18px;
-    padding: 6px;
+    padding: 9px 6px;
     background: #565555;
     color: #fff;
     position: relative;
@@ -377,13 +385,16 @@ body {
 
 .content {
     display: inline-block;
-    width: 74%;
+    width: 80%;
     vertical-align: top;
     font-size: 16px;
     background: white;
     box-sizing: border-box;
     border-radius: 3px;
     box-shadow: 0px 0px 5px white;
+    left: 19%;
+    position: absolute;
+    top: 143px;
 }
 
 .content-title {
@@ -693,8 +704,9 @@ body {
 
 /* SIDEBAR */
 .sidebar-treeview {
-    padding: 25px 10px 10px;
+    padding: 12px 10px 10px;
     overflow: auto;
+    height: 250px;
 }
 
 .sidebar-treeview-wrapper {
@@ -702,7 +714,7 @@ body {
 }
 
 .sidebar-folder-icon {
-    color: yellow;
+    color: #c5c5ff;
     text-shadow: 1px 1px 4px #000;
     font-size: 20px;
     margin-left: 5px;
@@ -713,6 +725,7 @@ body {
     cursor: pointer;
     padding-bottom: 3px;
     position: relative;
+    display: inline-block;
 }
 
 .sidebar-sublist {
@@ -722,6 +735,11 @@ body {
 .sidebar-item-sub {
     padding-bottom: 3px;
     position: relative;
+}
+.sidebar-input {
+    display: block;
+    margin-left: 20px;
+    padding: 5px;
 }
 
 .tooltip {

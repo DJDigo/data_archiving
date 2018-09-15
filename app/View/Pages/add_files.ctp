@@ -1,7 +1,5 @@
 <div class="container">
     <?= $this->element('header'); ?>
-
-    <?= $this->element('sidebar'); ?>
     
     <div class="content">
         <div class="content-title">

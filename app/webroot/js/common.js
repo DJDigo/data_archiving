@@ -61,14 +61,39 @@ $(function() {
                             <span id="delete">Delete</span>
                         </div>
                     </div>`;
+    const addInput = `<input type="text" class="sidebar-input" autofocus>`;
+    let clickedFolder = '';
+    
     $('.sidebar-item, .sidebar-item-sub').bind("contextmenu",function(e) {
         $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
-        let tooltipPosition = $(this).offset().top + 'px';
+        let tooltipPosition = $(this).offset().top + 25;
         $(this).append(tooltip);
-        
+        clickedFolder = $(this);
         $('.tooltip').css({
-            top: tooltipPosition
+            top: tooltipPosition + 'px'
         });
         return false;
-      });
+    });
+
+    $('html').delegate('#create','click', function() {
+        $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
+        $('.sidebar-input').remove();
+        $('.sidebar-input').focus();
+        clickedFolder.append(addInput);
+    })
+
+    $('html').delegate('#delete', 'click', function() {
+        clickedFolder.parent().remove();
+    });
+});
+
+
+$(document).click(function(evt) {
+    var target = evt.target.className;
+    var inside = $(".sidebar-item, .sidebar-item-sub");
+    if ($.trim(target) != '') {
+        if ($("." + target) != inside) {
+            $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
+        }
+    }
 });
