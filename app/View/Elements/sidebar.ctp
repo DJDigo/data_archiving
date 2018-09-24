@@ -16,49 +16,39 @@
         <i class="fa icon-plus sidebar-add" title="Create Main Folder"></i>
     </div>
     <div class="sidebar-treeview">
-        <div class="sidebar-treeview-wrapper">
+        <div class="sidebar-treeview-wrapper" oncontextmenu="return false;">
             <div class="sidebar-list-main">
                 <div class="sidebar-item">
                     <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                    <span>Main Folder</span>
+                    <div class="sidebar-text">Main Folder</div>
                 </div>
-                <div class="sidebar-sublist">
+                <div class="sidebar-item-sub">
+                    <i class="fa icon-folder-close sidebar-folder-icon"></i>
+                    <div class="sidebar-text">Sub Folder1</div>
+                </div>
+                <div class="sidebar-item-sub">
+                    <i class="fa icon-folder-close sidebar-folder-icon"></i>
+                    <div class="sidebar-text">Sub Folder2</div>
+                </div>
+                <div class="sidebar-item-sub">
+                    <i class="fa icon-folder-close sidebar-folder-icon"></i>
+                    <div class="sidebar-text">Sub Folder3</div>
                     <div class="sidebar-item-sub">
                         <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                        <span>Sub Folder1</span>
+                        <div class="sidebar-text">Sub Folder1</div>
                     </div>
                     <div class="sidebar-item-sub">
                         <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                        <span>Sub Folder2</span>
-                    </div>
-                    <div class="sidebar-item-sub">
-                        <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                        <span>Sub Folder3</span>
-                    </div>
-                    <div class="sidebar-sublist">
+                        <div class="sidebar-text">Sub Folder2</div>
                         <div class="sidebar-item-sub">
                             <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                            <span>Sub Folder1</span>
-                        </div>
-                        <div class="sidebar-item-sub">
-                            <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                            <span>Sub Folder2</span>
-                        </div>
-                        <div class="sidebar-sublist">
+                            <div class="sidebar-text">Sub Folder1</div>
                             <div class="sidebar-item-sub">
                                 <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                                <span>Sub Folder1</span>
-                            </div>
-                            <div class="sidebar-sublist">
+                                <div class="sidebar-text">Sub Folder1</div>
                                 <div class="sidebar-item-sub">
                                     <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                                    <span>Sub Folder1</span>
-                                </div>
-                                <div class="sidebar-sublist">
-                                    <div class="sidebar-item-sub">
-                                        <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                                        <span>Sub Folder1</span>
-                                    </div>
+                                    <div class="sidebar-text">Sub Folder1</div>
                                 </div>
                             </div>
                         </div>
@@ -68,12 +58,12 @@
             <div class="sidebar-list-main">
                 <div class="sidebar-item">
                     <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                    <span>Main Folder2</span>
+                    <div>Main Folder2</div>
                 </div>
                 <div class="sidebar-sublist">
                     <div class="sidebar-item-sub">
                         <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                        <span>Sub Folder1</span>
+                        <div class="sidebar-text">Sub Folder1</div>
                     </div>
                 </div>
             </div>
