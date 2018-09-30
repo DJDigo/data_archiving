@@ -10,13 +10,11 @@ $(function() {
 
     // Toggle Modal
     $('.search-item').click(function() {
-        $('#showModal').addClass('modalShow');
-        $('body').css('overflow','hidden');
+        $('#showModal').fadeIn(300);
     });
 
     $('.button-close').click(function() {
-        $('#showModal').removeClass('modalShow');
-        $('body').css('overflow','auto');
+        $('#showModal').fadeOut(300);
     });
 
     // Datatable
