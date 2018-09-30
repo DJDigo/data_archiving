@@ -1,7 +1,7 @@
 <div class="login">
     <div class="login-wrapper">
         <div class="login-placeholder">
-            <i class="fa icon-user login-placeholder-icon"></i>
+            <img src="../img/common/logo.png" alt="LSPU" class="login-logo">
         </div>
         <?php 
             echo $this->Form->create("User", [
@@ -35,7 +35,6 @@
             ?>
         </div>
         <div class="login-field">
-            <a href="" class="login-forgot-password">Forgot Password?</a>
             <!-- <label class="login-label">
                 <input type="checkbox" class="checkbox">
                 Login as User?

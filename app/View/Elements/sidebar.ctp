@@ -4,7 +4,6 @@
     </div>
     <div class="sidebar-user">
         <div class="sidebar-user-image">
-            <img src="../img/common/images.png" alt="user image">
             <span>Menandro Oba-san</span>
         </div>
         <div class="sidebar-user-logout">
@@ -58,13 +57,11 @@
             <div class="sidebar-list-main">
                 <div class="sidebar-item">
                     <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                    <div>Main Folder2</div>
+                    <div class="sidebar-text">Main Folder</div>
                 </div>
-                <div class="sidebar-sublist">
-                    <div class="sidebar-item-sub">
-                        <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                        <div class="sidebar-text">Sub Folder1</div>
-                    </div>
+                <div class="sidebar-item-sub">
+                    <i class="fa icon-folder-close sidebar-folder-icon"></i>
+                    <div class="sidebar-text">Sub Folder1</div>
                 </div>
             </div>
         </div>
