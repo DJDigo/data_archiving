@@ -390,6 +390,7 @@ body {
     left: 19%;
     position: absolute;
     top: 143px;
+    min-height: 495px;
 }
 
 .content-title {
