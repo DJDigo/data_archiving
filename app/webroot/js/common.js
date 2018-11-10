@@ -70,9 +70,12 @@ $(function() {
             clickedFolder = $(this);
             $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
             let tooltipPosition = $(this).offset().top + 25;
+            let positionOfModal;
+            tooltipPosition >= 550 ? positionOfModal = tooltipPosition - 117 : positionOfModal = tooltipPosition;
             $(this).append(tooltip);
+
             $('.tooltip').css({
-                top: tooltipPosition + 'px'
+                top: positionOfModal + 'px'
             });
             return false;
         }
