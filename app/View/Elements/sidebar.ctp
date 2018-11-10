@@ -16,10 +16,10 @@
     </div>
     <div class="sidebar-treeview">
         <div class="sidebar-treeview-wrapper" oncontextmenu="return false;">
-            <div class="sidebar-list-main">
+            <!-- <div class="sidebar-list-main">
                 <div class="sidebar-item">
                     <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                    <div class="sidebar-text">Main Folder</div>
+                    <div class="sidebar-text">Archive</div>
                 </div>
                 <div class="sidebar-item-sub">
                     <i class="fa icon-folder-close sidebar-folder-icon"></i>
@@ -64,6 +64,7 @@
                     <div class="sidebar-text">Sub Folder1</div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </aside>
+<input type="hidden" id="url" value="<?php echo $url; ?>">

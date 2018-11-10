@@ -34,6 +34,7 @@
 	Router::connect('/success_added_files', array('controller' => 'pages', 'action' => 'display', 'success_added_files'));
 	Router::connect('/search_files', array('controller' => 'pages', 'action' => 'display', 'search_files'));
 	Router::connect('/activity', array('controller' => 'pages', 'action' => 'display', 'activity'));
+	// Router::connect('/locations/add', array('controller' => 'locations', 'actions' => 'add'));
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */

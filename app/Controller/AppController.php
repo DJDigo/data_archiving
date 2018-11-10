@@ -53,7 +53,15 @@ class AppController extends Controller {
     ];
 
     public function beforeFilter() {
-        $this->Auth->allow('add_files');
+        $this->Auth->allow('add_files', 'add');
+        $this->set('url', $this->current_url());
+    }
+
+    public function current_url() {
+        $parsed_url = parse_url($_SERVER['PHP_SELF']);
+        $path_array = explode('/', $parsed_url['path']);
+        $url = "/".$path_array[1]."/";
+        return $url;
     }
 
 }

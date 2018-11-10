@@ -1,5 +1,5 @@
 $(function() {
-
+    let url = $('#url').val();
     // HEADER TOGGLE MENU
     $('.arrow-down').click(function() {
         $('.toggle-menu').slideToggle();
@@ -75,8 +75,9 @@ $(function() {
         }
     });
 
-
+    let folder_path = '';
     $('html').delegate('#create','click', function() {
+        folder_path = $(this).parent().parent().parent().data('id');
         $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
         $('.sidebar-input').remove();
         $('.sidebar-input').focus();
@@ -104,15 +105,17 @@ $(function() {
     
     $('html').on('keyup','.sidebar-input', function(e) {
         if ( e.keyCode == 13 ) {
+            let inputValue = '';
             if ( $(this).val().length > 1 ) {
-                let inputValue = $(this).val();
-                $(this).parent().append('<div class="sidebar-item-sub"><i class="fa icon-folder-close sidebar-folder-icon"></i><div class="sidebar-text">'+ inputValue +'</div></div>');
+                inputValue = $(this).val();
+                $(this).parent().append('<div class="sidebar-item-sub" data-id="'+folder_path+'/'+inputValue+'"><i class="fa icon-folder-close sidebar-folder-icon"></i><div class="sidebar-text">'+ inputValue +'</div></div>');
                 $(this).remove();
             } else {
-                let inputValue = 'New Folder';
-                $(this).parent().append('<div class="sidebar-item-sub"><i class="fa icon-folder-close sidebar-folder-icon"></i><div class="sidebar-text">'+ inputValue +'</div></div>');
+                inputValue = 'New Folder';
+                $(this).parent().append('<div class="sidebar-item-sub" data-id="'+folder_path+'/'+inputValue+'"><i class="fa icon-folder-close sidebar-folder-icon"></i><div class="sidebar-text">'+ inputValue +'</div></div>');
                 $(this).remove();
             }
+            add_folder(folder_path+'/'+inputValue, url);
         }
     });
 
@@ -133,11 +136,11 @@ $(function() {
     });
 
 
-
+    //add new main folder
     $('.sidebar-add').click(function(){
         let createMainFolder = `
             <div class="sidebar-list-main">
-                <div class="sidebar-item">
+                <div class="sidebar-item" data-id="New Folder">
                     <i class="fa icon-folder-close sidebar-folder-icon"></i>
                     <span>New Folder</span>
                 </div>
@@ -145,6 +148,8 @@ $(function() {
         `;
 
         $('.sidebar-treeview-wrapper').append(createMainFolder);
+        //save folder
+        add_folder('New Folder', url);
     });
 });
 
@@ -158,3 +163,17 @@ $(document).click(function(evt) {
         }
     }
 });
+
+
+function add_folder(name, url, location = '') {
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: url+"locations/add",
+        data: {name},
+        success: function(response) {
+
+        }
+
+    })
+}
