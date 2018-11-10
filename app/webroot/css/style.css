@@ -324,6 +324,7 @@ body {
     position: fixed;
     top: 86px;
     left: 0;
+    z-index: 2;
 }
 
 .sidebar-user-image {
@@ -407,7 +408,7 @@ body {
 }
 
 .form-container-adduser {
-    padding: 45px 0;
+    padding: 37px 0;
     max-width: 450px;
 }
 

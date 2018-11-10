@@ -27,6 +27,20 @@
                 </div>
             </div>
             <div class="form-field">
+                <label class="form-label">Position:</label>
+                <div class="form-input-wrapper">
+                    <?php 
+                        echo $this->Form->input("position", [
+                            "type"     => "text",
+                            "label"    => false,
+                            "div"      => false,
+                            "required" => false,
+                            "class"    => "form-input"
+                        ]);
+                    ?>
+                </div>
+            </div>
+            <div class="form-field">
                 <label class="form-label">Password:</label>
                 <div class="form-input-wrapper">
                     <?php 

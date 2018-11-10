@@ -1,0 +1,39 @@
+{
+  "Folders": [
+    { 
+      "name": "Main Folder", 
+      "id": 1,
+      "childFolder": [
+        { 
+          "name": "child1", 
+          "id": 2,
+          "childFolder": [
+            { 
+              "name": "child1", 
+              "id": 3
+            },
+            { 
+              "name": "child2", 
+              "id": 4
+            },
+            { 
+              "name": "child3", 
+              "id": 5
+            }
+          ]
+        },
+        { 
+          "name": "child2", 
+          "id": 6,
+          "childFolder": [
+            { 
+              "name": "child1", 
+              "id": 7
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

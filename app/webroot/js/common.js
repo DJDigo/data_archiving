@@ -1,4 +1,7 @@
 $(function() {
+    // populateSidebarFolder();
+
+
     let url = $('#url').val();
     // HEADER TOGGLE MENU
     $('.arrow-down').click(function() {
@@ -86,11 +89,14 @@ $(function() {
     })
 
     $('html').delegate('#delete', 'click', function() {
-        clickedFolder.parent().remove();
+        clickedFolder.remove();
     });
 
+        let clickedFolderText = '';
     $('html').delegate('#rename', 'click', function() {
-        let clickedFolderText = clickedFolder.find('.sidebar-text').text();
+        setTimeout(function() {
+            clickedFolderText = clickedFolder.find('.sidebar-text').text();
+        },300)
         $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
         let inputRenameTextBox = '<input type="text" class="sidebar-input-rename" value="'+ clickedFolderText + '" autofocus style="margin-left: 0">'
         clickedFolder.find('.sidebar-text').text('').append(inputRenameTextBox);
@@ -142,7 +148,7 @@ $(function() {
             <div class="sidebar-list-main">
                 <div class="sidebar-item" data-id="New Folder">
                     <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                    <span>New Folder</span>
+                    <div class="sidebar-text">New Folder</div>
                 </div>
             </div>
         `;
@@ -175,5 +181,30 @@ function add_folder(name, url, location = '') {
 
         }
 
+    })
+}
+
+function populateSidebarFolder() {
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "../files/sidebar_folder.json",
+        success: function(response) {
+            response['Folders'].forEach((value,key) => {
+                console.log(value['childFolder'])
+                $('.sidebar-treeview-wrapper').append(
+                    `<div class="sidebar-list-main">
+                        <div class="sidebar-item">
+                            <i class="fa icon-folder-close sidebar-folder-icon"></i>
+                            <div class="sidebar-text">` + value['name'] + `</div>
+                        </div>
+                        <div class="sidebar-item-sub">
+                            <i class="fa icon-folder-close sidebar-folder-icon"></i>
+                            <div class="sidebar-text">` + value['childFolder'][key]['name'] + `</div>
+                        </div>
+                    </div>`
+                )
+            });
+        }
     })
 }
