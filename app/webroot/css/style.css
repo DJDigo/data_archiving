@@ -262,11 +262,11 @@ body {
 
 .navigation-search-wrapper {
     display: inline-block;
-    width: 55%;
+    width: 40%;
     vertical-align: middle;
 }
 .navigation-search {
-    padding: 10px 10px 5px;
+    padding: 5px 10px;
 }
 
 .search_selectbox-wrapper {

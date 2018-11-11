@@ -1,7 +1,6 @@
 $(function() {
     // populateSidebarFolder();
 
-
     let url = $('#url').val();
     // HEADER TOGGLE MENU
     $('.arrow-down').click(function() {
@@ -192,19 +191,26 @@ function populateSidebarFolder() {
         url: "../files/sidebar_folder.json",
         success: function(response) {
             response['Folders'].forEach((value,key) => {
-                console.log(value['childFolder'])
+                let getNumberOfChildFolder = Object.keys(value['childFolder']).length;
+                let value1 = '';
+                for ( let i = 0; i <= getNumberOfChildFolder - 1; i++ ) {
+                    value1 += `
+                    <div class="sidebar-item-sub">
+                        <i class="fa icon-folder-close sidebar-folder-icon"></i>
+                        <div class="sidebar-text">` + value['childFolder'][i]['name'] + `</div>
+                    </div>
+                    `
+                };
                 $('.sidebar-treeview-wrapper').append(
                     `<div class="sidebar-list-main">
                         <div class="sidebar-item">
                             <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                            <div class="sidebar-text">` + value['name'] + `</div>
+                            <div class="sidebar-text">` + value['name'] + `</div>` + value1 + `
                         </div>
-                        <div class="sidebar-item-sub">
-                            <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                            <div class="sidebar-text">` + value['childFolder'][key]['name'] + `</div>
-                        </div>
+                        
                     </div>`
                 )
+            
             });
         }
     })
