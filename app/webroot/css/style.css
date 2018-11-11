@@ -722,7 +722,8 @@ body {
     cursor: pointer;
     padding-bottom: 3px;
     position: relative;
-    display: inline-block;
+    display: block;
+    padding-left: 15px;
 }
 
 .sidebar-sublist {

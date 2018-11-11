@@ -15,7 +15,7 @@
         <i class="fa icon-plus sidebar-add" title="Create Main Folder"></i>
     </div>
     <div class="sidebar-treeview">
-        <div class="sidebar-treeview-wrapper" oncontextmenu="return false;">
+        <div class="sidebar-treeview-wrapper" id="folders" oncontextmenu="return false;">
             <!-- <div class="sidebar-list-main">
                 <div class="sidebar-item">
                     <i class="fa icon-folder-close sidebar-folder-icon"></i>
@@ -63,8 +63,8 @@
                     <i class="fa icon-folder-close sidebar-folder-icon"></i>
                     <div class="sidebar-text">Sub Folder1</div>
                 </div>
-            </div>
-        </div> -->
+            </div> -->
+        </div>
     </div>
 </aside>
 <input type="hidden" id="url" value="<?php echo $url; ?>">

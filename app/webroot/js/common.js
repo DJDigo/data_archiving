@@ -1,5 +1,5 @@
 $(function() {
-    // populateSidebarFolder();
+    document.getElementById("folders").innerHTML= populateSidebarFolder(folders);
 
     let url = $('#url').val();
     // HEADER TOGGLE MENU
@@ -85,7 +85,7 @@ $(function() {
     let folder_path = '';
     $('html').delegate('#create','click', function() {
         folder_path = $(this).parent().parent().parent().parent().data('id');
-        $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
+        $('.sidebar-item').find('.tooltip').remove();
         $('.sidebar-input').remove();
         $('.sidebar-input').focus();
         clickedFolder.parent().append(addInput);
@@ -97,7 +97,7 @@ $(function() {
     });
 
     $('html').delegate('#rename', 'click', function() {
-        $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
+        $('.sidebar-item').find('.tooltip').remove();
         let inputRenameTextBox = '<input type="text" class="sidebar-input-rename" value="'+ clickedFolderText + '" autofocus style="margin-left: 0">'
         clickedFolder.text('').append(inputRenameTextBox);
         clickedFolder.parent().find('.sidebar-input-rename').focus();
@@ -114,11 +114,11 @@ $(function() {
             let inputValue = '';
             if ( $(this).val().length > 1 ) {
                 inputValue = $(this).val();
-                $(this).parent().append('<div class="sidebar-item-sub" data-id="'+folder_path+'/'+inputValue+'"><i class="fa icon-folder-close sidebar-folder-icon"></i><div class="sidebar-text">'+ inputValue +'</div></div>');
+                $(this).parent().append('<div class="sidebar-item" data-id="'+folder_path+'/'+inputValue+'"><i class="fa icon-folder-close sidebar-folder-icon"></i><div class="sidebar-text">'+ inputValue +'</div></div>');
                 $(this).remove();
             } else {
                 inputValue = 'New Folder';
-                $(this).parent().append('<div class="sidebar-item-sub" data-id="'+folder_path+'/'+inputValue+'"><i class="fa icon-folder-close sidebar-folder-icon"></i><div class="sidebar-text">'+ inputValue +'</div></div>');
+                $(this).parent().append('<div class="sidebar-item" data-id="'+folder_path+'/'+inputValue+'"><i class="fa icon-folder-close sidebar-folder-icon"></i><div class="sidebar-text">'+ inputValue +'</div></div>');
                 $(this).remove();
             }
             add_folder(folder_path+'/'+inputValue, url);
@@ -162,10 +162,10 @@ $(function() {
 
 $(document).click(function(evt) {
     var target = evt.target.className;
-    var inside = $(".sidebar-item, .sidebar-item-sub");
+    var inside = $(".sidebar-item");
     if ($.trim(target) != '') {
         if ($("." + target) != inside) {
-            $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
+            $('.sidebar-item').find('.tooltip').remove();
         }
     }
 });
@@ -178,40 +178,81 @@ function add_folder(name, url, location = '') {
         url: url+"locations/add",
         data: {name},
         success: function(response) {
-
         }
-
     })
 }
 
-function populateSidebarFolder() {
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        url: "../files/sidebar_folder.json",
-        success: function(response) {
-            response['Folders'].forEach((value,key) => {
-                let getNumberOfChildFolder = Object.keys(value['childFolder']).length;
-                let value1 = '';
-                for ( let i = 0; i <= getNumberOfChildFolder - 1; i++ ) {
-                    value1 += `
-                    <div class="sidebar-item-sub">
-                        <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                        <div class="sidebar-text">` + value['childFolder'][i]['name'] + `</div>
-                    </div>
-                    `
-                };
-                $('.sidebar-treeview-wrapper').append(
-                    `<div class="sidebar-list-main">
-                        <div class="sidebar-item">
-                            <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                            <div class="sidebar-text">` + value['name'] + `</div>` + value1 + `
-                        </div>
-                        
-                    </div>`
-                )
-            
-            });
+
+const folders = {
+  id: '1',
+  name: 'Main Folder',
+  children: [
+    {
+      id: '2',
+      name: 'child1'
+    },
+    {
+      id: '3',
+      name: 'child2',
+      children: [
+        {
+          id: '4',
+          name: 'child1'
+        },
+        {
+          id: '5',
+          name: 'child2'
+        },
+        {
+          id: '6',
+          name: 'child3'
+        },
+        {
+          id: '7',
+          name: 'child4',
+          children: [
+            {
+              id: '8',
+              name: 'child1'
+            },
+            {
+              id: '9',
+              name: 'child2'
+            }
+          ]
         }
-    })
+      ]
+    },
+    {
+      id: '10',
+      name: 'child4',
+      children: [
+        {
+          id: '11',
+          name: 'child1'
+        },
+        {
+          id: '12',
+          name: 'child2'
+        }
+      ]
+    }
+  ]
+};
+
+function populateSidebarFolder( data ) {
+    var htmlRetStr = "<div class='sidebar-list-main'>";
+    for (var key in data) {
+        if (typeof(data[key])== 'object' && data[key] != null) {
+            htmlRetStr += populateSidebarFolder( data[key] );
+            htmlRetStr += '</div>';
+        } else {
+            htmlRetStr = `
+            <div class='sidebar-item'>
+                <i class='fa icon-folder-close sidebar-folder-icon'></i>
+                <div class='sidebar-text'>` + data["name"]+ `
+            </div>`;
+        }
+    }   
+    return( htmlRetStr );
 }
