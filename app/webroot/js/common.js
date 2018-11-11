@@ -97,6 +97,7 @@ $(function() {
     });
 
     $('html').delegate('#rename', 'click', function() {
+        folder_path = $(this).parent().parent().parent().parent().data('id');
         $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
         let inputRenameTextBox = '<input type="text" class="sidebar-input-rename" value="'+ clickedFolderText + '" autofocus style="margin-left: 0">'
         clickedFolder.text('').append(inputRenameTextBox);
@@ -128,16 +129,26 @@ $(function() {
     // RENAME INPUT TEXTBOX
     $('html').on('keyup','.sidebar-input-rename', function(e) {
         if ( e.keyCode == 13 ) {
+            let inputValue = ''
+
             if ( $(this).val().length > 1 ) {
-                let inputValue = $(this).val();
+                inputValue = $(this).val();
                 $(this).parent().append(inputValue);
                 $(this).val('').remove();
                 
             } else {
-                let inputValue = 'New Folder';
+                inputValue = 'New Folder';
+                // $(this).parent().parent().attr('data-id', inputValue);
                 $(this).parent().append(inputValue);
                 $(this).val('').remove();
             }
+            folder = folder_path.split('/');
+            folder[folder.length - 1] = inputValue;
+            if (folder.length == 1) {
+                folder = folder[0];
+            }
+            $(this).parent().parent().attr('data-id', folder);
+            edit_folder(folder_path, inputValue, url);
         }
     });
 
@@ -180,7 +191,18 @@ function add_folder(name, url, location = '') {
         success: function(response) {
 
         }
+    })
+}
 
+function edit_folder(before, new_name, url, location = '') {
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: url+"locations/edit",
+        data: {before, new_name},
+        success: function(response) {
+
+        }
     })
 }
 
