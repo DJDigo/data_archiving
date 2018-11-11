@@ -64,13 +64,15 @@ $(function() {
                     </div>`;
     const addInput = `<input type="text" class="sidebar-input" value="New Folder" autofocus>`;
     let clickedFolder;
+    let clickedFolderText = '';
 
-    $('html').delegate('.sidebar-item, .sidebar-item-sub', 'mousedown', function(e) {
+    $('html').delegate('.sidebar-text', 'mousedown', function(e) {
         if(e.which == 3) {
             clickedFolder = $(this);
-            $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
+            $('.sidebar-text').find('.tooltip').remove();
             let tooltipPosition = $(this).offset().top + 25;
             let positionOfModal;
+            clickedFolderText = clickedFolder.text();
             tooltipPosition >= 550 ? positionOfModal = tooltipPosition - 117 : positionOfModal = tooltipPosition;
             $(this).append(tooltip);
 
@@ -83,27 +85,23 @@ $(function() {
 
     let folder_path = '';
     $('html').delegate('#create','click', function() {
-        folder_path = $(this).parent().parent().parent().data('id');
+        folder_path = $(this).parent().parent().parent().parent().data('id');
         $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
         $('.sidebar-input').remove();
         $('.sidebar-input').focus();
-        clickedFolder.append(addInput);
+        clickedFolder.parent().append(addInput);
         $('.sidebar-input').focus();
     })
 
     $('html').delegate('#delete', 'click', function() {
-        clickedFolder.remove();
+        clickedFolder.parent().remove();
     });
 
-        let clickedFolderText = '';
     $('html').delegate('#rename', 'click', function() {
-        setTimeout(function() {
-            clickedFolderText = clickedFolder.find('.sidebar-text').text();
-        },300)
         $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
         let inputRenameTextBox = '<input type="text" class="sidebar-input-rename" value="'+ clickedFolderText + '" autofocus style="margin-left: 0">'
-        clickedFolder.find('.sidebar-text').text('').append(inputRenameTextBox);
-        clickedFolder.find('.sidebar-input-rename').focus();
+        clickedFolder.text('').append(inputRenameTextBox);
+        clickedFolder.parent().find('.sidebar-input-rename').focus();
     });
 
     $('html').on('keyup','.sidebar-text[contentEditable]',function(e) {
@@ -133,12 +131,12 @@ $(function() {
         if ( e.keyCode == 13 ) {
             if ( $(this).val().length > 1 ) {
                 let inputValue = $(this).val();
-                $(this).parent().append('<div class="sidebar-text">'+ inputValue +'</div>');
+                $(this).parent().append(inputValue);
                 $(this).val('').remove();
                 
             } else {
                 let inputValue = 'New Folder';
-                $(this).parent().append('<div class="sidebar-text">'+ inputValue +'</div>');
+                $(this).parent().append(inputValue);
                 $(this).val('').remove();
             }
         }
