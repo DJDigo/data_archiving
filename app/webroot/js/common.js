@@ -84,7 +84,7 @@ $(function() {
 
     let folder_path = '';
     $('html').delegate('#create','click', function() {
-        folder_path = $(this).parent().parent().parent().parent().data('id');
+        folder_path = $(this).parent().parent().parent().parent().attr('data-id');
         $('.sidebar-item').find('.tooltip').remove();
         $('.sidebar-input').remove();
         $('.sidebar-input').focus();
@@ -97,6 +97,7 @@ $(function() {
     });
 
     $('html').delegate('#rename', 'click', function() {
+        folder_path = $(this).parent().parent().parent().parent().attr('data-id');
         $('.sidebar-item').find('.tooltip').remove();
         let inputRenameTextBox = '<input type="text" class="sidebar-input-rename" value="'+ clickedFolderText + '" autofocus style="margin-left: 0">'
         clickedFolder.text('').append(inputRenameTextBox);
@@ -127,17 +128,39 @@ $(function() {
 
     // RENAME INPUT TEXTBOX
     $('html').on('keyup','.sidebar-input-rename', function(e) {
+        folder_path = $(this).parent().parent().attr('data-id');
         if ( e.keyCode == 13 ) {
-            if ( $(this).val().length > 1 ) {
-                let inputValue = $(this).val();
-                $(this).parent().append(inputValue);
-                $(this).val('').remove();
+            // if ( $(this).val().length > 1 ) {
+            //     let inputValue = $(this).val();
+            //     $(this).parent().append(inputValue);
+            //     $(this).val('').remove();
                 
+            // } else {
+            //     let inputValue = 'New Folder';
+            //     $(this).parent().append(inputVa67lue);
+            //     $(this).val('').remove();
+            // }
+
+            let inputValue = '';
+            let folder;
+
+            if ( $(this).val().length > 1 ) {
+                inputValue = $(this).val();
+                $(this).parent().append(inputValue);
+                folder = folder_path.split('/');
+                folder[folder.length - 1] = inputValue;
+                if (folder.length == 1) {
+                    folder = folder[0];                    
+                }
+                $(this).parent().parent().attr('data-id', folder);
+                $(this).remove();
             } else {
-                let inputValue = 'New Folder';
+                inputValue = 'New Folder';
+                // $(this).parent().parent().attr('data-id', inputValue);
                 $(this).parent().append(inputValue);
                 $(this).val('').remove();
             }
+            edit_folder(folder_path, inputValue, url);
         }
     });
 
@@ -146,7 +169,7 @@ $(function() {
     $('.sidebar-add').click(function(){
         let createMainFolder = `
             <div class="sidebar-list-main">
-                <div class="sidebar-item" data-id="New Folder">
+                <div class="sidebar-item" data-id="">
                     <i class="fa icon-folder-close sidebar-folder-icon"></i>
                     <div class="sidebar-text">New Folder</div>
                 </div>
@@ -171,6 +194,63 @@ $(document).click(function(evt) {
 });
 
 
+const folders = {
+    id: '1',
+    name: 'Main Folder',
+    children: [
+      {
+        id: '2',
+        name: 'child1'
+      },
+      {
+        id: '3',
+        name: 'child2',
+        children: [
+          {
+            id: '4',
+            name: 'child1'
+          },
+          {
+            id: '5',
+            name: 'child2'
+          },
+          {
+            id: '6',
+            name: 'child3'
+          },
+          {
+            id: '7',
+            name: 'child4',
+            children: [
+              {
+                id: '8',
+                name: 'child1'
+              },
+              {
+                id: '9',
+                name: 'child2'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: '10',
+        name: 'child4',
+        children: [
+          {
+            id: '11',
+            name: 'child1'
+          },
+          {
+            id: '12',
+            name: 'child2'
+          }
+        ]
+      }
+    ]
+  };
+
 function add_folder(name, url, location = '') {
     $.ajax({
         type: "POST",
@@ -178,67 +258,13 @@ function add_folder(name, url, location = '') {
         url: url+"locations/add",
         data: {name},
         success: function(response) {
+            document.getElementById("folders").innerHTML= '';
+            // populateSidebarFolder(folders)
+            document.getElementById("folders").innerHTML= populateSidebarFolder(folders);
+            // console.log(populateSidebarFolder(folders))
         }
     })
 }
-
-
-const folders = {
-  id: '1',
-  name: 'Main Folder',
-  children: [
-    {
-      id: '2',
-      name: 'child1'
-    },
-    {
-      id: '3',
-      name: 'child2',
-      children: [
-        {
-          id: '4',
-          name: 'child1'
-        },
-        {
-          id: '5',
-          name: 'child2'
-        },
-        {
-          id: '6',
-          name: 'child3'
-        },
-        {
-          id: '7',
-          name: 'child4',
-          children: [
-            {
-              id: '8',
-              name: 'child1'
-            },
-            {
-              id: '9',
-              name: 'child2'
-            }
-          ]
-        }
-      ]
-    },
-    {
-      id: '10',
-      name: 'child4',
-      children: [
-        {
-          id: '11',
-          name: 'child1'
-        },
-        {
-          id: '12',
-          name: 'child2'
-        }
-      ]
-    }
-  ]
-};
 
 function populateSidebarFolder( data ) {
     var htmlRetStr = "<div class='sidebar-list-main'>";
@@ -248,11 +274,13 @@ function populateSidebarFolder( data ) {
             htmlRetStr += '</div>';
         } else {
             htmlRetStr = `
-            <div class='sidebar-item'>
+            <div class='sidebar-item' data-id="`+ data["name"]+ `">
                 <i class='fa icon-folder-close sidebar-folder-icon'></i>
                 <div class='sidebar-text'>` + data["name"]+ `
             </div>`;
         }
     }   
+    console.log('pumpasok')
     return( htmlRetStr );
+    
 }
