@@ -84,7 +84,7 @@ $(function() {
 
     let folder_path = '';
     $('html').delegate('#create','click', function() {
-        folder_path = $(this).parent().parent().parent().parent().data('id');
+        folder_path = $(this).parent().parent().parent().parent().attr('data-id');
         $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
         $('.sidebar-input').remove();
         $('.sidebar-input').focus();
@@ -97,7 +97,7 @@ $(function() {
     });
 
     $('html').delegate('#rename', 'click', function() {
-        folder_path = $(this).parent().parent().parent().parent().data('id');
+        folder_path = $(this).parent().parent().parent().parent().attr('data-id');
         $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
         let inputRenameTextBox = '<input type="text" class="sidebar-input-rename" value="'+ clickedFolderText + '" autofocus style="margin-left: 0">'
         clickedFolder.text('').append(inputRenameTextBox);
@@ -129,25 +129,25 @@ $(function() {
     // RENAME INPUT TEXTBOX
     $('html').on('keyup','.sidebar-input-rename', function(e) {
         if ( e.keyCode == 13 ) {
-            let inputValue = ''
+            let inputValue = '';
+            let folder;
 
             if ( $(this).val().length > 1 ) {
                 inputValue = $(this).val();
                 $(this).parent().append(inputValue);
-                $(this).val('').remove();
-                
+                folder = folder_path.split('/');
+                folder[folder.length - 1] = inputValue;
+                if (folder.length == 1) {
+                    folder = folder[0];                    
+                }
+                $(this).parent().parent().attr('data-id', folder);
+                $(this).remove();
             } else {
                 inputValue = 'New Folder';
                 // $(this).parent().parent().attr('data-id', inputValue);
                 $(this).parent().append(inputValue);
                 $(this).val('').remove();
             }
-            folder = folder_path.split('/');
-            folder[folder.length - 1] = inputValue;
-            if (folder.length == 1) {
-                folder = folder[0];
-            }
-            $(this).parent().parent().attr('data-id', folder);
             edit_folder(folder_path, inputValue, url);
         }
     });
@@ -157,7 +157,7 @@ $(function() {
     $('.sidebar-add').click(function(){
         let createMainFolder = `
             <div class="sidebar-list-main">
-                <div class="sidebar-item" data-id="New Folder">
+                <div class="sidebar-item" data-id="">
                     <i class="fa icon-folder-close sidebar-folder-icon"></i>
                     <div class="sidebar-text">New Folder</div>
                 </div>
