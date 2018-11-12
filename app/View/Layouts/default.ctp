@@ -24,8 +24,8 @@
 	<link rel="stylesheet" type="text/css" href="../plugins/datepicker/datepicker.css"/>
 	<link rel="stylesheet" type="text/css" href="../plugins/datatables/datatables.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/font-awesome/css/font-awesome.css"/>
+	<link rel="icon" href="../img/common/favicon.png">
 	<?php
-		echo $this->Html->meta('icon');
 		echo $this->Html->css('style.css');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');

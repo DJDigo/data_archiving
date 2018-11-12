@@ -475,6 +475,12 @@ body {
     cursor: pointer;
 }
 
+.form-button:hover {
+    background: #fff;
+    border: 1px solid #ffe721;
+    box-shadow: 0 0 5px #ffe721;
+}
+
 .form-button-wrapper {
     margin: 0 auto;
     text-align: center;
