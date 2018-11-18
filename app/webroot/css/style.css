@@ -322,9 +322,10 @@ body {
     box-sizing: border-box;
     min-height: 550px;
     position: fixed;
-    top: 86px;
+    top: 88px;
     left: 0;
     z-index: 2;
+    border-top: 1px solid #000000;
 }
 
 .sidebar-user-image {
@@ -339,11 +340,11 @@ body {
 }
 
 .sidebar-user {
-    padding: 30px 0 0;
+    padding: 20px 0 0;
 }
 
 .sidebar-user-logout {
-    padding: 10px 0 40px;
+    padding: 10px 0 25px;
     text-align: center;
 }
 
@@ -360,7 +361,7 @@ body {
 .sidebar-title {
     font-size: 18px;
     padding: 9px 6px;
-    background: #565555;
+    background: #464646;
     color: #fff;
     position: relative;
 }
@@ -473,6 +474,12 @@ body {
     box-shadow: 0 0 5px #CCC;
     width: 40%;
     cursor: pointer;
+}
+
+.form-button:hover {
+    background: #fff;
+    border: 1px solid #ffe721;
+    box-shadow: 0 0 5px #ffe721;
 }
 
 .form-button-wrapper {
@@ -722,7 +729,8 @@ body {
     cursor: pointer;
     padding-bottom: 3px;
     position: relative;
-    display: inline-block;
+    display: block;
+    padding-left: 15px;
 }
 
 .sidebar-sublist {

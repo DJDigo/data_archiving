@@ -1,5 +1,5 @@
 $(function() {
-    // populateSidebarFolder();
+    // document.getElementById("folders").innerHTML= populateSidebarFolder(folders);
 
     let url = $('#url').val();
     // HEADER TOGGLE MENU
@@ -115,11 +115,11 @@ $(function() {
             let inputValue = '';
             if ( $(this).val().length > 1 ) {
                 inputValue = $(this).val();
-                $(this).parent().append('<div class="sidebar-item-sub" data-id="'+folder_path+'/'+inputValue+'"><i class="fa icon-folder-close sidebar-folder-icon"></i><div class="sidebar-text">'+ inputValue +'</div></div>');
+                $(this).parent().append('<div class="sidebar-item" data-id="'+folder_path+'/'+inputValue+'"><i class="fa icon-folder-close sidebar-folder-icon"></i><div class="sidebar-text">'+ inputValue +'</div></div>');
                 $(this).remove();
             } else {
                 inputValue = 'New Folder';
-                $(this).parent().append('<div class="sidebar-item-sub" data-id="'+folder_path+'/'+inputValue+'"><i class="fa icon-folder-close sidebar-folder-icon"></i><div class="sidebar-text">'+ inputValue +'</div></div>');
+                $(this).parent().append('<div class="sidebar-item" data-id="'+folder_path+'/'+inputValue+'"><i class="fa icon-folder-close sidebar-folder-icon"></i><div class="sidebar-text">'+ inputValue +'</div></div>');
                 $(this).remove();
             }
             add_folder(folder_path+'/'+inputValue, url);
@@ -128,6 +128,7 @@ $(function() {
 
     // RENAME INPUT TEXTBOX
     $('html').on('keyup','.sidebar-input-rename', function(e) {
+        folder_path = $(this).parent().parent().attr('data-id');
         if ( e.keyCode == 13 ) {
             let inputValue = '';
             let folder;
@@ -168,18 +169,111 @@ $(function() {
         //save folder
         add_folder('New Folder', url);
     });
+
+    /**
+    * Index get current folders 
+    */
+     $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: url + "locations/index",
+        success: function (response) {
+            document.getElementById("folders").innerHTML= populateSidebarFolder(response);
+        }
+     });
 });
 
 
 $(document).click(function(evt) {
     var target = evt.target.className;
-    var inside = $(".sidebar-item, .sidebar-item-sub");
+    var inside = $(".sidebar-item");
     if ($.trim(target) != '') {
         if ($("." + target) != inside) {
-            $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
+            $('.sidebar-item').find('.tooltip').remove();
         }
     }
 });
+
+
+// const folders = [{
+//   "Folders": [
+//     { 
+//       "name": "Main Folder", 
+//       "id": 1,
+//       "asd": [
+//         { 
+//           "name": "child1", 
+//           "id": 2,
+//           "asd": [
+//             { 
+//               "name": "child1", 
+//               "id": 3
+//             },
+//             { 
+//               "name": "child2", 
+//               "id": 4
+//             },
+//             { 
+//               "name": "child3", 
+//               "id": 5
+//             }
+//           ]
+//         },
+//         { 
+//           "name": "child2", 
+//           "id": 6,
+//           "asd": [
+//             { 
+//               "name": "child1", 
+//               "id": 7
+//             }
+//           ]
+//         }
+//       ]
+//     }
+//   ]
+// },{
+//   "Folders": [
+//     { 
+//       "name": "Main Folder", 
+//       "id": 1,
+//       "asd": [
+//         { 
+//           "name": "child1", 
+//           "id": 2,
+//           "asd": [
+//             { 
+//               "name": "child1", 
+//               "id": 3
+//             },
+//             { 
+//               "name": "child2", 
+//               "id": 4
+//             },
+//             { 
+//               "name": "child3", 
+//               "id": 5
+//             }
+//           ]
+//         },
+//         { 
+//           "name": "child2", 
+//           "id": 6,
+//           "asd": [
+//             { 
+//               "name": "child1", 
+//               "id": 7
+//             }
+//           ]
+//         }
+//       ]
+//     }
+//   ]
+// }];
+
+
+
+
 
 
 function add_folder(name, url, location = '') {
@@ -189,7 +283,10 @@ function add_folder(name, url, location = '') {
         url: url+"locations/add",
         data: {name},
         success: function(response) {
-
+            // document.getElementById("folders").innerHTML= '';
+            // populateSidebarFolder(folders)
+            // document.getElementById("folders").innerHTML= populateSidebarFolder(folders);
+            // console.log(populateSidebarFolder(folders))
         }
     })
 }
@@ -206,34 +303,21 @@ function edit_folder(before, new_name, url, location = '') {
     })
 }
 
-function populateSidebarFolder() {
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        url: "../files/sidebar_folder.json",
-        success: function(response) {
-            response['Folders'].forEach((value,key) => {
-                let getNumberOfChildFolder = Object.keys(value['childFolder']).length;
-                let value1 = '';
-                for ( let i = 0; i <= getNumberOfChildFolder - 1; i++ ) {
-                    value1 += `
-                    <div class="sidebar-item-sub">
-                        <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                        <div class="sidebar-text">` + value['childFolder'][i]['name'] + `</div>
-                    </div>
-                    `
-                };
-                $('.sidebar-treeview-wrapper').append(
-                    `<div class="sidebar-list-main">
-                        <div class="sidebar-item">
-                            <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                            <div class="sidebar-text">` + value['name'] + `</div>` + value1 + `
-                        </div>
-                        
-                    </div>`
-                )
-            
-            });
+function populateSidebarFolder( data ) {
+    var htmlRetStr = "<div class='sidebar-list-main'>";
+    for (var key in data) {
+        if (typeof(data[key])== 'object' && data[key] != null) {
+            htmlRetStr += populateSidebarFolder( data[key] );
+            htmlRetStr += '</div>';
+            console.log(data[key]);
+        } else {
+            htmlRetStr = `
+            <div class='sidebar-item' data-id="`+ data["id"]+ `">
+                <i class='fa icon-folder-close sidebar-folder-icon'></i>
+                <div class='sidebar-text'>` + data["name"]+ `
+            </div>`;
         }
-    })
+    }   
+    return( htmlRetStr );
+    
 }
