@@ -20,7 +20,7 @@
         <?= $this->element('sidebar'); ?>
         <ul class="navigation-list">
             <li class="navigation-item">
-                <a href="/data_archiving/home" class="navigation-link">Home</a>
+                <a href="/data_archiving/users/" class="navigation-link">Home</a>
             </li>
             <li class="navigation-item">
                 <a href="/data_archiving/users/add" class="navigation-link active">Add User</a>

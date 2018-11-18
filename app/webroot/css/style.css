@@ -786,3 +786,36 @@ div[contenteditable=true] {
     font-size: 16px;
     margin: 10px 0px;
 }
+.dashboard {
+    padding: 75px 50px;
+}
+.dashboard-item {
+    display: inline-block;
+    width: 31.3%;
+    margin-right: 2%;
+    box-shadow: 0 0 3px #ccc;
+    overflow: hidden;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+.dashboard-item:last-child {
+    margin-right: 0;
+}
+
+.dashboard-title {
+    padding: 10px;
+    background: #dbddff;
+    font-size: 16px;
+    font-weight: 800;
+}
+.dashboard-count {
+    padding: 20px;
+    font-size: 38px;
+    text-align: center;
+    background: #fff9cb;
+    color: #565555;
+}
+
+.dashboard-count span {
+    padding: 0 15px;
+}
