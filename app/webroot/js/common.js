@@ -131,18 +131,25 @@ $(function() {
         folder_path = $(this).parent().parent().attr('data-id');
         if ( e.keyCode == 13 ) {
             let inputValue = '';
-            let folder;
+            let folder     = folder_path.split('/');
 
             if ( $(this).val().length > 1 ) {
                 inputValue = $(this).val();
                 $(this).parent().append(inputValue);
-                folder = folder_path.split('/');
-                folder[folder.length - 1] = inputValue;
-                if (folder.length == 1) {
-                    folder = folder[0];                    
+                // folder = folder_path.split('/');
+                // folder[folder.length - 1] = inputValue;
+                // if (folder.length == 1) {
+                //     folder = folder[0];                    
+                // }
+                if (folder.length > 1) {
+                    folder[folder.length - 1] = inputValue;
+                    if (folder.length == 1) {
+                        folder = folder[0];                    
+                    }
+                    inputValue = folder.join('/');
                 }
-                $(this).parent().parent().attr('data-id', folder);
-                $(this).remove();
+                $(this).parent().parent().attr('data-id', inputValue);
+                $(this).remove(); 
             } else {
                 inputValue = 'New Folder';
                 // $(this).parent().parent().attr('data-id', inputValue);
@@ -169,7 +176,6 @@ $(function() {
         //save folder
         add_folder('New Folder', url);
     });
-
     /**
     * Index get current folders 
     */
@@ -178,6 +184,7 @@ $(function() {
         dataType: 'json',
         url: url + "locations/index",
         success: function (response) {
+            console.log(response)
             document.getElementById("folders").innerHTML= populateSidebarFolder(response);
         }
      });
@@ -283,10 +290,8 @@ function add_folder(name, url, location = '') {
         url: url+"locations/add",
         data: {name},
         success: function(response) {
-            // document.getElementById("folders").innerHTML= '';
-            // populateSidebarFolder(folders)
-            // document.getElementById("folders").innerHTML= populateSidebarFolder(folders);
-            // console.log(populateSidebarFolder(folders))
+            document.getElementById("folders").innerHTML= '';
+            document.getElementById("folders").innerHTML= populateSidebarFolder(response);
         }
     })
 }
@@ -298,7 +303,8 @@ function edit_folder(before, new_name, url, location = '') {
         url: url+"locations/edit",
         data: {before, new_name},
         success: function(response) {
-
+            document.getElementById("folders").innerHTML= '';
+            document.getElementById("folders").innerHTML= populateSidebarFolder(response);
         }
     })
 }

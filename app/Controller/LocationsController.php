@@ -15,6 +15,12 @@ class LocationsController extends AppController {
  */
     public $components = array('Paginator');
 
+    public function index() {
+        $this->autoRender = false;
+        if ($this->request->is('ajax')) {
+            return json_encode($this->__concate_array($this->__get_folders()));
+        }
+    }
 
     /**
      * Adding folder
@@ -48,7 +54,7 @@ class LocationsController extends AppController {
                 'path'        => $category 
             ];
             if ($this->Location->save($location_data)) {
-                return json_encode(['success' => 'successfully created folder']);
+                return json_encode($this->__concate_array($this->__get_folders()));
             }
         }
     }
@@ -64,104 +70,55 @@ class LocationsController extends AppController {
             $data           = $this->request->data;
             $split_data     = explode('/', $data['before']);
             $root           = APP . "webroot/files/";
-            $old_path       = APP . "webroot/files/".$data['before'];
-            $new_path       = APP . "webroot/files/".$data['new_name'];
+            $new_data       = [];
+            $json_folder    = [];
 
             if (count($split_data) > 1) {
+                rename($root.$data['before'], $root.$data['new_name']);
+                $location = $this->Location->find('all', [
+                    'conditions' => [
+                        'path LIKE' => '%'.$data['before'].'%'
+                    ]
+                ]);
 
+                foreach ($location as $key => $new_location) {
+                    $new_data[]['Location'] = [
+                        'id' => $new_location['Location']['id'],
+                        'path' => str_replace($data['before'], $data['new_name'], $new_location['Location']['path'])
+                    ];
+                }
             } else {
                 rename($root.$data['before'], $root.$data['new_name']);
                 $category = $this->Category->find('first', [
                     'conditions' => ['name' => $split_data[0]]
                 ]);
-                $location = $this->Location->find('first', [
-                    'conditions' => ['path' => $old_path]
+                $location = $this->Location->find('all', [
+                    'conditions' => ['category_id' => $category['Category']['id']]
                 ]);
 
+                foreach ($location as $key => $new_location) {
+                    $new_data[]['Location'] = [
+                        'id' => $new_location['Location']['id'],
+                        'path' => str_replace($data['before'], $data['new_name'], $new_location['Location']['path'])
+                    ];
+                }
                 if ($category) {
                     $this->Category->id = $category['Category']['id'];
                     $this->Category->saveField('name', $data['new_name']);
                 }
-
-                if ($location) {
-                    $this->Location->id = $location['Location']['id'];
-                    $this->Location->saveField('path', $new_path);
-                }
             }
+            if ($location) {
+                $this->Location->saveMany($new_data);
+            }
+            return json_encode($this->__concate_array($this->__get_folders()));
         }
     }
 
-    public function index() {
-        $this->autoRender = false;
-        // if ($this->request->is('Ajax')) {
-            $json_folder = [];
-            $folders     = $this->Location->find('all', ['order' => 'category_id']);
-
-            foreach ($folders as $key => $folder) {
-                $split_folder = explode("/", $folder['Location']['path']);
-                // $test = [$folder['Location']['path'] => $name[count($name) - 1]];
-                // array_push($json_folder, $this->__concate_array($test));
-                if ($key == 0) {
-                    $json_folder[$folder['Location']['path']] = [
-                        'id' => $folder['Location']['path'],
-                        'name' => $folder['Location']['path']
-                    ];
-                } else {
-                    $json_folder[$folder['Location']['path']] = [
-                        'id'   => implode('/', $split_folder),
-                        'name' => $split_folder[count($split_folder) -1]
-                    ];    
-                }
-                
-                // $split_folder = explode('/', $folder['Location']['path']);
-                // if (count($split_folder) == 1) {
-                //     $json_folder[$folder['Location']['path']] = [
-                //         'id'   => $folder['Location']['path'],
-                //         'name' => $folder['Location']['path']
-                //     ];
-                // } else {
-                //     $test = $this->__concate_array();
-                    // pr($this->__concate_array() = [
-                    //                         'id'   => implode('/', $split_folder),
-                    //                         'name' => $split_folder[count($split_folder) -1]
-                    //                     ]);
-                    // $test = [
-                    //     'id'   => implode('/', $split_folder),
-                    //     'name' => $split_folder[count($split_folder) -1]
-                    // ];
-                    // pr($test);
-                    // die();
-                    // pr($split_folder);
-                    // array_push($json_folder[$split_folder[0]], ['children' => ['id'   => implode('/', $split_folder),'name' => $split_folder[count($split_folder) -1]]]);
-                // }
-            }
-            return json_encode($this->__concate_array($json_folder));
-            pr($this->__concate_array($json_folder));
-            die();
-        // }
-    }
+    
 
     private function __concate_array($array) {
         $this->autoRender = false;
-        // $result = [];
-        // foreach($array as $path => $value) {
-        //     $temp=&$result;
-
-        //     foreach(explode('/', $path) as $key) {
-        //         $temp=&$temp[$key];
-        //     }
-        //     $temp = $value;
-        // }
-        // return $result;
-        // $array = [
-            // "main;header;up" => ["id" =>  "main_header_up value"],
-            // "main;header;bottom" => "main_header_bottom value",
-            // "main;bottom" => "main_bottom value",
-            // "main;footer;right;top" => "main_footer_right_top value"
-        // ];
-
         $result = [];
-
         foreach ($array as $implodedKeys => $value) {
             $keys = array_reverse(explode('/', $implodedKeys));
             $tmp = $value;
@@ -171,6 +128,26 @@ class LocationsController extends AppController {
             $result = array_merge_recursive($result, $tmp);
         }
         return $result;
+    }
+
+    private function __get_folders() {
+        $json_folder = [];
+        $folders     = $this->Location->find('all', ['order' => 'category_id']);
+        foreach ($folders as $key => $folder) {
+            $split_folder = explode("/", $folder['Location']['path']);
+            if ($key == 0) {
+                $json_folder[$folder['Location']['path']] = [
+                    'id'   => $folder['Location']['path'],
+                    'name' => $folder['Location']['path']
+                ];
+            } else {
+                $json_folder[$folder['Location']['path']] = [
+                    'id'   => implode('/', $split_folder),
+                    'name' => $split_folder[count($split_folder) -1]
+                ];    
+            }
+        }
+        return $json_folder;
     }
 
 }
