@@ -114,7 +114,12 @@ class LocationsController extends AppController {
         }
     }
 
-    
+    public function delete() {
+        $this->autoRender = false;
+        if ($this->request->is('ajax')) {
+            
+        }
+    }
 
     private function __concate_array($array) {
         $this->autoRender = false;
