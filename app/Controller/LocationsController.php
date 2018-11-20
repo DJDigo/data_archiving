@@ -117,7 +117,29 @@ class LocationsController extends AppController {
     public function delete() {
         $this->autoRender = false;
         if ($this->request->is('ajax')) {
-            
+            $this->Category = ClassRegistry::init('Category');
+            $path           = $this->request->data['name'];
+            $locations      = $this->Location->find('all', [
+                'conditions' => ['path LIKE' => '%'.$path.'%'],
+                'order' =>  ['Location.id' => 'DESC']
+            ]);
+            $categories = $this->Category->find('list', [
+                'conditions' => ['name' => $path],
+                'fields'     => ['id']
+            ]);
+
+            if ($locations) {
+                $location_id = [];
+                foreach ($locations as $key => $value) {
+                    $location_id[] = $value['Location']['id'];
+                    $this->__delete_directory(APP . "webroot/files/". $value['Location']['path']);
+                }
+                $this->Location->deleteAll(['Location.id' => $location_id], true);
+            }
+
+            if ($categories) {
+                $this->Category->deleteAll(['Category.id' => $categories], true);
+            }
         }
     }
 
@@ -130,6 +152,7 @@ class LocationsController extends AppController {
             foreach ($keys as $key) {
                 $tmp = [$key => $tmp];
             }
+            // $result = array_merge_recursive($result, $tmp);
             $result = array_merge_recursive($result, $tmp);
         }
         return $result;
@@ -155,4 +178,24 @@ class LocationsController extends AppController {
         return $json_folder;
     }
 
+    private function __delete_directory($dirname) {
+        if (is_dir($dirname)) {
+           $dir_handle = opendir($dirname);
+        }
+        if (!isset($dir_handle)) {
+            return false;
+        }
+        while($file = readdir($dir_handle)) {
+            if ($file != "." && $file != "..") {
+                if (!is_dir($dirname."/".$file)) {
+                    unlink($dirname."/".$file);
+                } else {
+                    $this->__delete_directory($dirname.'/'.$file);
+                }
+            }
+        }
+        closedir($dir_handle);
+        rmdir($dirname);
+        return true;
+    }
 }
