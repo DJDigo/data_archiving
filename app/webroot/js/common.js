@@ -2,6 +2,7 @@ $(function() {
     // document.getElementById("folders").innerHTML= populateSidebarFolder(folders);
 
     let url = $('#url').val();
+    showFileLocationList();
     // HEADER TOGGLE MENU
     $('.arrow-down').click(function() {
         $('.toggle-menu').slideToggle();
@@ -45,7 +46,7 @@ $(function() {
                 }
             }
             reader.readAsDataURL(input.files[0]);
-         }
+        }
     }
 
     $(".js-upload-image").change(function() {
@@ -69,10 +70,11 @@ $(function() {
         if(e.which == 3) {
             clickedFolder = $(this);
             $('.sidebar-text').find('.tooltip').remove();
-            let tooltipPosition = $(this).offset().top + 25;
+            let tooltipPosition = 25;
+            let getHeight = $(this).offset().top;
             let positionOfModal;
             clickedFolderText = clickedFolder.text();
-            tooltipPosition >= 550 ? positionOfModal = tooltipPosition - 117 : positionOfModal = tooltipPosition;
+            getHeight >= 485 ? positionOfModal = getHeight - 117 : positionOfModal = tooltipPosition;
             $(this).append(tooltip);
 
             $('.tooltip').css({
@@ -158,16 +160,32 @@ $(function() {
 
 
     //add new main folder
-    $('.sidebar-add').click(function(){
-        let createMainFolder = `
-            <div class="sidebar-list-main">
-                <div class="sidebar-item" data-id="">
-                    <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                    <div class="sidebar-text">New Folder</div>
+    let a = 0;
+    $('.sidebar-add').click(function() {
+        let createMainFolder='';
+        if ( a === 0 ) {
+            a = '';
+            createMainFolder = `
+                <div class="sidebar-list-main">
+                    <div class="sidebar-item" data-id="">
+                        <i class="fa icon-folder-close sidebar-folder-icon"></i>
+                        <div class="sidebar-text">New Folder`+ a +`</div>
+                    </div>
                 </div>
-            </div>
-        `;
-
+            `;
+            a = +a + 1;
+        } else {
+            createMainFolder = `
+                <div class="sidebar-list-main">
+                    <div class="sidebar-item" data-id="">
+                        <i class="fa icon-folder-close sidebar-folder-icon"></i>
+                        <div class="sidebar-text">New Folder`+ a +`</div>
+                    </div>
+                </div>
+            `;
+            a = +a + 1;
+        }
+        
         $('.sidebar-treeview-wrapper').append(createMainFolder);
         //save folder
         add_folder('New Folder', url);
@@ -222,7 +240,85 @@ function edit_folder(before, new_name, url) {
     })
 }
 
-function delete_folder(name, url) {
+// const folders = [{
+//   "Folders": [
+//     { 
+//       "name": "Main Folder", 
+//       "id": 1,
+//       "asd": [
+//         { 
+//           "name": "child1", 
+//           "id": 2,
+//           "asd": [
+//             { 
+//               "name": "child1", 
+//               "id": 3
+//             },
+//             { 
+//               "name": "child2", 
+//               "id": 4
+//             },
+//             { 
+//               "name": "child3", 
+//               "id": 5
+//             }
+//           ]
+//         },
+//         { 
+//           "name": "child2", 
+//           "id": 6,
+//           "asd": [
+//             { 
+//               "name": "child1", 
+//               "id": 7
+//             }
+//           ]
+//         }
+//       ]
+//     }
+//   ]
+// },{
+//   "Folders": [
+//     { 
+//       "name": "Main Folder", 
+//       "id": 1,
+//       "asd": [
+//         { 
+//           "name": "child1", 
+//           "id": 2,
+//           "asd": [
+//             { 
+//               "name": "child1", 
+//               "id": 3
+//             },
+//             { 
+//               "name": "child2", 
+//               "id": 4
+//             },
+//             { 
+//               "name": "child3", 
+//               "id": 5
+//             }
+//           ]
+//         },
+//         { 
+//           "name": "child2", 
+//           "id": 6,
+//           "asd": [
+//             { 
+//               "name": "child1", 
+//               "id": 7
+//             }
+//           ]
+//         }
+//       ]
+//     }
+//   ]
+// }];
+
+
+
+function add_folder(name, url, location = '') {
     $.ajax({
         type: "POST",
         dataType: "json",
@@ -251,4 +347,47 @@ function populateSidebarFolder( data ) {
     }   
     return( htmlRetStr );
     
+}
+
+let listSelectLocation = [
+    {
+        path: 'Main/Folder/'
+    },
+    {
+        path: 'Main/Folder/Folder2'
+    },
+    {
+        path: 'Main/Folder/Folder2/Folder'
+    },
+    {
+        path: 'Main/Folder/Folder2/Folder/Folder'
+    },
+    {
+        path: 'Main/Folder/Folder2/Folder/Folder'
+    }
+    
+]
+
+let listSelectCategory = [
+    {
+        path: 'Main Folder'
+    },
+    {
+        path: 'Main Folder 2'
+    },
+]
+
+function showFileLocationList() {
+
+    listSelectCategory.forEach((value,key) => {
+        $('.js-category').append('<option value="'+ key +'">'+ value['path'] +'</option>')
+    });
+
+    $('html').delegate('.js-category','change',function() {
+        $('.file-location').show();
+
+        listSelectLocation.forEach((value,key) => {
+            $('.js-file-location').append('<option value="'+ key +'">'+ value['path'] +'</option>')
+        });
+    })
 }

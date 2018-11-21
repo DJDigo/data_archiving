@@ -14,6 +14,7 @@
                         <span class="error-message js-error-image"></span>
                     </div>
                 </div>
+
                 <div class="form-field">
                     <label class="form-label">File Name:</label>
                     <div class="form-input-wrapper">
@@ -21,6 +22,25 @@
                         <!-- <span class="error-message">error</span> -->
                     </div>
                 </div>
+
+                <div class="form-field">
+                    <label class="form-label">Category:</label>
+                    <div class="form-input-wrapper">
+                        <select class="form-input js-category">
+                        </select>
+                        <!-- <span class="error-message">error</span> -->
+                    </div>
+                </div>
+
+                <div class="form-field file-location">
+                    <label class="form-label">File Location:</label>
+                    <div class="form-input-wrapper">
+                        <select class="form-input js-file-location">
+                        </select>
+                        <!-- <span class="error-message">error</span> -->
+                    </div>
+                </div>
+
                 <div class="form-field">
                     <label class="form-label">Control No:</label>
                     <div class="form-input-wrapper">
@@ -42,17 +62,7 @@
                         <!-- <span class="error-message">error</span> -->
                     </div>
                 </div>
-                <div class="form-field">
-                    <label class="form-label">Category:</label>
-                    <div class="form-input-wrapper">
-                        <select class="form-input">
-                            <option>Category</option>
-                            <option>Category1</option>
-                            <option>Categor2</option>
-                        </select>
-                        <!-- <span class="error-message">error</span> -->
-                    </div>
-                </div>
+
                 <div class="form-button-wrapper">
                     <label class="form-label"></label>
                     <input type="submit" class="form-button" value="Create">
