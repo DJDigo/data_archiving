@@ -321,8 +321,8 @@ body {
     background: white;
     box-sizing: border-box;
     min-height: 550px;
-    position: fixed;
-    top: 88px;
+    position: absolute;
+    top: 0;
     left: 0;
     z-index: 2;
     border-top: 1px solid #000000;
