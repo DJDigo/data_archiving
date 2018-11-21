@@ -69,10 +69,11 @@ $(function() {
         if(e.which == 3) {
             clickedFolder = $(this);
             $('.sidebar-text').find('.tooltip').remove();
-            let tooltipPosition = $(this).offset().top + 25;
+            let tooltipPosition = 25;
+            let getHeight = $(this).offset().top;
             let positionOfModal;
             clickedFolderText = clickedFolder.text();
-            tooltipPosition >= 550 ? positionOfModal = tooltipPosition - 117 : positionOfModal = tooltipPosition;
+            getHeight >= 485 ? positionOfModal = getHeight - 117 : positionOfModal = tooltipPosition;
             $(this).append(tooltip);
 
             $('.tooltip').css({
