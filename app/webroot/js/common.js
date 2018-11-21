@@ -158,19 +158,32 @@ $(function() {
 
 
     //add new main folder
-    $('.sidebar-add').click(function(){
-        let createMainFolder = `
-            <div class="sidebar-list-main">
-                <div class="sidebar-item" data-id="">
-                    <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                    <div class="sidebar-text">New Folder</div>
+    let a = 0;
+    $('.sidebar-add').click(function() {
+        let createMainFolder='';
+        if ( a === 0 ) {
+            a = '';
+            createMainFolder = `
+                <div class="sidebar-list-main">
+                    <div class="sidebar-item" data-id="">
+                        <i class="fa icon-folder-close sidebar-folder-icon"></i>
+                        <div class="sidebar-text">New Folder`+ a +`</div>
+                    </div>
                 </div>
-            </div>
-        `;
-
-        $('.sidebar-treeview-wrapper').append(createMainFolder);
-        //save folder
-        add_folder('New Folder', url);
+            `;
+            a = +a + 1;
+        } else {
+            createMainFolder = `
+                <div class="sidebar-list-main">
+                    <div class="sidebar-item" data-id="">
+                        <i class="fa icon-folder-close sidebar-folder-icon"></i>
+                        <div class="sidebar-text">New Folder`+ a +`</div>
+                    </div>
+                </div>
+            `;
+            a = +a + 1;
+        }
+        add_folder('New Folder'+a+'' , url);
     });
     /**
     * Index get current folders 
