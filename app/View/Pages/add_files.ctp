@@ -21,6 +21,25 @@
                         <!-- <span class="error-message">error</span> -->
                     </div>
                 </div>
+
+                <div class="form-field">
+                    <label class="form-label">Category:</label>
+                    <div class="form-input-wrapper">
+                        <select class="form-input js-category">
+                        </select>
+                        <!-- <span class="error-message">error</span> -->
+                    </div>
+                </div>
+
+                <div class="form-field file-location">
+                    <label class="form-label">File Location:</label>
+                    <div class="form-input-wrapper">
+                        <select class="form-input js-file-location">
+                        </select>
+                        <!-- <span class="error-message">error</span> -->
+                    </div>
+                </div>
+                
                 <div class="form-field">
                     <label class="form-label">Control No:</label>
                     <div class="form-input-wrapper">
