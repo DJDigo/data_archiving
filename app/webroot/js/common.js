@@ -157,34 +157,16 @@ $(function() {
         }
     });
 
-
-    //add new main folder
-    let a = 0;
+    let countMainFolder = 0;
     $('.sidebar-add').click(function() {
-        let createMainFolder='';
-        if ( a === 0 ) {
-            a = '';
-            createMainFolder = `
-                <div class="sidebar-list-main">
-                    <div class="sidebar-item" data-id="">
-                        <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                        <div class="sidebar-text">New Folder`+ a +`</div>
-                    </div>
-                </div>
-            `;
-            a = +a + 1;
+        if ( $('#folders > .sidebar-list-main > .sidebar-item').length == 0 ) {
+            countMainFolder = '';
+            validateCreateMainFolder(countMainFolder, url);
+            countMainFolder = 1;
         } else {
-            createMainFolder = `
-                <div class="sidebar-list-main">
-                    <div class="sidebar-item" data-id="">
-                        <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                        <div class="sidebar-text">New Folder`+ a +`</div>
-                    </div>
-                </div>
-            `;
-            a = +a + 1;
+            countMainFolder = +$('#folders > .sidebar-list-main > .sidebar-item').length + 1;
+            validateCreateMainFolder(countMainFolder, url);
         }
-        add_folder('New Folder'+a+'' , url);
     });
     /**
     * Index get current folders 
@@ -199,6 +181,17 @@ $(function() {
      });
 });
 
+function validateCreateMainFolder(value,url) {
+    let createMainFolder = `
+        <div class="sidebar-list-main">
+            <div class="sidebar-item" data-id="">
+                <i class="fa icon-folder-close sidebar-folder-icon"></i>
+                <div class="sidebar-text">New Folder`+ value +`</div>
+            </div>
+        </div>
+    `;
+    add_folder('New Folder'+value+'' , url);
+}
 
 $(document).click(function(evt) {
     var target = evt.target.className;
