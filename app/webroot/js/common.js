@@ -1,6 +1,4 @@
 $(function() {
-    // document.getElementById("folders").innerHTML= populateSidebarFolder(folders);
-    showFileLocationList();
     let url = $('#url').val();
     // HEADER TOGGLE MENU
     $('.arrow-down').click(function() {
@@ -258,47 +256,4 @@ function populateSidebarFolder( data ) {
     }   
     return( htmlRetStr );
     
-}
-
-let listSelectLocation = [
-    {
-        path: 'Main/Folder/'
-    },
-    {
-        path: 'Main/Folder/Folder2'
-    },
-    {
-        path: 'Main/Folder/Folder2/Folder'
-    },
-    {
-        path: 'Main/Folder/Folder2/Folder/Folder'
-    },
-    {
-        path: 'Main/Folder/Folder2/Folder/Folder'
-    }
-    
-]
-
-let listSelectCategory = [
-    {
-        path: 'Main Folder'
-    },
-    {
-        path: 'Main Folder 2'
-    },
-]
-
-function showFileLocationList() {
-
-    listSelectCategory.forEach((value,key) => {
-        $('.js-category').append('<option value="'+ key +'">'+ value['path'] +'</option>')
-    });
-
-    $('html').delegate('.js-category','change',function() {
-        $('.file-location').show();
-
-        listSelectLocation.forEach((value,key) => {
-            $('.js-file-location').append('<option value="'+ key +'">'+ value['path'] +'</option>')
-        });
-    })
 }

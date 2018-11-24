@@ -120,7 +120,7 @@ class LocationsController extends AppController {
             $this->Category = ClassRegistry::init('Category');
             $path           = $this->request->data['name'];
             $locations      = $this->Location->find('all', [
-                'conditions' => ['path LIKE' => '%'.$path.'%'],
+                'conditions' => ['path LIKE' => '%'.$path],
                 'order' =>  ['Location.id' => 'DESC']
             ]);
             $categories = $this->Category->find('list', [
@@ -146,13 +146,13 @@ class LocationsController extends AppController {
     private function __concate_array($array) {
         $this->autoRender = false;
         $result = [];
+        $i = 0;
         foreach ($array as $implodedKeys => $value) {
             $keys = array_reverse(explode('/', $implodedKeys));
             $tmp = $value;
             foreach ($keys as $key) {
                 $tmp = [$key => $tmp];
             }
-            // $result = array_merge_recursive($result, $tmp);
             $result = array_merge_recursive($result, $tmp);
         }
         return $result;
@@ -160,7 +160,7 @@ class LocationsController extends AppController {
 
     private function __get_folders() {
         $json_folder = [];
-        $folders     = $this->Location->find('all', ['order' => 'category_id']);
+        $folders     = $this->Location->find('all', ['order' => ['category_id', 'id']]);
         foreach ($folders as $key => $folder) {
             $split_folder = explode("/", $folder['Location']['path']);
             if ($key == 0) {

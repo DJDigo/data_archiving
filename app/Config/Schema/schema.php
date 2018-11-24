@@ -121,4 +121,51 @@ class AppSchema extends CakeSchema {
             'comment' =>'Modified Date'
         ]
     ];
+
+    public $archives = [
+        'id' => [
+            'type'           => 'integer', 
+            'null'           => false, 
+            'default'        => null, 
+            'unsigned'       => false, 
+            'key'            => 'primary'
+        ],
+        'location_id' => [
+            'type'     => 'integer', 
+            'null'     => false, 
+            'default'  => null, 
+            'unsigned' => false
+        ],
+        'image' => [
+            'type'     => 'string', 
+            'null'     => true, 
+            'default'  => null, 
+            'length'   => 255, 
+            'collate'  => 'utf8_general_ci', 
+            'unsigned' => false,
+            'charset'  => 'utf8',
+            'comment'  =>'image name'
+        ],
+        'description' => [
+            'type'    => 'string', 
+            'null'    => true, 
+            'default' => null, 
+            'length'  => 255, 
+            'collate' => 'utf8_general_ci', 
+            'charset' => 'utf8',
+            'comment' =>'file description'
+        ],
+        'created' => [
+            'type'    => 'datetime', 
+            'null'    => true, 
+            'default' => null,
+            'comment' =>'Created Date'
+        ],
+        'modified' => [
+            'type'    => 'datetime', 
+            'null'    => true, 
+            'default' => null,
+            'comment' =>'Modified Date'
+        ]
+    ];
 }
