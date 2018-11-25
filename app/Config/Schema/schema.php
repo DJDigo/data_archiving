@@ -40,6 +40,14 @@ class AppSchema extends CakeSchema {
             'unsigned' => false,
             'comment'  => "1:Admin, 2:Normal User"
         ],
+        'position' => [
+            'type'    => 'string', 
+            'null'    => false, 
+            'default' => null, 
+            'collate' => 'utf8_general_ci', 
+            'charset' => 'utf8', 
+            'comment' =>'Position'
+        ],
         'created' => [
             'type'    => 'datetime', 
             'null'    => true, 

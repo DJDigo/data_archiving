@@ -118,6 +118,7 @@ class LocationsController extends AppController {
         $this->autoRender = false;
         if ($this->request->is('ajax')) {
             $this->Category = ClassRegistry::init('Category');
+            $this->Archive  = ClassRegistry::init('Archive');
             $path           = $this->request->data['name'];
             $locations      = $this->Location->find('all', [
                 'conditions' => ['path LIKE' => '%'.$path],
@@ -135,6 +136,7 @@ class LocationsController extends AppController {
                     $this->__delete_directory(APP . "webroot/files/". $value['Location']['path']);
                 }
                 $this->Location->deleteAll(['Location.id' => $location_id], true);
+                $this->Archive->deleteAll(['Archive.location_id' => $location_id], true);
             }
 
             if ($categories) {

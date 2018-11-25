@@ -23,6 +23,12 @@ class User extends AppModel {
                 'message' => 'Username is already exists'
             ]
         ],
+        'position' => [
+            'required' => [
+                'rule'    => 'notBlank',
+                'message' => 'Position is required.'
+            ],
+        ],
         'password' => [
             'required' => [
                 'rule'    => 'notBlank',

@@ -12,10 +12,7 @@
                 'class'   => 'form-container'
                 ]);
             ?>
-            <div class="flash-success">
-                <i class="fa fa-check error-icon"></i>
-                <span>You've Successfull Saved Files</span>
-            </div>
+            <?php echo $this->Session->flash();?>
                 <div class="form-field">
                     <label class="form-label">File Upload: <span class="form-note">*(accepts jpg/png only)</span></label>
                     <div class="form-input-wrapper">
@@ -32,7 +29,7 @@
                                     'class'  => 'js-upload-image'
                                 ));
                             ?>
-                            <span class="error-message js-error-image"></span>
+                            <span class="error-message js-error-image"><?php echo $this->Form->error("image") ?></span>
                         </div>
                     </div>
                 </div>
@@ -49,20 +46,19 @@
                                 'maxlength' => 255,
                             ]);
                         ?>
-                        <?php echo $this->Form->error('name'); ?>
-                        <!-- <span class="error-message">error</span> -->
+                        <!-- <span class="error-message"><?php echo $this->Form->error("name") ?></span> -->
                     </div>
                 </div>
                 <div class="form-field">
                     <label class="form-label">Category:</label>
                     <div class="form-input-wrapper">
-                        <select class="form-input js-category">
+                        <select class="form-input js-category" name="data[Archive][category]">
                             <option value="">---Select Category---</option>
                             <?php foreach($categories as $category): ?>
                                 <option value="<?php echo $category['Category']['id'] ?>"><?php echo $category['Category']['name']; ?></option>
                             <?php endforeach;?>
                         </select>
-                        <!-- <span class="error-message">error</span> -->
+                        <span class="error-message"><?php echo $this->Form->error("category") ?></span>
                     </div>
                 </div>
                 <div class="form-field file-location">

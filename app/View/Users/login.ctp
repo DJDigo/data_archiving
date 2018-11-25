@@ -18,6 +18,7 @@
                     "class"       => "login-input",
                     "div"         => false,
                     "label"       => false,
+                    "required"    => false,
                     "placeholder" => "username"
                 ]);
             ?>
@@ -30,6 +31,7 @@
                     "class"       => "login-input login-input--password",
                     "div"         => false,
                     "label"       => false,
+                    "required"    => false,
                     "placeholder" => "********"
                 ]);
             ?>

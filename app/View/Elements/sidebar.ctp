@@ -4,10 +4,10 @@
     </div>
     <div class="sidebar-user">
         <div class="sidebar-user-image">
-            <span>Menandro Oba-san</span>
+            <span><?php echo ucfirst($this->Session->read('Auth.User.username')) ?></span>
         </div>
         <div class="sidebar-user-logout">
-            <button>Logout</button>
+            <a class="button" href="<?php echo $url."users/logout" ?>">Logout</a>
         </div>
     </div>
     <div class="sidebar-title">
@@ -16,55 +16,24 @@
     </div>
     <div class="sidebar-treeview">
         <div class="sidebar-treeview-wrapper" id="folders" oncontextmenu="return false;">
-            <!-- <div class="sidebar-list-main">
-                <div class="sidebar-item">
-                    <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                    <div class="sidebar-text">Archive</div>
-                </div>
-                <div class="sidebar-item-sub">
-                    <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                    <div class="sidebar-text">Sub Folder1</div>
-                </div>
-                <div class="sidebar-item-sub">
-                    <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                    <div class="sidebar-text">Sub Folder2</div>
-                </div>
-                <div class="sidebar-item-sub">
-                    <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                    <div class="sidebar-text">Sub Folder3</div>
-                    <div class="sidebar-item-sub">
-                        <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                        <div class="sidebar-text">Sub Folder1</div>
-                    </div>
-                    <div class="sidebar-item-sub">
-                        <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                        <div class="sidebar-text">Sub Folder2</div>
-                        <div class="sidebar-item-sub">
-                            <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                            <div class="sidebar-text">Sub Folder1</div>
-                            <div class="sidebar-item-sub">
-                                <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                                <div class="sidebar-text">Sub Folder1</div>
-                                <div class="sidebar-item-sub">
-                                    <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                                    <div class="sidebar-text">Sub Folder1</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="sidebar-list-main">
-                <div class="sidebar-item">
-                    <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                    <div class="sidebar-text">Main Folder</div>
-                </div>
-                <div class="sidebar-item-sub">
-                    <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                    <div class="sidebar-text">Sub Folder1</div>
-                </div>
-            </div> -->
         </div>
     </div>
 </aside>
 <input type="hidden" id="url" value="<?php echo $url; ?>">
+<style type="text/css">
+    a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+    padding: 5px;
+    width: 100px;
+    background: #ff5757;
+    border: 1px solid red;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+}
+</style>

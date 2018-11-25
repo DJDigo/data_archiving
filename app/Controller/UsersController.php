@@ -21,6 +21,7 @@ class UsersController extends AppController {
 
             $this->User->set($data);
             if ($this->User->validates($data)) {
+                $data['User']['role'] = 2;
                 if ($this->User->save($data)) {
                     $this->Flash->success(__('User has been successfully added.'));
                     return $this->redirect('/users/add');
