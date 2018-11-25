@@ -10,7 +10,12 @@
                 'type'    => 'post', 
                 'enctype' => 'multipart/form-data', 
                 'class'   => 'form-container'
-            ]); ?>
+                ]);
+            ?>
+            <div class="flash-success">
+                <i class="fa fa-check error-icon"></i>
+                <span>You've Successfull Saved Files</span>
+            </div>
                 <div class="form-field">
                     <label class="form-label">File Upload: <span class="form-note">*(accepts jpg/png only)</span></label>
                     <div class="form-input-wrapper">
