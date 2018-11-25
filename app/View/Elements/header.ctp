@@ -26,7 +26,7 @@
                 <a href="/data_archiving/users/add" class="navigation-link active">Add User</a>
             </li>
             <li class="navigation-item">
-                <a href="/data_archiving/" class="navigation-link">Add Files</a>
+                <a href="/data_archiving/archives/add" class="navigation-link">Add Files</a>
             </li>
             <li class="navigation-item">
                 <a href="/data_archiving/" class="navigation-link">Activity</a>
