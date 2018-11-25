@@ -34,6 +34,7 @@ $(function() {
             reader.onload = function (e) {
                 let imageType = input.files[0]['type'];
                 if ( imageType == 'image/jpeg' || imageType == 'image/png' ) {
+                    $('.js-image-uploaded').attr('src', e.target.result);
                     $('.js-file-name').val(input.files[0]['name']);
                     $('.js-error-image').hide().text('')
                 } else {

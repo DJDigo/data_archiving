@@ -823,3 +823,20 @@ div[contenteditable=true] {
 .file-location {
     display: none;
 }
+.form-image-uploaded {
+    display: inline-block;
+    width: 35%;
+    margin-right: 1%; 
+    vertical-align: middle;
+}
+
+.js-image-uploaded {
+    width: 128px;
+    height: 144px;
+    object-fit: contain;
+}
+.form-upload-input {
+    display: inline-block;
+    width: 50%;
+    vertical-align: middle;
+}

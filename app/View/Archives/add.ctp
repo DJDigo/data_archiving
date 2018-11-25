@@ -14,15 +14,21 @@
                 <div class="form-field">
                     <label class="form-label">File Upload: <span class="form-note">*(accepts jpg/png only)</span></label>
                     <div class="form-input-wrapper">
-                        <?php 
-                            echo $this->Form->input('image.upload', array(
-                                'label'  => false,
-                                'type'   => 'file',
-                                'accept' => "image/*",
-                                'class'  => 'js-upload-image'
-                            ));
-                        ?>
-                        <span class="error-message js-error-image"></span>
+                        <div class="form-image-uploaded">
+                            <img src="../img/common/fallback-file.png" class="js-image-uploaded">
+                        </div>
+                        <div class="form-upload-input">
+                            <?php 
+                                echo $this->Form->input('image.upload', array(
+                                    'label'  => false,
+                                    'type'   => 'file',
+                                    'accept' => "image/*",
+                                    'div'    => false,
+                                    'class'  => 'js-upload-image'
+                                ));
+                            ?>
+                            <span class="error-message js-error-image"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="form-field">
