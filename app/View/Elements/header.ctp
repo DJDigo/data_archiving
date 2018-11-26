@@ -20,16 +20,16 @@
         <?= $this->element('sidebar'); ?>
         <ul class="navigation-list">
             <li class="navigation-item">
-                <a href="/data_archiving/users/" class="navigation-link">Home</a>
+                <a href="/data_archiving/users/" class="navigation-link <?php echo $this->request->param('controller') == 'users' && $this->request->param('action') == 'index' ? 'active': ''; ?>">Home</a>
             </li>
             <li class="navigation-item">
-                <a href="/data_archiving/users/add" class="navigation-link active">Add User</a>
+                <a href="/data_archiving/users/add" class="navigation-link <?php echo $this->request->param('controller') == 'users' && $this->request->param('action') == 'add' ? 'active': ''; ?>">Add User</a>
             </li>
             <li class="navigation-item">
-                <a href="/data_archiving/archives/add" class="navigation-link">Add Files</a>
+                <a href="/data_archiving/archives/add" class="navigation-link <?php echo $this->request->param('controller') == 'archives' && $this->request->param('action') == 'add' ? 'active': ''; ?>">Add Files</a>
             </li>
             <li class="navigation-item">
-                <a href="/data_archiving/" class="navigation-link">Activity</a>
+                <a href="/data_archiving/pages/activity" class="navigation-link">Activity</a>
             </li>
             <li class="navigation-search-wrapper">
                 <div class="navigation-search">

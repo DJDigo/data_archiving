@@ -348,14 +348,16 @@ body {
     text-align: center;
 }
 
-.sidebar-user-logout button {
-    padding: 5px;
+.sidebar-user-logout .button {
+    padding: 3px;
     width: 100px;
     background: #ff5757;
     border: 1px solid red;
     border-radius: 3px;
     color: #fff;
     cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
 }
 
 .sidebar-title {

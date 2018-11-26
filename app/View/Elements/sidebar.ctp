@@ -20,20 +20,3 @@
     </div>
 </aside>
 <input type="hidden" id="url" value="<?php echo $url; ?>">
-<style type="text/css">
-    a.button {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-
-    text-decoration: none;
-    color: initial;
-    padding: 5px;
-    width: 100px;
-    background: #ff5757;
-    border: 1px solid red;
-    border-radius: 3px;
-    color: #fff;
-    cursor: pointer;
-}
-</style>
