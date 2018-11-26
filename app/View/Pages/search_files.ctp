@@ -6,7 +6,7 @@
             <h2>Search Files</h2>
         </div>
         <div class="content-wrapper">
-            <ul class="search-files">
+            <!-- <ul class="search-files">
                 <li class="search-list">
                     <div class="search-item">
                         <img src="../img/common/background.png" alt="images" class="search-image">
@@ -122,6 +122,72 @@
                         <a href="" class="pagination-item">></a>
                     </li>
                 </ul>
+            </div> -->
+            <div class="file-list">
+                <table id="file-list" class="table table-bordered stripe">
+                    <thead>
+                        <tr>
+                            <td>File Name</td>
+                            <td>Category</td>
+                            <td>Date</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>File1.jpg</td>
+                            <td>Main Folder1</td>
+                            <td>2018-08-30</td>
+                            <td>
+                                <div class="button-view-wrapper">
+                                    <button class="button-view">View</button>
+                                </div>
+                                <div class="button-delete-wrapper">
+                                    <button class="button-delete">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>File1.jpg</td>
+                            <td>Main Folder2</td>
+                            <td>2018-08-30</td>
+                            <td>
+                                <div class="button-view-wrapper">
+                                    <button class="button-view">View</button>
+                                </div>
+                                <div class="button-delete-wrapper">
+                                    <button class="button-delete">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>File1.jpg</td>
+                            <td>Main Folder3</td>
+                            <td>2018-08-30</td>
+                            <td>
+                                <div class="button-view-wrapper">
+                                    <button class="button-view">View</button>
+                                </div>
+                                <div class="button-delete-wrapper">
+                                    <button class="button-delete">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>File1.jpg</td>
+                            <td>Main Folder4</td>
+                            <td>2018-08-30</td>
+                            <td>
+                                <div class="button-view-wrapper">
+                                    <button class="button-view">View</button>
+                                </div>
+                                <div class="button-delete-wrapper">
+                                    <button class="button-delete">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -172,3 +238,16 @@
         </div>
     </div>
 </div>
+
+<script>
+// Datatable
+    $('#file-list').dataTable({
+        "lengthMenu": [ 10, 50, 100 ],
+        "lengthChange": true,
+        "searching": false,
+        "info": true,
+        "iDisplayLength":10,
+        'pagingType': 'full_numbers',
+    });
+
+</script>

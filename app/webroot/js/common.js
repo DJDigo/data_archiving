@@ -9,12 +9,16 @@ $(function() {
     $('.datepicker').datepicker();
 
     // Toggle Modal
-    $('.search-item').click(function() {
+    $('.button-view').click(function() {
         $('#showModal').fadeIn(300);
     });
 
     $('.button-close').click(function() {
         $('#showModal').fadeOut(300);
+    });
+
+    $('.button-print').click(function() {
+        $('.modal-image').print();
     });
 
     // Datatable
