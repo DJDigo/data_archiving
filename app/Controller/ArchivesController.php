@@ -43,7 +43,7 @@ class ArchivesController extends AppController {
                 $this->Upload->upload($data['image']['upload']);
                 if($this->Upload->uploaded) {
                     $image_name = $data['Archive']['name'];
-                    $this->Upload->file_new_name_body = $image_name;
+                    $this->Upload->file_new_name_body = str_replace(" ", "_", preg_replace('/\\.[^.\\s]{3,4}$/', '', $image_name));
                     $this->Upload->process(APP . "webroot/files/".$location['Location']['path'].'/');
                     $this->Upload->process();
                     $ext = pathinfo($data['image']['upload']['name'], PATHINFO_EXTENSION);
@@ -70,13 +70,28 @@ class ArchivesController extends AppController {
             $data = $this->request->data;
             $locations = $this->Location->find('all', [
                 'conditions' => [
-                    'category_id' => $data
+                    'Location.category_id' => $data
                 ],
-                'order' => ['id']
+                'order' => ['Location.id']
             ]);
 
             return json_encode($locations);
         }
     }
 
+    public function search() {
+        if (!empty($this->request->query['location_id'])) {
+            $location_id = $this->request->query['location_id'];
+            $archives = $this->Archive->find('all', [
+                'conditions' => [
+                    'Archive.location_id' => $location_id
+                ],
+                'recursive' => 2
+            ]);
+            $path = APP . "webroot/files";
+            $this->set(compact('archives', 'path'));
+        } else {
+            return $this->redirect(['controller' => 'archives', 'action' => 'add']);
+        }
+    }
 }

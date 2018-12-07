@@ -162,18 +162,20 @@ class LocationsController extends AppController {
 
     private function __get_folders() {
         $json_folder = [];
-        $folders     = $this->Location->find('all', ['order' => ['category_id', 'id']]);
+        $folders     = $this->Location->find('all', ['order' => ['Location.category_id', 'Location.id']]);
         foreach ($folders as $key => $folder) {
             $split_folder = explode("/", $folder['Location']['path']);
             if ($key == 0) {
                 $json_folder[$folder['Location']['path']] = [
-                    'id'   => $folder['Location']['path'],
-                    'name' => $folder['Location']['path']
+                    'id'          => $folder['Location']['path'],
+                    'location_id' => $folder['Location']['id'],
+                    'name'        => $folder['Location']['path']
                 ];
             } else {
                 $json_folder[$folder['Location']['path']] = [
-                    'id'   => implode('/', $split_folder),
-                    'name' => $split_folder[count($split_folder) -1]
+                    'id'          => implode('/', $split_folder),
+                    'location_id' => $folder['Location']['id'],
+                    'name'        => $split_folder[count($split_folder) -1]
                 ];    
             }
         }

@@ -10,11 +10,13 @@ $(function() {
 
     // Toggle Modal
     $('.button-view').click(function() {
-        $('#showModal').fadeIn(300);
+        let id = $(this).attr('id');
+        $('#showModal-'+id).fadeIn(300);
     });
 
     $('.button-close').click(function() {
-        $('#showModal').fadeOut(300);
+        let id = $(this).attr('id');
+        $('#showModal-'+id).fadeOut(300);
     });
 
     $('.button-print').click(function() {
@@ -179,7 +181,7 @@ $(function() {
         dataType: 'json',
         url: url + "locations/index",
         success: function (response) {
-            document.getElementById("folders").innerHTML= populateSidebarFolder(response);
+            document.getElementById("folders").innerHTML= populateSidebarFolder(response, url);
         }
      });
 });
@@ -214,7 +216,7 @@ function add_folder(name, url) {
         data: {name},
         success: function(response) {
             document.getElementById("folders").innerHTML= '';
-            document.getElementById("folders").innerHTML= populateSidebarFolder(response);
+            document.getElementById("folders").innerHTML= populateSidebarFolder(response, url);
         }
     })
 }
@@ -227,7 +229,7 @@ function edit_folder(before, new_name, url) {
         data: {before, new_name},
         success: function(response) {
             document.getElementById("folders").innerHTML= '';
-            document.getElementById("folders").innerHTML= populateSidebarFolder(response);
+            document.getElementById("folders").innerHTML= populateSidebarFolder(response, url);
         }
     })
 }
@@ -240,25 +242,30 @@ function delete_folder(name, url) {
         data: {name},
         success: function(response) {
             document.getElementById("folders").innerHTML= '';
-            document.getElementById("folders").innerHTML= populateSidebarFolder(response);
+            document.getElementById("folders").innerHTML= populateSidebarFolder(response, url);
         }
     })
 }
 
-function populateSidebarFolder( data ) {
+function populateSidebarFolder(data, url) {
+    console.log(url);
     var htmlRetStr = "<div class='sidebar-list-main'>";
     for (var key in data) {
         if (typeof(data[key])== 'object' && data[key] != null) {
-            htmlRetStr += populateSidebarFolder( data[key] );
+            htmlRetStr += populateSidebarFolder( data[key], url );
             htmlRetStr += '</div>';
         } else {
             htmlRetStr = `
             <div class='sidebar-item' data-id="`+ data["id"]+ `">
-                <i class='fa icon-folder-close sidebar-folder-icon'></i>
-                <div class='sidebar-text'>` + data["name"]+ `
+                <i class='fa icon-folder-close sidebar-folder-icon' href="`+url+`archives/search?location_id=`+data['location_id']+`"></i>
+                <div class='sidebar-text' onclick=search("`+url+`archives/search?location_id=`+data['location_id']+`")>` + data["name"]+ `
             </div>`;
         }
     }   
     return( htmlRetStr );
     
+}
+
+function search(url) {
+    window.location.href = url;
 }
