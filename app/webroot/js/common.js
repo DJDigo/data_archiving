@@ -1,5 +1,6 @@
 $(function() {
     let url = $('#url').val();
+    onSidebarClickRedirection( url );
     // HEADER TOGGLE MENU
     $('.arrow-down').click(function() {
         $('.toggle-menu').slideToggle();
@@ -76,13 +77,13 @@ $(function() {
     $('html').delegate('.sidebar-text', 'mousedown', function(e) {
         if(e.which == 3) {
             clickedFolder = $(this);
-            $('.sidebar-text').find('.tooltip').remove();
+            $('.sidebar-text').removeClass('hasTooltip').find('.tooltip').remove();
             let tooltipPosition = 25;
             let getHeight = $(this).offset().top;
             let positionOfModal;
             clickedFolderText = clickedFolder.text();
             getHeight >= 485 ? positionOfModal = getHeight - 117 : positionOfModal = tooltipPosition;
-            $(this).append(tooltip);
+            $(this).addClass('hasTooltip').append(tooltip);
 
             $('.tooltip').css({
                 top: positionOfModal + 'px'
@@ -92,19 +93,28 @@ $(function() {
     });
 
     let folder_path = '';
-    $('html').delegate('#create','click', function() {
+    $('html').delegate('#create','click', function(e) {
         folder_path = $(this).parent().parent().parent().parent().attr('data-id');
         $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
         $('.sidebar-input').remove();
         $('.sidebar-input').focus();
         clickedFolder.parent().append(addInput);
         $('.sidebar-input').focus();
+        e.preventDefault();
+        if ( clickedFolder.hasClass('hasTooltip') == true ) {
+            e.preventDefault();
+            return false;
+        }
     })
 
     $('html').delegate('#delete', 'click', function() {
         folder_path = $(this).parent().parent().parent().parent().attr('data-id');
         delete_folder(folder_path, url);
         clickedFolder.parent().remove();
+        if ( clickedFolder.hasClass('hasTooltip') == true ) {
+            e.preventDefault();
+            return false;
+        }
     });
 
     $('html').delegate('#rename', 'click', function() {
@@ -113,6 +123,10 @@ $(function() {
         let inputRenameTextBox = '<input type="text" class="sidebar-input-rename" value="'+ clickedFolderText + '" autofocus style="margin-left: 0">'
         clickedFolder.text('').append(inputRenameTextBox);
         clickedFolder.parent().find('.sidebar-input-rename').focus();
+        if ( clickedFolder.hasClass('hasTooltip') == true ) {
+            e.preventDefault();
+            return false;
+        }
     });
 
     $('html').on('keyup','.sidebar-text[contentEditable]',function(e) {
@@ -251,7 +265,6 @@ function delete_folder(name, url) {
 }
 
 function populateSidebarFolder(data, url) {
-    console.log(url);
     var htmlRetStr = "<div class='sidebar-list-main'>";
     for (var key in data) {
         if (typeof(data[key])== 'object' && data[key] != null) {
@@ -261,12 +274,22 @@ function populateSidebarFolder(data, url) {
             htmlRetStr = `
             <div class='sidebar-item' data-id="`+ data["id"]+ `">
                 <i class='fa icon-folder-close sidebar-folder-icon' href="`+url+`archives/search?location_id=`+data['location_id']+`"></i>
-                <div class='sidebar-text' onclick=search("`+url+`archives/search?location_id=`+data['location_id']+`")>` + data["name"]+ `
+                <div class='sidebar-text' data-index="`+data['location_id']+`">` + data["name"] + `
             </div>`;
         }
     }   
-    return( htmlRetStr );
-    
+    return( htmlRetStr );   
+}
+
+function onSidebarClickRedirection( url ) {
+    $('html').delegate('.sidebar-text', 'click', function( e ) {
+        // if( $(this).hasClass('hasTooltip') == true) {
+        //     e.preventDefault();
+        //     return false;
+        // } else {
+            search( url + 'archives/search?location_id='+ $(this).data('index'));
+        // }
+    });
 }
 
 function search(url) {
