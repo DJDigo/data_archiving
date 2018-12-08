@@ -782,11 +782,17 @@ div[contenteditable=true] {
     width: 50%;
     vertical-align: middle;
 }
+.activity-table tbody td,
 .file-list tbody td {
     text-align: left;
 }
 
 .file-list tbody td:last-child,
 .file-list tbody td:nth-child(3) {
+    text-align: center;
+}
+
+.activity-table tbody td:last-child,
+.activity-table tbody td:nth-child(2) {
     text-align: center;
 }
