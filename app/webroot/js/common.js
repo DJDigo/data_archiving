@@ -70,7 +70,6 @@ $(function() {
                             <span id="delete">Delete</span>
                         </div>
                     </div>`;
-    const addInput = `<input type="text" class="sidebar-input" value="New Folder" autofocus>`;
     let clickedFolder;
     let clickedFolderText = '';
 
@@ -98,7 +97,14 @@ $(function() {
         $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
         $('.sidebar-input').remove();
         $('.sidebar-input').focus();
-        clickedFolder.parent().append(addInput);
+        let countNumberOfFolder;
+        if ( clickedFolder.parent().find('.sidebar-item').length > 0 ) {
+            countNumberOfFolder = clickedFolder.parent().find('.sidebar-item').length;
+            clickedFolder.parent().append(`<input type="text" class="sidebar-input" value="New Folder-`+ countNumberOfFolder +`" autofocus>`);
+        } else {
+            countNumberOfFolder = "";
+            clickedFolder.parent().append(`<input type="text" class="sidebar-input" value="New Folder`+ countNumberOfFolder +`" autofocus>`);
+        }
         $('.sidebar-input').focus();
         e.preventDefault();
         if ( clickedFolder.hasClass('hasTooltip') == true ) {
@@ -107,7 +113,7 @@ $(function() {
         }
     })
 
-    $('html').delegate('#delete', 'click', function() {
+    $('html').delegate('#delete', 'click', function(e) {
         folder_path = $(this).parent().parent().parent().parent().attr('data-id');
         delete_folder(folder_path, url);
         clickedFolder.parent().remove();
@@ -117,12 +123,12 @@ $(function() {
         }
     });
 
-    $('html').delegate('#rename', 'click', function() {
+    $('html').delegate('#rename', 'click', function(e) {
         folder_path = $(this).parent().parent().parent().parent().attr('data-id');
         $('.sidebar-item, .sidebar-item-sub').find('.tooltip').remove();
         let inputRenameTextBox = '<input type="text" class="sidebar-input-rename" value="'+ clickedFolderText + '" autofocus style="margin-left: 0">'
         clickedFolder.text('').append(inputRenameTextBox);
-        clickedFolder.parent().find('.sidebar-input-rename').focus();
+        clickedFolder.addClass('hasTooltip').parent().find('.sidebar-input-rename').focus();
         if ( clickedFolder.hasClass('hasTooltip') == true ) {
             e.preventDefault();
             return false;
@@ -151,15 +157,30 @@ $(function() {
         }
     });
 
+    $('html').delegate('.sidebar-input-rename','click', function( e ) {
+        if ( $(this).parent().hasClass('hasTooltip') == true ) {
+            e.preventDefault();
+            return false;
+        }
+    })
+
     // RENAME INPUT TEXTBOX
     $('html').on('keyup','.sidebar-input-rename', function(e) {
         folder_path = $(this).parent().parent().attr('data-id');
         if ( e.keyCode == 13 ) {
             let inputValue = '';
             let folder     = folder_path.split('/');
-
             if ( $(this).val().length > 1 ) {
                 inputValue = $(this).val();
+                mainFolder = $(this);
+                $(this).parent().parent().parent().find('.sidebar-item').each(function(key,value) {
+                    if ( inputValue == $(value).data('id').split('/').pop() ) {
+                        inputValue = inputValue + "-" +"1";
+                        alert("you've enter an existing folder name")
+                        mainFolder.parent().text(inputValue);
+                        mainFolder.remove();
+                    }
+                });
                 $(this).parent().append(inputValue);
                 if (folder.length > 1) {
                     folder[folder.length - 1] = inputValue;
@@ -176,7 +197,7 @@ $(function() {
                 $(this).val('').remove();
             }
             edit_folder(folder_path, inputValue, url);
-        }
+        }   
     });
 
     let countMainFolder = 0;
