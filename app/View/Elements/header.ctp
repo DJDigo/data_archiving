@@ -35,16 +35,15 @@
             </li>
             <li class="navigation-search-wrapper">
                 <div class="navigation-search">
-                    <form>
+                    <form action="<?php echo $url ?>archives/search" method="GET">
                         <div class="search_selectbox-wrapper">
-                            <select class="search_box">
-                                <option>Categories</option>
-                                <option>Name</option>
-                                <option>Author</option>
+                            <select class="search_box" name="option">
+                                <option value="1" <?php echo (isset($_GET['option']) && $_GET['option'] == 1) ? "selected" : '' ?> >Categories</option>
+                                <option value="2" <?php echo (isset($_GET['option']) && $_GET['option'] == 2) ? "selected" : '' ?>>File Name</option>
                             </select>
                         </div>
                         <div class="search_input-wrapper">
-                            <input type="text" class="search_input">
+                            <input type="text" class="search_input" name="name" value="<?php echo (isset($_GET['name'])) ? $_GET['name'] : '' ?>">
                         </div>
                         <div class="search-button-wrapper">
                             <button class="search-button">Search</button>

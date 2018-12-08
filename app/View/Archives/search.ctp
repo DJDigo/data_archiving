@@ -17,6 +17,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php if(!empty($archives)): ?>
                     <?php foreach($archives as $key => $data): ?>
                         <tr>
                             <td><?php echo strlen($data['Archive']['image']) > 20 ? substr($data['Archive']['image'],0,20)."..." : $data['Archive']['image']; ?></td>
@@ -77,6 +78,7 @@
                             </div>
                         </div>
                     <?php endforeach; ?>
+                    <?php endif ?>
                     </tbody>
                 </table>
             </div>

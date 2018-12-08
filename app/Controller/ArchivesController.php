@@ -99,18 +99,43 @@ class ArchivesController extends AppController {
     }
 
     public function search() {
+        $this->Category = ClassRegistry::init('Category');
+        $conditions = [];
         if (!empty($this->request->query['location_id'])) {
-            $location_id = $this->request->query['location_id'];
-            $archives = $this->Archive->find('all', [
-                'conditions' => [
-                    'Archive.location_id' => $location_id
-                ],
-                'recursive' => 2
-            ]);
+            $conditions['Archive.location_id'] = $this->request->query['location_id'];
+        }
+
+        if (!empty($this->request->query['option'])) {
+            if ($this->request->query['option'] == 1) {
+                $category_id = $this->Category->find('list', [
+                    'conditions' => [
+                        'Category.name LIKE' => '%'.$this->request->query['name'].'%'
+                    ],
+                    'fields' => ['id']
+                ]);
+                $conditions['Location.category_id'] = $category_id;
+            } else if ($this->request->query['option'] == 2) {
+                $conditions['Archive.image LIKE'] = '%'.$this->request->query['name'].'%';
+            }
+        }
+
+        $archives = $this->Archive->find('all', [
+            'conditions' => $conditions,
+            'recursive' => 2
+        ]);
+
+        // if (!empty($this->request->query['location_id'])) {
+        //     $location_id = $this->request->query['location_id'];
+            // $archives = $this->Archive->find('all', [
+            //     'conditions' => [
+            //         'Archive.location_id' => $location_id
+            //     ],
+            //     'recursive' => 2
+            // ]);
             $path = APP . "webroot/files";
             $this->set(compact('archives', 'path'));
-        } else {
-            return $this->redirect(['controller' => 'archives', 'action' => 'add']);
-        }
+        // } else {
+        //     return $this->redirect(['controller' => 'archives', 'action' => 'add']);
+        // }
     }
 }
