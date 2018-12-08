@@ -782,3 +782,11 @@ div[contenteditable=true] {
     width: 50%;
     vertical-align: middle;
 }
+.file-list tbody td {
+    text-align: left;
+}
+
+.file-list tbody td:last-child,
+.file-list tbody td:nth-child(3) {
+    text-align: center;
+}
