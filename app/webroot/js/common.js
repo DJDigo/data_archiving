@@ -20,7 +20,10 @@ $(function() {
     });
 
     $('.button-print').click(function() {
-        $('.modal-image').print();
+        $('.modal-image').printThis({
+            canvas: true,
+            loadCSS: "../css/print.css"
+        });
     });
 
     // Datatable

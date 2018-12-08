@@ -32,10 +32,11 @@
 		echo $this->fetch('script');
 	?>
 	<script src="../js/jquery-3.1.0.min.js"></script>
-	<script src="../js/common.js"></script>
 	<script src="../plugins/datepicker/datepicker.js"></script>
 	<script src="../plugins/datatables/datatables.net.js"></script>
 	<script src="../plugins/datatables/datatables.min.js"></script>
+	<script src="../plugins/printThis.js"></script>
+	<script src="../js/common.js"></script>
 </head>
 <body>
 	<main class="main-content">
