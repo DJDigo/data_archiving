@@ -7,7 +7,7 @@
     </div>
     <div class="header-login-info">
         <div class="header-datetime">
-            <span>August 30, 2018  &nbsp;&nbsp; 10:00:00</span>
+            <span><?php echo date('F d, Y ') ?><span id="txt"></span></span>
         </div>
         <div class="header-project-title">
             <span>Data Archiving Management System</span>
@@ -20,16 +20,18 @@
         <?= $this->element('sidebar'); ?>
         <ul class="navigation-list">
             <li class="navigation-item">
-                <a href="/data_archiving/users/" class="navigation-link <?php echo $this->request->param('controller') == 'users' && $this->request->param('action') == 'index' ? 'active': ''; ?>">Home</a>
+                <a href="<?php echo $url ?>users/" class="navigation-link <?php echo $this->request->param('controller') == 'users' && $this->request->param('action') == 'index' ? 'active': ''; ?>">Home</a>
+            </li>
+            <?php if ($this->Session->read('Auth.User.role') == 1): ?>
+            <li class="navigation-item">
+                <a href="<?php echo $url ?>users/add" class="navigation-link <?php echo $this->request->param('controller') == 'users' && $this->request->param('action') == 'add' ? 'active': ''; ?>">Add User</a>
+            </li>
+            <?php endif; ?>
+            <li class="navigation-item">
+                <a href="<?php echo $url ?>archives/add" class="navigation-link <?php echo $this->request->param('controller') == 'archives' && $this->request->param('action') == 'add' ? 'active': ''; ?>">Add Files</a>
             </li>
             <li class="navigation-item">
-                <a href="/data_archiving/users/add" class="navigation-link <?php echo $this->request->param('controller') == 'users' && $this->request->param('action') == 'add' ? 'active': ''; ?>">Add User</a>
-            </li>
-            <li class="navigation-item">
-                <a href="/data_archiving/archives/add" class="navigation-link <?php echo $this->request->param('controller') == 'archives' && $this->request->param('action') == 'add' ? 'active': ''; ?>">Add Files</a>
-            </li>
-            <li class="navigation-item">
-                <a href="/data_archiving/pages/activity" class="navigation-link">Activity</a>
+                <a href="<?php echo $url ?>archives/" class="navigation-link">Activity</a>
             </li>
             <li class="navigation-search-wrapper">
                 <div class="navigation-search">
@@ -54,3 +56,20 @@
 <div class="title">
     <h1></h1>
 </div>
+<script type="text/javascript">
+    function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+    }
+</script>

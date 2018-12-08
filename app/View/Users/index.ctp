@@ -10,7 +10,7 @@
           <li class="dashboard-item">
             <div class="dashboard-count">
               <i class="fa icon-user"></i>
-              <span>69</span>
+              <span><?php echo $user_count ?></span>
             </div>
             <div class="dashboard-title">
               <span>Number Of Users</span>
@@ -20,7 +20,7 @@
           <li class="dashboard-item">
             <div class="dashboard-count">
               <i class="fa icon-file"></i>
-              <span>800</span>
+              <span><?php echo $file_count ?></span>
             </div>
             <div class="dashboard-title">
               <span>Number Of Files</span>
@@ -30,7 +30,7 @@
           <li class="dashboard-item">
             <div class="dashboard-count">
               <i class="fa icon-folder-open"></i>
-              <span>20</span>
+              <span><?php echo $folder_count ?></span>
             </div>
             <div class="dashboard-title">
               <span>Number Of Folders</span>

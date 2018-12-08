@@ -37,7 +37,7 @@
 	<script src="../plugins/datatables/datatables.net.js"></script>
 	<script src="../plugins/datatables/datatables.min.js"></script>
 </head>
-<body>
+<body onload="startTime()">
 	<main class="main-content">
 		<?php echo $this->fetch('content'); ?>
 	</main>

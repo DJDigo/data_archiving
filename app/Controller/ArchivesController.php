@@ -15,6 +15,25 @@ class ArchivesController extends AppController {
  */
     public $components = array('Paginator', 'Upload');
 
+    public function index() {
+        $this->Archive->recursive = -1;
+        $archives = $this->Archive->find('all', [
+            'order' => ['Archive.id' => 'desc']
+        ]);
+
+        $this->set(compact('archives'));
+    }
+
+    public function delete($id) {
+        if (empty($id)) {
+            return $this->redirect('/users/');
+        } else {
+            // $this->Archive->delete(['Archive.id' => $id]);
+            $this->Flash->success('Your file has been successfully deleted.');
+            return $this->redirect(['controller' => 'archives', 'action' => '']);
+        }
+    }
+
     public function add() {
         $this->Category = ClassRegistry::init('Category');
         $this->Location = ClassRegistry::init('Location');

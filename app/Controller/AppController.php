@@ -54,6 +54,9 @@ class AppController extends Controller {
 
     public function beforeFilter() {
         $this->Auth->allow('add_files', 'add', 'edit');
+        if (empty($this->params['controller'])) {
+            return $this->redirect(['users/']);
+        }
         $this->set('url', $this->current_url());
     }
 
@@ -64,4 +67,12 @@ class AppController extends Controller {
         return $url;
     }
 
+    public function redirect($url, $status = null, $exit = true) { 
+        if (empty($url['action'])) {
+            if (is_array($url) == true) $url = implode('/', $url);
+            $url = rtrim($url, '/');
+            return parent::redirect("/".$url."/");
+        }
+        return parent::redirect($url);
+    }
 }
