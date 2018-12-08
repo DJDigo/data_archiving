@@ -283,12 +283,7 @@ function populateSidebarFolder(data, url) {
 
 function onSidebarClickRedirection( url ) {
     $('html').delegate('.sidebar-text', 'click', function( e ) {
-        // if( $(this).hasClass('hasTooltip') == true) {
-        //     e.preventDefault();
-        //     return false;
-        // } else {
-            search( url + 'archives/search?location_id='+ $(this).data('index'));
-        // }
+        search( url + 'archives/search?location_id='+ $(this).data('index'));
     });
 }
 
