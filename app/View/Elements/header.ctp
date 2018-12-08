@@ -35,19 +35,21 @@
             </li>
             <li class="navigation-search-wrapper">
                 <div class="navigation-search">
-                    <div class="search_selectbox-wrapper">
-                        <select class="search_box">
-                            <option>Categories</option>
-                            <option>Name</option>
-                            <option>Author</option>
-                        </select>
-                    </div>
-                    <div class="search_input-wrapper">
-                        <input type="text" class="search_input">
-                    </div>
-                    <div class="search-button-wrapper">
-                        <button class="search-button">Search</button>
-                    </div>
+                    <form>
+                        <div class="search_selectbox-wrapper">
+                            <select class="search_box">
+                                <option>Categories</option>
+                                <option>Name</option>
+                                <option>Author</option>
+                            </select>
+                        </div>
+                        <div class="search_input-wrapper">
+                            <input type="text" class="search_input">
+                        </div>
+                        <div class="search-button-wrapper">
+                            <button class="search-button">Search</button>
+                        </div>
+                    </form>
                 </div>
             </li>
         </ul>
