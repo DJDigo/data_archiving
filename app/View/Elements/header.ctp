@@ -31,6 +31,9 @@
                 <a href="<?php echo $url ?>archives/add" class="navigation-link <?php echo $this->request->param('controller') == 'archives' && $this->request->param('action') == 'add' ? 'active': ''; ?>">Add Files</a>
             </li>
             <li class="navigation-item">
+                <a href="<?php echo $url ?>users/list" class="navigation-link">Users List</a>
+            </li>
+            <li class="navigation-item">
                 <a href="<?php echo $url ?>archives/" class="navigation-link">Activity</a>
             </li>
             <li class="navigation-search-wrapper">

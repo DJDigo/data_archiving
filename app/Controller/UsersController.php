@@ -7,7 +7,7 @@ class UsersController extends AppController {
     
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('login','logout','add','index');
+        $this->Auth->allow('login','logout','add','index','list');
     }
 
     /**
@@ -68,5 +68,9 @@ class UsersController extends AppController {
         $folder_count = $this->Location->find('count');
 
         $this->set(compact('user_count', 'file_count', 'folder_count'));
+    }
+
+    public function list() { 
+
     }
 }

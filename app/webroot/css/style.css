@@ -236,7 +236,7 @@ body {
 
 .navigation-item {
     display: inline-block;
-    width: 15%;
+    width: 12%;
     font-size: 16px;
     vertical-align: middle;
 }
@@ -611,6 +611,12 @@ body {
 }
 
 .activity-table {
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.users-list {
     padding: 20px;
     box-sizing: border-box;
     text-align: center;
