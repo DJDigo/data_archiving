@@ -138,4 +138,8 @@ class ArchivesController extends AppController {
         //     return $this->redirect(['controller' => 'archives', 'action' => 'add']);
         // }
     }
+
+    public function deleted() {
+        
+    }
 }

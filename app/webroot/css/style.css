@@ -236,7 +236,7 @@ body {
 
 .navigation-item {
     display: inline-block;
-    width: 12%;
+    width: 11%;
     font-size: 16px;
     vertical-align: middle;
 }
@@ -263,7 +263,7 @@ body {
 
 .navigation-search-wrapper {
     display: inline-block;
-    width: 40%;
+    width: 34%;
     vertical-align: middle;
 }
 .navigation-search {
@@ -632,6 +632,21 @@ body {
     display: inline-block;
     width: 25%;
     vertical-align: middle;
+}
+.button-restore-wrapper {
+    display: inline-block;
+    width: 28%;
+    vertical-align: middle;
+}
+.button-restore {
+    background: #a88fff;
+    color: #FFF;
+    border: 1px solid #a88fff;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 13px;
+    width: 80px; 
 }
 .button-delete {
     background: #ff4848;
