@@ -48,6 +48,16 @@ class AppSchema extends CakeSchema {
             'charset' => 'utf8', 
             'comment' =>'Position'
         ],
+        'deleted' => [
+            'type'    => 'integer',
+            'null'    => false,
+            'default' => 0
+        ],
+        'deleted_date' => [
+            'type'    => 'datetime', 
+            'null'    => true, 
+            'default' => null
+        ],
         'created' => [
             'type'    => 'datetime', 
             'null'    => true, 
@@ -59,7 +69,11 @@ class AppSchema extends CakeSchema {
             'null'    => true, 
             'default' => null,
             'comment' =>'Modified Date'
-        ]
+        ],
+        'indexes' => [
+            'PRIMARY' => ['column' => 'id', 'unique' => 1],
+        ],
+        'tableParameters' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
     ];
 
     public $categories = [
@@ -79,6 +93,16 @@ class AppSchema extends CakeSchema {
             'charset' => 'utf8',
             'comment' =>'Folder name'
         ],
+        'deleted' => [
+            'type'    => 'integer',
+            'null'    => false,
+            'default' => 0
+        ],
+        'deleted_date' => [
+            'type'    => 'datetime', 
+            'null'    => true, 
+            'default' => null
+        ],
         'created' => [
             'type'    => 'datetime', 
             'null'    => true, 
@@ -90,7 +114,11 @@ class AppSchema extends CakeSchema {
             'null'    => true, 
             'default' => null,
             'comment' =>'Modified Date'
-        ]
+        ],
+        'indexes' => [
+            'PRIMARY' => ['column' => 'id', 'unique' => 1],
+        ],
+        'tableParameters' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
     ];
 
     public $locations = [
@@ -116,6 +144,16 @@ class AppSchema extends CakeSchema {
             'charset' => 'utf8',
             'comment' =>'Folder location'
         ],
+        'deleted' => [
+            'type'    => 'integer',
+            'null'    => false,
+            'default' => 0
+        ],
+        'deleted_date' => [
+            'type'    => 'datetime', 
+            'null'    => true, 
+            'default' => null
+        ],
         'created' => [
             'type'    => 'datetime', 
             'null'    => true, 
@@ -127,7 +165,11 @@ class AppSchema extends CakeSchema {
             'null'    => true, 
             'default' => null,
             'comment' =>'Modified Date'
-        ]
+        ],
+        'indexes' => [
+            'PRIMARY' => ['column' => 'id', 'unique' => 1],
+        ],
+        'tableParameters' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
     ];
 
     public $archives = [
@@ -163,6 +205,16 @@ class AppSchema extends CakeSchema {
             'charset' => 'utf8',
             'comment' =>'file description'
         ],
+        'deleted' => [
+            'type'    => 'integer',
+            'null'    => false,
+            'default' => 0
+        ],
+        'deleted_date' => [
+            'type'    => 'datetime', 
+            'null'    => true, 
+            'default' => null
+        ],
         'created' => [
             'type'    => 'datetime', 
             'null'    => true, 
@@ -174,6 +226,10 @@ class AppSchema extends CakeSchema {
             'null'    => true, 
             'default' => null,
             'comment' =>'Modified Date'
-        ]
+        ],
+        'indexes' => [
+            'PRIMARY' => ['column' => 'id', 'unique' => 1],
+        ],
+        'tableParameters' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
     ];
 }

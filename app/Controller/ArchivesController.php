@@ -18,6 +18,7 @@ class ArchivesController extends AppController {
     public function index() {
         $this->Archive->recursive = -1;
         $archives = $this->Archive->find('all', [
+            'conditions' => ['Archive.deleted' => 0],
             'order' => ['Archive.id' => 'desc']
         ]);
 
@@ -28,7 +29,13 @@ class ArchivesController extends AppController {
         if (empty($id)) {
             return $this->redirect('/users/');
         } else {
-            // $this->Archive->delete(['Archive.id' => $id]);
+            $data['Archive'] = [
+                'id'           => $id,
+                'deleted'      => 1,
+                'deleted_date' => date('Y-m-d H:i:s'),
+                'modified'     => date('Y-m-d H:i:s')
+            ];
+            $this->Archive->save($data);
             $this->Flash->success('Your file has been successfully deleted.');
             return $this->redirect(['controller' => 'archives', 'action' => '']);
         }
@@ -37,7 +44,9 @@ class ArchivesController extends AppController {
     public function add() {
         $this->Category = ClassRegistry::init('Category');
         $this->Location = ClassRegistry::init('Location');
-        $categories = $this->Category->find('all');
+        $categories = $this->Category->find('all', [
+            'conditions' => ['Category.deleted' => 0]
+        ]);
 
         if ($this->request->is('post')) {
             $data     = $this->request->data;
@@ -89,7 +98,8 @@ class ArchivesController extends AppController {
             $data = $this->request->data;
             $locations = $this->Location->find('all', [
                 'conditions' => [
-                    'Location.category_id' => $data
+                    'Location.category_id' => $data, 
+                    'Location.deleted' => 0
                 ],
                 'order' => ['Location.id']
             ]);
@@ -109,7 +119,8 @@ class ArchivesController extends AppController {
             if ($this->request->query['option'] == 1) {
                 $category_id = $this->Category->find('list', [
                     'conditions' => [
-                        'Category.name LIKE' => '%'.$this->request->query['name'].'%'
+                        'Category.name LIKE' => '%'.$this->request->query['name'].'%',
+                        'Category.deleted' => 0
                     ],
                     'fields' => ['id']
                 ]);
@@ -118,25 +129,13 @@ class ArchivesController extends AppController {
                 $conditions['Archive.image LIKE'] = '%'.$this->request->query['name'].'%';
             }
         }
-
+        $conditions['Archive.deleted'] = 0;
         $archives = $this->Archive->find('all', [
             'conditions' => $conditions,
             'recursive' => 2
         ]);
-
-        // if (!empty($this->request->query['location_id'])) {
-        //     $location_id = $this->request->query['location_id'];
-            // $archives = $this->Archive->find('all', [
-            //     'conditions' => [
-            //         'Archive.location_id' => $location_id
-            //     ],
-            //     'recursive' => 2
-            // ]);
-            $path = APP . "webroot/files";
-            $this->set(compact('archives', 'path'));
-        // } else {
-        //     return $this->redirect(['controller' => 'archives', 'action' => 'add']);
-        // }
+        $path = APP . "webroot/files";
+        $this->set(compact('archives', 'path'));
     }
 
     public function deleted() {

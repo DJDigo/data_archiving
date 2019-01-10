@@ -70,7 +70,32 @@ class UsersController extends AppController {
         $this->set(compact('user_count', 'file_count', 'folder_count'));
     }
 
-    public function list() { 
+    public function lists() { 
+        $users = $this->User->find('all', [
+            'conditions' => [
+                'User.role' => 2,
+                'User.deleted' => 0
+            ]
+        ]);
 
+        $this->set(compact('users'));
+    }
+
+    public function delete($id) {
+        if (!$id) {
+            return $this->redirect(['controller' => 'users', 'action' => 'lists']);
+        }
+
+        $data['User'] = [
+            'id'           => $id,
+            'deleted'      => 1,
+            'deleted_date' => date('Y-m-d H:i:s'),
+            'modified'     => date('Y-m-d H:i:s')
+        ];
+
+        if ($this->User->save($data)) {
+            $this->Flash->success(__('User has been successfully deleted.'));
+            return $this->redirect(['controller' => 'users', 'action' => 'lists']);
+        }
     }
 }

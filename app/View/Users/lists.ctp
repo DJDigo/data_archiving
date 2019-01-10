@@ -4,41 +4,31 @@
         <div class="content-title">
             <h2>Users List</h2>
         </div>
+        <?php echo $this->Flash->render() ?>
         <div class="content-wrapper">
             <div class="users-list">
                 <table id="activity-table" class="table table-bordered stripe">
                     <thead>
                         <tr>
                             <td>ID</td>
-                            <td>Last Name, First Name</td>
-                            <td>Email Address</td>
+                            <td>Username</td>
                             <td>Position</td>
                             <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
+                    <?php foreach($users as $key => $value): ?>
                         <tr>
-                            <td>1001</td>
-                            <td>Dela Cruz, Juan</td>
-                            <td>delacruzjuan@gmail.com</td>
-                            <td>missionary</td>
+                            <td><?php echo $value['User']['id'] ?></td>
+                            <td><?php echo $value['User']['username'] ?></td>
+                            <td><?php echo ucfirst($value['User']['position']) ?></td>
                             <td>
                                 <div class="button-delete-wrapper">
-                                    <button class="button-delete">Delete</button>
+                                    <a href="<?php echo $url.'users/delete/'.$value['User']['id'] ?>" class="button-delete">Delete</a>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>1002</td>
-                            <td>Dela Cruz, Juana</td>
-                            <td>delacruzjuana@gmail.com</td>
-                            <td>dogs</td>
-                            <td>
-                                <div class="button-delete-wrapper">
-                                    <button class="button-delete">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

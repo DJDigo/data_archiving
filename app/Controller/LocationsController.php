@@ -42,7 +42,7 @@ class LocationsController extends AppController {
             $category_id = '';
             //check category if already exists
             $exist = $this->Category->find('first', [
-                'conditions' => ['name' => $split_category[0]]
+                'conditions' => ['name' => $split_category[0], 'deleted' => 0]
             ]);
             if (!$exist) {
                 if ($this->Category->save(['name' => $category])) {
@@ -77,7 +77,8 @@ class LocationsController extends AppController {
                 rename($root.$data['before'], $root.$data['new_name']);
                 $location = $this->Location->find('all', [
                     'conditions' => [
-                        'path LIKE' => '%'.$data['before'].'%'
+                        'path LIKE' => '%'.$data['before'].'%',
+                        'deleted' => 0
                     ]
                 ]);
 
@@ -90,10 +91,10 @@ class LocationsController extends AppController {
             } else {
                 rename($root.$data['before'], $root.$data['new_name']);
                 $category = $this->Category->find('first', [
-                    'conditions' => ['name' => $split_data[0]]
+                    'conditions' => ['name' => $split_data[0], 'deleted' => 0]
                 ]);
                 $location = $this->Location->find('all', [
-                    'conditions' => ['category_id' => $category['Category']['id']]
+                    'conditions' => ['category_id' => $category['Category']['id'], 'deleted' => 0]
                 ]);
 
                 foreach ($location as $key => $new_location) {
@@ -121,26 +122,61 @@ class LocationsController extends AppController {
             $this->Archive  = ClassRegistry::init('Archive');
             $path           = $this->request->data['name'];
             $locations      = $this->Location->find('all', [
-                'conditions' => ['path LIKE' => '%'.$path],
+                'conditions' => ['Location.path LIKE' => '%'.$path, 'Location.deleted' => 0],
                 'order' =>  ['Location.id' => 'DESC']
             ]);
-            $categories = $this->Category->find('list', [
-                'conditions' => ['name' => $path],
-                'fields'     => ['id']
+            $categories = $this->Category->find('all', [
+                'conditions' => ['Category.name' => $path, 'Category.deleted' => 0]
             ]);
-
             if ($locations) {
+                $location    = [];
                 $location_id = [];
                 foreach ($locations as $key => $value) {
+                    $location[]['Location'] = [
+                        'id'           => $value['Location']['id'],
+                        'deleted'      => 1,
+                        'deleted_date' => date('Y-m-d H:i:s'),
+                        'modified'     => date('Y-m-d H:i:s')
+                    ];
                     $location_id[] = $value['Location']['id'];
-                    $this->__delete_directory(APP . "webroot/files/". $value['Location']['path']);
+                    // $this->__delete_directory(APP . "webroot/files/". $value['Location']['path']);
                 }
-                $this->Location->deleteAll(['Location.id' => $location_id], true);
-                $this->Archive->deleteAll(['Archive.location_id' => $location_id], true);
+                // $this->Location->deleteAll(['Location.id' => $location_id], true);
+                // $this->Archive->deleteAll(['Archive.location_id' => $location_id], true);
+                $this->Location->saveMany($location);
+
+                $archives = $this->Archive->find('all', [
+                    'conditions' => [
+                        'Archive.location_id' => $location_id,
+                        'Archive.deleted'     => 0
+                    ]
+                ]);
+
+                if (!empty($archives)) {
+                    $arc = [];
+                    foreach ($archives as $archive) {
+                        $arc[]['Archive'] = [
+                            'id'           => $archive['Archive']['id'],
+                            'deleted'      => 1,
+                            'deleted_date' => date('Y-m-d H:i:s'),
+                            'modified'     => date('Y-m-d H:i:s')          
+                        ];
+                    }
+                    $this->Archive->saveMany($arc);
+                }
             }
 
             if ($categories) {
-                $this->Category->deleteAll(['Category.id' => $categories], true);
+                $cat = [];
+                foreach ($categories as $category) {
+                    $cat[]['Category'] = [
+                        'id'           => $category['Category']['id'],
+                        'deleted'      => 1,
+                        'deleted_date' => date('Y-m-d H:i:s'),
+                        'modified'     => date('Y-m-d H:i:s')
+                    ];
+                }
+                $this->Category->saveMany($cat);
             }
         }
     }
@@ -162,7 +198,10 @@ class LocationsController extends AppController {
 
     private function __get_folders() {
         $json_folder = [];
-        $folders     = $this->Location->find('all', ['order' => ['Location.category_id', 'Location.id']]);
+        $folders     = $this->Location->find('all', [
+            'conditions' => ['Location.deleted' => 0],
+            'order' => ['Location.category_id', 'Location.id']
+        ]);
         foreach ($folders as $key => $folder) {
             $split_folder = explode("/", $folder['Location']['path']);
             if ($key == 0) {
