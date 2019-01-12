@@ -42,17 +42,40 @@ class LocationsController extends AppController {
             $category_id = '';
             //check category if already exists
             $exist = $this->Category->find('first', [
-                'conditions' => ['name' => $split_category[0], 'deleted' => 0]
+                'conditions' => ['name' => $split_category[0]]
             ]);
             if (!$exist) {
                 if ($this->Category->save(['name' => $category])) {
                     $category_id = $this->Category->id;
                 }
+            } else {
+                $undo['Category'] = [
+                    'id'           => $exist['Category']['id'],
+                    'deleted'      => 0,
+                    'deleted_date' => NULL
+                ];
+                $this->Category->save($undo);
             }
-            $location_data = [
-                'category_id' => !empty($category_id) ? $category_id : $exist['Category']['id'],
-                'path'        => $category 
-            ];
+
+            $location_exist = $this->Location->find('first', [
+                'conditions' => [
+                    'Location.category_id' => !empty($category_id) ? $category_id : $exist['Category']['id'],
+                    'Location.path'        => $category 
+                ]
+            ]);
+
+            if (!empty($location_exist)) {
+                $location_data['Location'] = [
+                    'id'           => $location_exist['Location']['id'],
+                    'deleted'      => 0 ,
+                    'deleted_date' => NULL
+                ];
+            } else {
+                $location_data['Location'] = [
+                    'category_id' => !empty($category_id) ? $category_id : $exist['Category']['id'],
+                    'path'        => $category 
+                ];
+            }
             if ($this->Location->save($location_data)) {
                 return json_encode($this->__concate_array($this->__get_folders()));
             }
@@ -139,10 +162,7 @@ class LocationsController extends AppController {
                         'modified'     => date('Y-m-d H:i:s')
                     ];
                     $location_id[] = $value['Location']['id'];
-                    // $this->__delete_directory(APP . "webroot/files/". $value['Location']['path']);
                 }
-                // $this->Location->deleteAll(['Location.id' => $location_id], true);
-                // $this->Archive->deleteAll(['Archive.location_id' => $location_id], true);
                 $this->Location->saveMany($location);
 
                 $archives = $this->Archive->find('all', [

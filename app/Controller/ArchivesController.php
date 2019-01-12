@@ -139,6 +139,50 @@ class ArchivesController extends AppController {
     }
 
     public function deleted() {
-        
+        $archives = $this->Archive->find('all', [
+            'conditions' => [
+                'Archive.deleted' => 1
+            ]
+        ]);
+
+        $this->set(compact('archives'));
+    }
+
+    public function restore($id) {
+        if ($id) {
+            $archive = $this->Archive->find('first', [
+                'conditions' => ['Archive.id' => $id]
+            ]);
+            $data['Archive'] = [
+                'id'           => $id,
+                'deleted_date' => NULL,
+                'deleted'      => 0
+            ];
+
+            if ($this->Archive->save($data)) {
+                $this->Location = ClassRegistry::init('Location');
+                $location['Location'] = [
+                    'id'           => $archive['Archive']['location_id'],
+                    'deleted_date' => NULL,
+                    'deleted'      => 0
+                ];
+                $this->Location->save($location);
+
+                $location = $this->Location->find('first', [
+                    'conditions' => ['Location.id' => $archive['Archive']['location_id']]
+                ]);
+                $this->Category = ClassRegistry::init('Category');
+                $category['Category'] = [
+                    'id'           => $location['Location']['category_id'],
+                    'deleted_date' => NULL,
+                    'deleted'      => 0
+                ];
+
+                $this->Category->save($category);
+            }
+            $this->Flash->success('Your file has been successfully restore.');
+            return $this->redirect(['controller' => 'archives', 'action' => 'deleted']);    
+        }
+        return $this->redirect(['controller' => 'archives', 'action' => 'deleted']);
     }
 }

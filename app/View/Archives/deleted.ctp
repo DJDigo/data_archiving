@@ -5,7 +5,7 @@
             <h2>Deleted Files</h2>
         </div>
         <div class="content-wrapper">
-        <?php echo $this->Session->flash(); ?> 
+        <?php echo $this->Flash->render(); ?> 
             <div class="activity-table">
                 <table id="activity-table" class="table table-bordered stripe">
                     <thead>
@@ -17,26 +17,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php foreach($archives as $archive): ?>
                         <tr>
-                            <td>101</td>
-                            <td>File Name1</td>
-                            <td>2018-12-12</td>
+                            <td><?php echo $archive['Archive']['id'] ?></td>
+                            <td><?php echo $archive['Archive']['image'] ?></td>
+                            <td><?php echo $archive['Archive']['deleted_date'] ?></td>
                             <td>
                                 <div class="button-restore-wrapper">
-                                    <button class="button-restore">Restore</button>
+                                    <a href="<?php echo $url.'archives/restore/'.$archive['Archive']['id'] ?>" class="button-restore">Restore</>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>102</td>
-                            <td>File Name2</td>
-                            <td>2018-12-12</td>
-                            <td>
-                                <div class="button-restore-wrapper">
-                                    <button class="button-restore">Restore</button>
-                                </div>
-                            </td>
-                        </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -49,10 +41,3 @@
     text-align: center;
 }
 </style>
-<script type="text/javascript">
-    $(function () {
-        $('.button-restore').on('click', function() {
-            alert('dsa');
-        });
-    });
-</script>

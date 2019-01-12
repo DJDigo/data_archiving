@@ -30,15 +30,19 @@
             <li class="navigation-item">
                 <a href="<?php echo $url ?>archives/add" class="navigation-link <?php echo $this->request->param('controller') == 'archives' && $this->request->param('action') == 'add' ? 'active': ''; ?>">Add Files</a>
             </li>
+            <?php if ($this->Session->read('Auth.User.role') == 1): ?>
             <li class="navigation-item">
                 <a href="<?php echo $url ?>users/lists" class="navigation-link">Users List</a>
             </li>
+            <?php endif; ?>
             <li class="navigation-item">
                 <a href="<?php echo $url ?>archives/" class="navigation-link">Activity</a>
             </li>
+            <?php if ($this->Session->read('Auth.User.role') == 1): ?>
             <li class="navigation-item">
                 <a href="<?php echo $url ?>archives/deleted" class="navigation-link">Deleted</a>
             </li>
+            <?php endif; ?>
             <li class="navigation-search-wrapper">
                 <div class="navigation-search">
                     <form action="<?php echo $url ?>archives/search" method="GET">

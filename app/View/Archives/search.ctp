@@ -28,7 +28,7 @@
                                     <button class="button-view" id="<?php echo $data['Archive']['id'] ?>">View</button>
                                 </div>
                                 <div class="button-delete-wrapper">
-                                    <button class="button-delete">Delete</button>
+                                    <a href="<?php echo $url."archives/delete/".$data['Archive']['id'] ?>" class="button-delete">Delete</a>
                                 </div>
                             </td>
                         </tr>
