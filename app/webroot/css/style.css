@@ -646,7 +646,9 @@ body {
     cursor: pointer;
     border-radius: 4px;
     font-size: 13px;
-    width: 80px; 
+    width: 55px; 
+    display: inline-block;
+    text-decoration: none;
 }
 .button-delete {
     background: #ff4848;
@@ -656,17 +658,20 @@ body {
     cursor: pointer;
     border-radius: 4px;
     font-size: 13px;
+    display: inline-block;
+    text-decoration: none;
     width: 50px;
 }
 .button-view {
     background: #4d4dff;
     color: #FFF;
     border: 1px solid #4d4dff;
-    padding: 6px;
+    padding: 8px;
     cursor: pointer;
     border-radius: 4px;
     font-size: 13px;
-    width: 50px;
+    width: 60px;
+    display: inline-block;
 }
 
 /* SIDEBAR */
