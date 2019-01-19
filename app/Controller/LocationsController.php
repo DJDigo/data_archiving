@@ -100,8 +100,8 @@ class LocationsController extends AppController {
                 rename($root.$data['before'], $root.$data['new_name']);
                 $location = $this->Location->find('all', [
                     'conditions' => [
-                        'path LIKE' => '%'.$data['before'].'%',
-                        'deleted' => 0
+                        'Location.path LIKE' => '%'.$data['before'].'%',
+                        'Location.deleted' => 0
                     ]
                 ]);
 
@@ -114,10 +114,10 @@ class LocationsController extends AppController {
             } else {
                 rename($root.$data['before'], $root.$data['new_name']);
                 $category = $this->Category->find('first', [
-                    'conditions' => ['name' => $split_data[0], 'deleted' => 0]
+                    'conditions' => ['Category.name' => $split_data[0], 'Category.deleted' => 0]
                 ]);
                 $location = $this->Location->find('all', [
-                    'conditions' => ['category_id' => $category['Category']['id'], 'deleted' => 0]
+                    'conditions' => ['Location.category_id' => $category['Category']['id'], 'Location.deleted' => 0]
                 ]);
 
                 foreach ($location as $key => $new_location) {

@@ -24,7 +24,7 @@
                             <td><?php echo $archive['Archive']['deleted_date'] ?></td>
                             <td>
                                 <div class="button-restore-wrapper">
-                                    <a href="<?php echo $url.'archives/restore/'.$archive['Archive']['id'] ?>" class="button-restore">Restore</>
+                                    <a href="<?php echo $url.'archives/restore/'.$archive['Archive']['id'] ?>" class="button-restore">Restore</a>
                                 </div>
                             </td>
                         </tr>
