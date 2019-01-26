@@ -20,7 +20,7 @@
                         <?php foreach($archives as $archive): ?>
                         <tr>
                             <td><?php echo $archive['Archive']['id'] ?></td>
-                            <td><?php echo $archive['Archive']['image'] ?></td>
+                            <td style="width:380px;"><?php echo $archive['Archive']['image'] ?></td>
                             <td><?php echo $archive['Archive']['deleted_date'] ?></td>
                             <td>
                                 <div class="button-restore-wrapper">

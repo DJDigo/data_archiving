@@ -36,8 +36,10 @@ $(function() {
         "info": true,
         "iDisplayLength":10,
         'pagingType': 'full_numbers',
+        "autoWidth": false
     });
- 
+
+
     // Image Upload
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -222,7 +224,7 @@ $(function() {
         success: function (response) {
             document.getElementById("folders").innerHTML= populateSidebarFolder(response, url);
         }
-    });
+     });
 });
 
 function validateCreateMainFolder(value,url) {
@@ -309,7 +311,7 @@ function populateSidebarFolder(data, url) {
                 </div>`;
         }
     }   
-    return( htmlRetStr );
+    return( htmlRetStr );   
 }
 
 function onSidebarClickRedirection( url ) {
