@@ -1,4 +1,5 @@
 $(function() {
+    onClickSidebarArrow();
     let url = $('#url').val();
     onSidebarClickRedirection( url );
     // HEADER TOGGLE MENU
@@ -21,7 +22,7 @@ $(function() {
     });
 
     $('.button-print').click(function() {
-        $('.modal-image').printThis({
+        $(this).parents('.modal-container').find('.modal-image').printThis({
             canvas: true,
             loadCSS: "../css/print.css"
         });
@@ -36,7 +37,7 @@ $(function() {
         "iDisplayLength":10,
         'pagingType': 'full_numbers',
     });
-
+ 
     // Image Upload
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -221,7 +222,7 @@ $(function() {
         success: function (response) {
             document.getElementById("folders").innerHTML= populateSidebarFolder(response, url);
         }
-     });
+    });
 });
 
 function validateCreateMainFolder(value,url) {
@@ -229,7 +230,12 @@ function validateCreateMainFolder(value,url) {
         <div class="sidebar-list-main">
             <div class="sidebar-item" data-id="">
                 <i class="fa icon-folder-close sidebar-folder-icon"></i>
-                <div class="sidebar-text">New Folder`+ value +`</div>
+                <div class="sidebar-text">
+                    <span class="sidebar-text-span">New Folder`+ value +`</span>
+                    <div class="sidebar-accordion">
+                        <i class="fa icon-chevron-down sidebar-folder-arrow""></i>
+                    </div>
+                </div>
             </div>
         </div>
     `;
@@ -295,19 +301,30 @@ function populateSidebarFolder(data, url) {
             htmlRetStr = `
             <div class='sidebar-item' data-id="`+ data["id"]+ `">
                 <i class='fa icon-folder-close sidebar-folder-icon' href="`+url+`archives/search?location_id=`+data['location_id']+`"></i>
-                <div class='sidebar-text' data-index="`+data['location_id']+`">` + data["name"] + `
-            </div>`;
+                <div class='sidebar-text' data-index="`+data['location_id']+`">
+                    <span class="sidebar-text-span">` + data["name"] + `</span>
+                    <div class="sidebar-accordion">
+                        <i class="fa icon-chevron-down sidebar-folder-arrow""></i>
+                    </div>
+                </div>`;
         }
     }   
-    return( htmlRetStr );   
+    return( htmlRetStr );
 }
 
 function onSidebarClickRedirection( url ) {
-    $('html').delegate('.sidebar-text', 'click', function( e ) {
+    $('html').delegate('.sidebar-text-span', 'click', function( e ) {
         search( url + 'archives/search?location_id='+ $(this).data('index'));
     });
 }
 
 function search(url) {
     window.location.href = url;
+}
+
+function onClickSidebarArrow() {
+    $('html').delegate('.sidebar-folder-arrow','click', function() {
+        $(this).toggleClass('close');
+        $(this).parent().parent().parent().children('.sidebar-item').slideToggle();
+    });
 }
