@@ -27,7 +27,7 @@
                                     <a href="<?php echo $url.'archives/restore/'.$archive['Archive']['id'] ?>" class="button-restore">Restore</a>
                                 </div>
                                 <div class="button-restore-wrapper">
-                                    <a href="" class="button-delete" data-id="<?php echo $archive['Archive']['id'] ?>">Delete</a>
+                                    <a href="<?php echo $url.'archives/hard_delete/'.$archive['Archive']['id'] ?>" class="button-delete" data-id="<?php echo $archive['Archive']['id'] ?>">Delete</a>
                                 </div>
                             </td>
                         </tr>

@@ -185,4 +185,23 @@ class ArchivesController extends AppController {
         }
         return $this->redirect(['controller' => 'archives', 'action' => 'deleted']);
     }
+
+    public function hard_delete($id) {
+        $archive = $this->Archive->find('first', [
+            'conditions' => [
+                'Archive.deleted' => 1,
+                'Archive.id' => $id
+            ]
+        ]);
+
+        if (!empty($archive)) {
+            $path = APP . "webroot/files/".$archive['Location']['path']."/";
+            unlink($path, $archive['Archive']['image']);
+            $this->Archive->delete($id);
+            $this->Flash->success('Your file has been deleted.');
+        } else {
+            $this->Flash->error('Your file has been failed to deleted.'); 
+        }
+        return $this->redirect(['controller' => 'archives', 'action' => 'deleted']);
+    }
 }

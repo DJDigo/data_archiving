@@ -38,6 +38,10 @@ class UsersController extends AppController {
         if ($this->request->is('POST')) {
             if ($this->Auth->login()) {
                 if ($this->Session->read('Auth.User.role') == 2) {
+                    if ($this->Session->read('Auth.User.deleted') == 1) {
+                        $this->Auth->logout();
+                        return $this->redirect(['controller' => 'users', 'action' => 'login']);
+                    }
                     return $this->redirect(['controller' => 'users', 'action' => '']);
                 }
                 return $this->redirect(['controller' => 'users', 'action' => 'add']);
@@ -62,10 +66,10 @@ class UsersController extends AppController {
         $this->Location = ClassRegistry::init('Location');
 
         $user_count = $this->User->find('count', [
-            'conditions' => ['User.role' => 1]
+            'conditions' => ['User.role' => 1, 'User.deleted' => 0]
         ]);
-        $file_count   = $this->Archive->find('count');
-        $folder_count = $this->Location->find('count');
+        $file_count   = $this->Archive->find('count', ['conditions' => ['Archive.deleted' => 0]]);
+        $folder_count = $this->Location->find('count', ['conditions' => ['Location.deleted' => 0]]);
 
         $this->set(compact('user_count', 'file_count', 'folder_count'));
     }
@@ -85,15 +89,7 @@ class UsersController extends AppController {
         if (!$id) {
             return $this->redirect(['controller' => 'users', 'action' => 'lists']);
         }
-
-        $data['User'] = [
-            'id'           => $id,
-            'deleted'      => 1,
-            'deleted_date' => date('Y-m-d H:i:s'),
-            'modified'     => date('Y-m-d H:i:s')
-        ];
-
-        if ($this->User->save($data)) {
+        if ($this->User->delete($id)) {
             $this->Flash->success(__('User has been successfully deleted.'));
             return $this->redirect(['controller' => 'users', 'action' => 'lists']);
         }
