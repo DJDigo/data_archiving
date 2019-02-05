@@ -66,7 +66,7 @@ class UsersController extends AppController {
         $this->Location = ClassRegistry::init('Location');
 
         $user_count = $this->User->find('count', [
-            'conditions' => ['User.role' => 1, 'User.deleted' => 0]
+            'conditions' => ['User.role' => 2, 'User.deleted' => 0]
         ]);
         $file_count   = $this->Archive->find('count', ['conditions' => ['Archive.deleted' => 0]]);
         $folder_count = $this->Location->find('count', ['conditions' => ['Location.deleted' => 0]]);

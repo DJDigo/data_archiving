@@ -101,13 +101,18 @@ $(function() {
         $('.sidebar-input').remove();
         $('.sidebar-input').focus();
         let countNumberOfFolder;
-        if ( clickedFolder.parent().find('.sidebar-item').length > 0 ) {
-            countNumberOfFolder = clickedFolder.parent().find('.sidebar-item').length;
-            clickedFolder.parent().append(`<input type="text" class="sidebar-input" value="New Folder-`+ countNumberOfFolder +`" autofocus>`);
-        } else {
+        if ( clickedFolder.parent().find('.sidebar-item').length == 0 ) {
             countNumberOfFolder = "";
             clickedFolder.parent().append(`<input type="text" class="sidebar-input" value="New Folder`+ countNumberOfFolder +`" autofocus>`);
+        } else if ( clickedFolder.parent().find('.sidebar-item').length == 1 ) {
+            clickedFolder.parent().append(`<input type="text" class="sidebar-input" value="New Folder-1" autofocus>`);
+        } else {
+            var b = clickedFolder.parent().find('.sidebar-item:last-child').data('id');
+            var getLastNumber = b.split("-").pop();
+            getLastNumber =  parseInt(getLastNumber) + 1;
+           clickedFolder.parent().append(`<input type="text" class="sidebar-input" value="New Folder-`+ getLastNumber +`" autofocus>`);            
         }
+
         $('.sidebar-input').focus();
         e.preventDefault();
         if ( clickedFolder.hasClass('hasTooltip') == true ) {
@@ -209,9 +214,26 @@ $(function() {
             countMainFolder = '';
             validateCreateMainFolder(countMainFolder, url);
             countMainFolder = 1;
+        } else if ( $('#folders > .sidebar-list-main > .sidebar-item').length == 1 ) {
+            var a = $('#folders > .sidebar-list-main > .sidebar-item:last-child').data('id').match(/[\d\.]+/g);
+            a = parseInt(a, 10);
+            console.log(a);
+            if ( a > 1) {
+                var number = a.toString();
+                var b = parseInt(number) + 1;
+                validateCreateMainFolder(b , url);
+            } else {
+                countMainFolder = +$('#folders > .sidebar-list-main > .sidebar-item').length + 1;
+                validateCreateMainFolder(countMainFolder, url);
+            }
         } else {
-            countMainFolder = +$('#folders > .sidebar-list-main > .sidebar-item').length + 1;
-            validateCreateMainFolder(countMainFolder, url);
+            var a = $('#folders > .sidebar-list-main > .sidebar-item:last-child').data('id').match(/[\d\.]+/g);
+            a = parseInt(a, 10);
+            if ( a != null ){
+                var number = a.toString();
+                var b = parseInt(number) + 1;
+                validateCreateMainFolder(b , url);
+            }
         }
     });
     /**
@@ -316,7 +338,8 @@ function populateSidebarFolder(data, url) {
 
 function onSidebarClickRedirection( url ) {
     $('html').delegate('.sidebar-text-span', 'click', function( e ) {
-        search( url + 'archives/search?location_id='+ $(this).data('index'));
+        $(this).parent().data('index');
+        search( url + 'archives/search?location_id='+ $(this).parent().data('index'));
     });
 }
 
