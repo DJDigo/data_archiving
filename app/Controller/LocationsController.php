@@ -144,12 +144,17 @@ class LocationsController extends AppController {
             $this->Category = ClassRegistry::init('Category');
             $this->Archive  = ClassRegistry::init('Archive');
             $path           = $this->request->data['name'];
-            $locations      = $this->Location->find('all', [
-                'conditions' => ['Location.path LIKE' => '%'.$path, 'Location.deleted' => 0],
-                'order' =>  ['Location.id' => 'DESC']
-            ]);
             $categories = $this->Category->find('all', [
                 'conditions' => ['Category.name' => $path, 'Category.deleted' => 0]
+            ]);
+            $conditions['Location.path LIKE'] = '%'.$path.'%';
+            $conditions['Location.deleted'] = 0;
+            if (!empty($categories)) {
+                $conditions['Location.category_id'] = $categories[0]['Category']['id'];
+            }
+            $locations      = $this->Location->find('all', [
+                'conditions' => $conditions,
+                'order' =>  ['Location.id' => 'DESC']
             ]);
             if ($locations) {
                 $location    = [];
