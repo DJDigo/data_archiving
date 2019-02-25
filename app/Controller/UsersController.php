@@ -40,11 +40,18 @@ class UsersController extends AppController {
                 if ($this->Session->read('Auth.User.role') == 2) {
                     if ($this->Session->read('Auth.User.deleted') == 1) {
                         $this->Auth->logout();
-                        return $this->redirect(['controller' => 'users', 'action' => 'login']);
+                        return $this->redirect(['controller' => 'users', 'action' => 'index']);
                     }
+                    $this->Log = ClassRegistry::init('Log');
+                    $user = $this->Session->read('Auth');
+                    $descriptions = ucfirst($user['User']['username']).' has been logged in.';
+                    $logs['Log'] = [
+                        'description' => $descriptions
+                    ];
+                    $this->Log->save($logs);
                     return $this->redirect(['controller' => 'users', 'action' => '']);
                 }
-                return $this->redirect(['controller' => 'users', 'action' => 'add']);
+                return $this->redirect(['controller' => 'users', 'action' => 'index']);
             } else {
                 $this->Flash->error('Invalid Username or Password entered, please try again.');
             }
@@ -56,6 +63,13 @@ class UsersController extends AppController {
      */
     public function logout() {
         $this->autoRender = false;
+        $this->Log = ClassRegistry::init('Log');
+        $user = $this->Session->read('Auth');
+        $descriptions = ucfirst($user['User']['username']).' has been logged out.';
+        $logs['Log'] = [
+            'description' => $descriptions
+        ];
+        $this->Log->save($logs);
         if ($this->Auth->logout()) {
             return $this->redirect(['controller' => 'users', 'action' => 'login']);
         }

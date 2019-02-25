@@ -46,7 +46,22 @@
                                 'maxlength' => 255,
                             ]);
                         ?>
-                        <!-- <span class="error-message"><?php echo $this->Form->error("name") ?></span> -->
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label class="form-label">Control Number:</label>
+                    <div class="form-input-wrapper">
+                        <?php 
+                            echo $this->Form->input('control_number', [
+                                'label'     => false,
+                                'type'      => 'number',
+                                'required'  => false,
+                                'div'       => false,
+                                'class'     => 'form-input',
+                                'maxlength' => 255
+                            ]);
+                        ?>
+                        <!-- <span class="error-message"><?php echo $this->Form->error("control_number") ?></span> -->
                     </div>
                 </div>
                 <div class="form-field">

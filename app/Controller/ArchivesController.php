@@ -35,6 +35,17 @@ class ArchivesController extends AppController {
                 'deleted_date' => date('Y-m-d H:i:s'),
                 'modified'     => date('Y-m-d H:i:s')
             ];
+            $archive = $this->Archive->find('first', [
+                'conditions' => ['Archive.id' => $id]
+            ]);
+            //saved logs 
+            $this->Log = ClassRegistry::init('Log');
+            $user = $this->Session->read('Auth');
+            $descriptions = ucfirst($user['User']['username']).' deleted '.$archive['Archive']['image'];
+            $logs['Log'] = [
+                'description' => $descriptions
+            ];
+            $this->Log->save($logs);
             $this->Archive->save($data);
             $this->Flash->success('Your file has been successfully deleted.');
             return $this->redirect(['controller' => 'archives', 'action' => '']);
@@ -50,6 +61,7 @@ class ArchivesController extends AppController {
 
         if ($this->request->is('post')) {
             $data     = $this->request->data;
+            $this->Archive->set($data);
             $validate = $this->Archive->validates();
             if (empty($data['image']['upload']['type'])) {
                 $this->Archive->validationErrors['image'][0] = __("Image is required");
@@ -80,6 +92,14 @@ class ArchivesController extends AppController {
                     unset($data['Archive']['category']);
                     if ($this->Archive->save($data)) {
                         $this->Flash->success('Your file has been successfully saved.');
+                        //saved logs 
+                        $this->Log = ClassRegistry::init('Log');
+                        $user = $this->Session->read('Auth');
+                        $descriptions = $user['User']['username'].' Added '.$data['Archive']['image'];
+                        $logs['Log'] = [
+                            'description' => $descriptions
+                        ];
+                        $this->Log->save($logs);
                         return $this->redirect(['controller' => 'archives', 'action' => 'add']);
                     }
                 }
@@ -180,6 +200,13 @@ class ArchivesController extends AppController {
 
                 $this->Category->save($category);
             }
+            $this->Log = ClassRegistry::init('Log');
+            $user = $this->Session->read('Auth');
+            $descriptions = ucfirst($user['User']['username']).' restored '.$archive['Archive']['image'];
+            $logs['Log'] = [
+                'description' => $descriptions
+            ];
+            $this->Log->save($logs);
             $this->Flash->success('Your file has been successfully restore.');
             return $this->redirect(['controller' => 'archives', 'action' => 'deleted']);    
         }
@@ -196,6 +223,14 @@ class ArchivesController extends AppController {
 
         if (!empty($archive)) {
             $path = APP . "webroot/files/".$archive['Location']['path']."/";
+            //saved logs 
+            $this->Log = ClassRegistry::init('Log');
+            $user = $this->Session->read('Auth');
+            $descriptions = ucfirst($user['User']['username']).' deleted '.$archive['Archive']['image'];
+            $logs['Log'] = [
+                'description' => $descriptions
+            ];
+            $this->Log->save($logs);
             unlink($path, $archive['Archive']['image']);
             $this->Archive->delete($id);
             $this->Flash->success('Your file has been deleted.');

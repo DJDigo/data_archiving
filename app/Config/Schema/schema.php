@@ -186,6 +186,12 @@ class AppSchema extends CakeSchema {
             'default'  => null, 
             'unsigned' => false
         ],
+        'control_number' => [
+            'type'     => 'integer', 
+            'null'     => false, 
+            'default'  => null, 
+            'unsigned' => false
+        ],
         'image' => [
             'type'     => 'string', 
             'null'     => true, 
@@ -204,6 +210,50 @@ class AppSchema extends CakeSchema {
             'collate' => 'utf8_general_ci', 
             'charset' => 'utf8',
             'comment' =>'file description'
+        ],
+        'deleted' => [
+            'type'    => 'integer',
+            'null'    => false,
+            'default' => 0
+        ],
+        'deleted_date' => [
+            'type'    => 'datetime', 
+            'null'    => true, 
+            'default' => null
+        ],
+        'created' => [
+            'type'    => 'datetime', 
+            'null'    => true, 
+            'default' => null,
+            'comment' =>'Created Date'
+        ],
+        'modified' => [
+            'type'    => 'datetime', 
+            'null'    => true, 
+            'default' => null,
+            'comment' =>'Modified Date'
+        ],
+        'indexes' => [
+            'PRIMARY' => ['column' => 'id', 'unique' => 1],
+        ],
+        'tableParameters' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
+    ];
+
+    public $logs = [
+        'id' => [
+            'type'     => 'integer', 
+            'null'     => false, 
+            'default'  => null, 
+            'unsigned' => false, 
+            'key'      => 'primary'
+        ],
+        'description' => [
+            'type'    => 'string', 
+            'null'    => true, 
+            'default' => null, 
+            'length'  => 255, 
+            'collate' => 'utf8_general_ci', 
+            'charset' => 'utf8'
         ],
         'deleted' => [
             'type'    => 'integer',

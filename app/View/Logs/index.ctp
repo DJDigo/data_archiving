@@ -10,21 +10,19 @@
                 <table id="activity-table" class="table table-bordered stripe">
                     <thead>
                         <tr>
-                            <td>Control Number</td>
-                            <td>Filename</td>
                             <td>Date</td>
-                            <td>Delete</td>
+                            <td>Description</td>
+                            <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($archives as $key => $val):  ?>
+                        <?php foreach($logs as $log):  ?>
                         <tr>
-                            <td><?php echo $val['Archive']['control_number'] ?></td>
-                            <td><?php echo strlen($val['Archive']['image']) > 30 ? substr($val['Archive']['image'],0,30)."..." : $val['Archive']['image']; ?></td>
-                            <td><?php echo $val['Archive']['created'] ?></td>
+                            <td><?php echo $log['Log']['created'] ?></td>
+                            <td><?php echo $log['Log']['description'] ?></td>
                             <td>
                                 <div class="button-delete-wrapper">
-                                    <button class="button-delete" data-id="<?php echo $val['Archive']['id'] ?>">Delete</button>
+                                    <button class="button-delete" data-id="<?php echo $log['Log']['id'] ?>">Delete</button>
                                 </div>
                             </td>
                         </tr>
@@ -39,7 +37,7 @@
     $(function () {
         $('.button-delete').on('click', function() {
             let id = $(this).data('id');
-            window.location.href = "<?php echo $url ?>archives/delete/"+id;
+            window.location.href = "<?php echo $url ?>logs/delete/"+id;
         });
     });
 </script>

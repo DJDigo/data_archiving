@@ -14,33 +14,36 @@
         </div>
     </div>
 </header>
-
+HOME > ADD FILES > MANAGED FILES > MANAGED ACCOUNT > ACTIVITY > DELETED 
 <div class="sidebar-navigation">
     <nav class="navigation">
         <?= $this->element('sidebar'); ?>
         <ul class="navigation-list">
             <li class="navigation-item">
-                <a href="<?php echo $url ?>users/" class="navigation-link <?php echo $this->request->param('controller') == 'users' && $this->request->param('action') == 'index' ? 'active': ''; ?>">Home</a>
+                <a href="<?php echo $url ?>users/" class="navigation-link <?php echo $this->request->param('controller') == 'users' && $this->request->param('action') == 'index' ? 'active': ''; ?>">HOME</a>
             </li>
             <?php if ($this->Session->read('Auth.User.role') == 1): ?>
             <li class="navigation-item">
-                <a href="<?php echo $url ?>users/add" class="navigation-link <?php echo $this->request->param('controller') == 'users' && $this->request->param('action') == 'add' ? 'active': ''; ?>">Add User</a>
+                <a href="<?php echo $url ?>archives/add" class="navigation-link <?php echo $this->request->param('controller') == 'archives' && $this->request->param('action') == 'add' ? 'active': ''; ?>">ADD FILES</a>
             </li>
             <?php endif; ?>
             <li class="navigation-item">
-                <a href="<?php echo $url ?>archives/add" class="navigation-link <?php echo $this->request->param('controller') == 'archives' && $this->request->param('action') == 'add' ? 'active': ''; ?>">Add Files</a>
+                <a href="<?php echo $url ?>archives/index" class="navigation-link <?php echo $this->request->param('controller') == 'archives' && $this->request->param('action') == 'index' ? 'active': ''; ?>">MANAGED FILES</a>
+            </li>
+            <li class="navigation-item">
+                <a href="<?php echo $url ?>users/lists" class="navigation-link <?php echo $this->request->param('controller') == 'users' && ($this->request->param('action') == 'lists' || $this->request->param('action') == 'add' ) ? 'active': ''; ?>">MANAGED ACCOUNT</a>
             </li>
             <?php if ($this->Session->read('Auth.User.role') == 1): ?>
-            <li class="navigation-item">
+            <!-- <li class="navigation-item">
                 <a href="<?php echo $url ?>users/lists" class="navigation-link">Users List</a>
-            </li>
+            </li> -->
             <?php endif; ?>
             <li class="navigation-item">
-                <a href="<?php echo $url ?>archives/" class="navigation-link">Activity</a>
+                <a href="<?php echo $url ?>logs/" class="navigation-link">ACTIVITY</a>
             </li>
             <?php if ($this->Session->read('Auth.User.role') == 1): ?>
             <li class="navigation-item">
-                <a href="<?php echo $url ?>archives/deleted" class="navigation-link">Deleted</a>
+                <a href="<?php echo $url ?>archives/deleted" class="navigation-link">DELETED</a>
             </li>
             <?php endif; ?>
             <li class="navigation-search-wrapper">
