@@ -30,7 +30,48 @@ class Archive extends AppModel {
             'required' => [
                 'rule' => 'notBlank',
                 'message' => 'Control Number is required.'
+            ],
+            'unique_number' => [
+                'rule' => 'unique_control_number',
+                'message' => 'Control number already exists.'
+            ]
+        ],
+        'image' => [
+            'unique_filename' => [
+                'rule' => 'unique_filename',
+                'message' => 'Image filename already exists'
             ]
         ]
     ];
+
+    public function unique_control_number() {
+        $data = $this->data['Archive'];
+        $check = $this->find('first', [
+            'conditions' => [
+                'Archive.control_number' => $data['control_number'],
+                'Archive.deleted' => 0 
+            ]
+        ]);
+
+        if ($check) {
+            return false;
+        }
+        return true;
+    }
+
+    public function unique_filename() {
+        $data = $this->data['Archive'];
+        $check = $this->find('first', [
+            'conditions' => [
+                'Archive.image' => $data['image'],
+                'Archive.deleted' => 0 
+            ]
+        ]);
+
+        if ($check) {
+            return false;
+        }
+        return true;
+    }
+    
 }

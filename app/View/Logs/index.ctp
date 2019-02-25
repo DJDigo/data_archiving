@@ -36,8 +36,12 @@
 <script type="text/javascript">
     $(function () {
         $('.button-delete').on('click', function() {
-            let id = $(this).data('id');
-            window.location.href = "<?php echo $url ?>logs/delete/"+id;
+            if (confirm("Are you sure you want to delete this?")) {
+                let id = $(this).data('id');
+                window.location.href = "<?php echo $url ?>logs/delete/"+id;
+            } else {
+                return false;
+            }
         });
     });
 </script>

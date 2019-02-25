@@ -40,7 +40,7 @@ class UsersController extends AppController {
                 if ($this->Session->read('Auth.User.role') == 2) {
                     if ($this->Session->read('Auth.User.deleted') == 1) {
                         $this->Auth->logout();
-                        return $this->redirect(['controller' => 'users', 'action' => 'index']);
+                        return $this->redirect(['controller' => 'users', 'action' => '/index']);
                     }
                     $this->Log = ClassRegistry::init('Log');
                     $user = $this->Session->read('Auth');
@@ -49,9 +49,9 @@ class UsersController extends AppController {
                         'description' => $descriptions
                     ];
                     $this->Log->save($logs);
-                    return $this->redirect(['controller' => 'users', 'action' => '']);
+                    return $this->redirect(['controller' => 'users', 'action' => '/index']);
                 }
-                return $this->redirect(['controller' => 'users', 'action' => 'index']);
+                return $this->redirect(['controller' => 'users', 'action' => '/index']);
             } else {
                 $this->Flash->error('Invalid Username or Password entered, please try again.');
             }

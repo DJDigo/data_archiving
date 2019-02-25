@@ -211,6 +211,11 @@ class AppSchema extends CakeSchema {
             'charset' => 'utf8',
             'comment' =>'file description'
         ],
+        'is_private' => [
+            'type'    => 'integer',
+            'null'    => false,
+            'default' => 0
+        ],
         'deleted' => [
             'type'    => 'integer',
             'null'    => false,

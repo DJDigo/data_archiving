@@ -17,8 +17,12 @@ class ArchivesController extends AppController {
 
     public function index() {
         $this->Archive->recursive = -1;
+        if ($this->Session->read('Auth.User.role') == 2) {
+            $conditions['Archive.is_private'] = 0;
+        }
+        $conditions['Archive.deleted'] = 0;
         $archives = $this->Archive->find('all', [
-            'conditions' => ['Archive.deleted' => 0],
+            'conditions' => $conditions,
             'order' => ['Archive.id' => 'desc']
         ]);
 
@@ -149,6 +153,9 @@ class ArchivesController extends AppController {
                 $conditions['Archive.image LIKE'] = '%'.$this->request->query['name'].'%';
             }
         }
+        if ($this->Session->read('Auth.User.role') == 2) {
+            $conditions['Archive.is_private'] = 0;
+        }
         $conditions['Archive.deleted'] = 0;
         $archives = $this->Archive->find('all', [
             'conditions' => $conditions,
@@ -238,5 +245,32 @@ class ArchivesController extends AppController {
             $this->Flash->error('Your file has been failed to deleted.'); 
         }
         return $this->redirect(['controller' => 'archives', 'action' => 'deleted']);
+    }
+
+    public function private () {
+        $data['Archive'] = $this->request->query;
+        if (isset($data['Archive']['is_private']) && !empty($data['Archive']['id'])) {
+            $private = $data['Archive']['is_private'] == 0 ? 'public' : 'private';
+            if ($this->Archive->save($data)) {
+                $this->Flash->success('Your file has been sucessfully updated.');
+                $archive = $this->Archive->find('first', [
+                    'conditions' => ['Archive.id' => $data['Archive']['id']]
+                ]);
+                //saved logs 
+                $this->Log = ClassRegistry::init('Log');
+                $user = $this->Session->read('Auth');
+                $descriptions = ucfirst($user['User']['username']).' set to '.$private.' '.$archive['Archive']['image'];
+                $logs['Log'] = [
+                    'description' => $descriptions
+                ];
+                $this->Log->save($logs);
+            } else {
+                $this->Flash->error('Your file has been failed to update.');
+            }
+            
+            
+            return $this->redirect(['controller' => 'archives', 'action' => '/index']);
+        }
+        return $this->redirect(['controller' => 'archives', 'action' => '/index']);
     }
 }
