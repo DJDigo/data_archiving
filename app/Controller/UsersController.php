@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
  * Users Controller
  */
 class UsersController extends AppController {
-    
+
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('login','logout','add','list');
@@ -29,7 +29,7 @@ class UsersController extends AppController {
             } else {
                 $this->Flash->error(__("User has been failed to save."));
             }
-        } 
+        }
     }
     /**
      * User's Login
@@ -78,17 +78,20 @@ class UsersController extends AppController {
     public function index() {
         $this->Archive  = ClassRegistry::init('Archive');
         $this->Location = ClassRegistry::init('Location');
-
+		if ($this->Session->read('Auth.User.role') == 2) {
+            $conditions['Archive.is_private'] = 0;
+		}
+		$conditions['Archive.deleted'] = 0;
         $user_count = $this->User->find('count', [
             'conditions' => ['User.role' => 2, 'User.deleted' => 0]
         ]);
-        $file_count   = $this->Archive->find('count', ['conditions' => ['Archive.deleted' => 0]]);
+        $file_count   = $this->Archive->find('count', ['conditions' => $conditions]);
         $folder_count = $this->Location->find('count', ['conditions' => ['Location.deleted' => 0]]);
 
         $this->set(compact('user_count', 'file_count', 'folder_count'));
     }
 
-    public function lists() { 
+    public function lists() {
         $users = $this->User->find('all', [
             'conditions' => [
                 'User.role' => 2,
