@@ -1,6 +1,5 @@
 <aside class="sidebar">
-    <div class="sidebar-title">
-        <span>USER</span>
+    <div class="sidebar-title" style="padding: 0;">
     </div>
     <div class="sidebar-user">
         <div class="sidebar-user-image">
@@ -11,7 +10,7 @@
         </div>
     </div>
     <div class="sidebar-title">
-        <span>Folder Location</span>
+        <span>Collection of Files</span>
         <i class="fa icon-plus sidebar-add" title="Create Main Folder"></i>
     </div>
     <div class="sidebar-treeview">

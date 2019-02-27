@@ -19,7 +19,7 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo 'Data Archiving Management System'; ?>
+		<?php echo 'Document Archiving Management System'; ?>
 	</title>
 	<link rel="stylesheet" type="text/css" href="../plugins/datepicker/datepicker.css"/>
 	<link rel="stylesheet" type="text/css" href="../plugins/datatables/datatables.min.css"/>

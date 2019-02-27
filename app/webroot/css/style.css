@@ -177,7 +177,7 @@ body {
 
 .logo-wrapper {
     display: inline-block;
-    width: 30%;
+    width: 65%;
     vertical-align: middle;
 }
 
@@ -190,7 +190,7 @@ body {
 
 .logo-name {
     display: inline-block;
-    font-size: 30px;
+    font-size: 18px;
     color: #ccc9de;
     vertical-align: middle;
     color: #ffe721;
@@ -198,7 +198,7 @@ body {
 
 .header-login-info {
     display: inline-block;
-    width: 70%;
+    width: 35%;
     vertical-align: middle;
     font-size: 18px;
     text-align: right;
@@ -235,18 +235,28 @@ body {
 }
 
 .navigation-item {
-    display: inline-block;
     width: 11%;
-    font-size: 16px;
+    font-size: 14px;
     vertical-align: middle;
+    line-height: 1em;
+    height: 48px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center
 }
 
 .navigation-link {
+    width: 100%;
     display: block;
     padding: 10px 8px;
     text-align: center;
     color: #ffe721;
     text-decoration: none;
+    height: 48px;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navigation-link:hover {
@@ -333,7 +343,7 @@ body {
     display: block;
     width: 100%;
     text-align: center;
-    padding: 10px 0;
+    padding: 15px 0 0;
 }
 
 .sidebar-user-image span {
@@ -341,7 +351,7 @@ body {
 }
 
 .sidebar-user {
-    padding: 20px 0 0;
+    padding: 0;
 }
 
 .sidebar-user-logout {
@@ -394,7 +404,7 @@ body {
     box-shadow: 0px 0px 5px white;
     left: 19%;
     position: absolute;
-    top: 143px;
+    top: 150px;
     min-height: 495px;
     margin-bottom: 30px;
 }
@@ -687,7 +697,7 @@ body {
 .sidebar-treeview {
     padding: 12px 10px 10px;
     overflow: auto;
-    height: 285px;
+    height: 360px;
 }
 
 .sidebar-treeview-wrapper {
@@ -848,4 +858,31 @@ div[contenteditable=true] {
 }
 .sidebar-folder-arrow.close:before {
     transform: rotate(270deg);
+}
+.clear-all {
+    position: absolute;
+    top: 55px;
+    right: 25px;
+    border: 1px solid #ff5757;
+    background: #ff5757;
+    color: #fff;
+    border-radius: 2px;
+    padding: 7px 10px;
+    box-sizing: border-box;
+}
+.add-user {
+    font-weight: bold;
+    position: absolute;
+    top: 50px;
+    right: 25px;
+    border: 1px solid #5795ff;
+    background: #5ca1de;
+    color: #fff;
+    border-radius: 2px;
+    padding: 7px 10px;
+    box-sizing: border-box;
+    display: inline-block;
+    text-decoration: none;
+    width: 130px;
+    text-align: center;
 }

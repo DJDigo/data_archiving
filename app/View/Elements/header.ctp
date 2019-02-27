@@ -2,7 +2,7 @@
     <div class="logo-wrapper">
         <a href="/data_archiving">
             <img src="../img/common/logo.png" alt="LSPU" class="logo-image"/>
-            <span class="logo-name">LSPU</span>
+            <span class="logo-name">Laguna State Polytechnic University - San Pablo City Campus</span>
         </a>
     </div>
     <div class="header-login-info">
@@ -10,11 +10,10 @@
             <span><?php echo date('F d, Y ') ?><span id="txt"></span></span>
         </div>
         <div class="header-project-title">
-            <span>Data Archiving Management System</span>
+            <span>Document Archiving Management System</span>
         </div>
     </div>
 </header>
-HOME > ADD FILES > MANAGED FILES > MANAGED ACCOUNT > ACTIVITY > DELETED 
 <div class="sidebar-navigation">
     <nav class="navigation">
         <?= $this->element('sidebar'); ?>
@@ -53,6 +52,8 @@ HOME > ADD FILES > MANAGED FILES > MANAGED ACCOUNT > ACTIVITY > DELETED
                             <select class="search_box" name="option">
                                 <option value="1" <?php echo (isset($_GET['option']) && $_GET['option'] == 1) ? "selected" : '' ?> >Categories</option>
                                 <option value="2" <?php echo (isset($_GET['option']) && $_GET['option'] == 2) ? "selected" : '' ?>>File Name</option>
+                                <option value="3" <?php echo (isset($_GET['option']) && $_GET['option'] == 2) ? "selected" : '' ?>>Control Number</option>
+                                <option value="4" <?php echo (isset($_GET['option']) && $_GET['option'] == 2) ? "selected" : '' ?>>Description</option>
                             </select>
                         </div>
                         <div class="search_input-wrapper">

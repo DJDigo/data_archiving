@@ -4,7 +4,8 @@
         <div class="content-title">
             <h2>Activity Logs</h2>
         </div>
-        <div class="content-wrapper">
+        <div class="content-wrapper" style="padding: 12px 0;">
+        <button class="clear-all">Clear All</button>
         <?php echo $this->Session->flash(); ?> 
             <div class="activity-table">
                 <table id="activity-table" class="table table-bordered stripe">
@@ -18,7 +19,7 @@
                     <tbody>
                         <?php foreach($logs as $log):  ?>
                         <tr>
-                            <td><?php echo $log['Log']['created'] ?></td>
+                            <td style="text-align: center"><?php echo $log['Log']['created'] ?></td>
                             <td><?php echo $log['Log']['description'] ?></td>
                             <td>
                                 <div class="button-delete-wrapper">

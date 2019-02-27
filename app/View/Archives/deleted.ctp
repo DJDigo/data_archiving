@@ -10,7 +10,7 @@
                 <table id="activity-table" class="table table-bordered stripe">
                     <thead>
                         <tr>
-                            <td>ID</td>
+                            <td>Control No.</td>
                             <td>File Name</td>
                             <td>Date Deleted</td>
                             <td>Action</td>

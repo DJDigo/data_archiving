@@ -5,12 +5,12 @@
             <h2>Users List</h2>
         </div>
         <?php echo $this->Flash->render() ?>
-        <div class="content-wrapper">
+        <div class="content-wrapper" style="padding: 20px 0;">
+            <a href="/data_archiving/users/add" class="add-user">+ Add User</a>
             <div class="users-list">
                 <table id="activity-table" class="table table-bordered stripe">
                     <thead>
                         <tr>
-                            <td>ID</td>
                             <td>Username</td>
                             <td>Position</td>
                             <td>Action</td>
@@ -19,7 +19,6 @@
                     <tbody>
                     <?php foreach($users as $key => $value): ?>
                         <tr>
-                            <td><?php echo $value['User']['id'] ?></td>
                             <td><?php echo $value['User']['username'] ?></td>
                             <td><?php echo ucfirst($value['User']['position']) ?></td>
                             <td>
