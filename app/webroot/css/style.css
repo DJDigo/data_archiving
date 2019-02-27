@@ -869,6 +869,8 @@ div[contenteditable=true] {
     border-radius: 2px;
     padding: 7px 10px;
     box-sizing: border-box;
+    cursor: pointer;
+    z-index: 2;
 }
 .add-user {
     font-weight: bold;

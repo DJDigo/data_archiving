@@ -21,7 +21,7 @@
                     <?php foreach($archives as $key => $data): ?>
                         <tr>
                             <td><?php echo strlen($data['Archive']['image']) > 20 ? substr($data['Archive']['image'],0,20)."..." : $data['Archive']['image']; ?></td>
-                            <td style="width:300px;"><?php echo $data['Location']['Category']['name'] ?></td>
+                            <td style="width:300px; text-align: center"><?php echo $data['Location']['Category']['name'] ?></td>
                             <td><?php echo $data['Archive']['created'] ?> </td>
                             <td>
                                 <div class="button-view-wrapper">
