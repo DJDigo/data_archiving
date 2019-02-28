@@ -5,7 +5,7 @@
             <h2>Deleted Files</h2>
         </div>
         <div class="content-wrapper">
-        <?php echo $this->Flash->render(); ?> 
+        <?php echo $this->Flash->render(); ?>
             <div class="activity-table">
                 <table id="activity-table" class="table table-bordered stripe">
                     <thead>
@@ -19,7 +19,7 @@
                     <tbody>
                         <?php foreach($archives as $archive): ?>
                         <tr>
-                            <td><?php echo $archive['Archive']['id'] ?></td>
+                            <td><?php echo $archive['Archive']['control_number'] ?></td>
                             <td style="width:380px;"><?php echo $archive['Archive']['image'] ?></td>
                             <td><?php echo $archive['Archive']['deleted_date'] ?></td>
                             <td>

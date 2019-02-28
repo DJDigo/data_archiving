@@ -52,8 +52,8 @@
                             <select class="search_box" name="option">
                                 <option value="1" <?php echo (isset($_GET['option']) && $_GET['option'] == 1) ? "selected" : '' ?> >Categories</option>
                                 <option value="2" <?php echo (isset($_GET['option']) && $_GET['option'] == 2) ? "selected" : '' ?>>File Name</option>
-                                <option value="3" <?php echo (isset($_GET['option']) && $_GET['option'] == 2) ? "selected" : '' ?>>Control Number</option>
-                                <option value="4" <?php echo (isset($_GET['option']) && $_GET['option'] == 2) ? "selected" : '' ?>>Description</option>
+                                <!-- <option value="3" <?php echo (isset($_GET['option']) && $_GET['option'] == 2) ? "selected" : '' ?>>Control Number</option> -->
+                                <!-- <option value="4" <?php echo (isset($_GET['option']) && $_GET['option'] == 2) ? "selected" : '' ?>>Description</option> -->
                             </select>
                         </div>
                         <div class="search_input-wrapper">

@@ -5,8 +5,8 @@
             <h2>Activity Logs</h2>
         </div>
         <div class="content-wrapper" style="padding: 12px 0;">
-        <button class="clear-all">Clear All</button>
-        <?php echo $this->Session->flash(); ?> 
+        <!-- <button class="clear-all">Clear All</button> -->
+        <?php echo $this->Session->flash(); ?>
             <div class="activity-table">
                 <table id="activity-table" class="table table-bordered stripe">
                     <thead>
