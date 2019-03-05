@@ -15,10 +15,7 @@
             <?php echo $this->Session->flash();?>
                 <div class="form-field">
                     <label class="form-label">File Upload: <span class="form-note">*(accepts jpg/png only)</span></label>
-                    <div class="form-input-wrapper">
-                        <div class="form-image-uploaded">
-                            <img src="../img/common/fallback-file.png" class="js-image-uploaded">
-                        </div>
+                    <div class="form-input-wrapper js-fileupload">
                         <div class="form-upload-input">
                             <?php 
                                 echo $this->Form->input('image.upload', array(
@@ -29,9 +26,10 @@
                                     'class'  => 'js-upload-image'
                                 ));
                             ?>
-                            <span class="error-message js-error-image"><?php echo $this->Form->error("image") ?></span>
                         </div>
+                        <span class="error-message js-error-image"><?php echo $this->Form->error("image") ?></span>
                     </div>
+                    <a class="add-more-upload">+ Add More File</a>
                 </div>
                 <div class="form-field">
                     <label class="form-label">File Name:</label>
@@ -126,6 +124,15 @@
                     });
                 }
             });
+        });
+
+        $('html').delegate('.add-more-upload', 'click', function () {
+            let addFile = `
+                <div class="form-upload-input">
+                    <input type="file" class="js-upload-image">
+                </div>
+            `
+            $('.js-fileupload').append(addFile);
         });
     });
 </script>

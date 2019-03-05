@@ -828,6 +828,7 @@ div[contenteditable=true] {
     display: inline-block;
     width: 50%;
     vertical-align: middle;
+    margin-bottom: 10px;
 }
 .activity-table tbody td,
 .file-list tbody td {
@@ -887,4 +888,14 @@ div[contenteditable=true] {
     text-decoration: none;
     width: 130px;
     text-align: center;
+}
+.add-more-upload {
+    display: inline-block;
+    width: 110px;
+    background: rgb(79, 79, 247);
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    padding: 5px 20px;
+    margin-top: 10px;
 }
