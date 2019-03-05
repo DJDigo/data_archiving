@@ -39,14 +39,15 @@ q:before, q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+    font-size: 14px;
 }
 
 body {
     font: 15px/1.5 Mongolian Baiti;
+    font-family: Arial, Helvetica, sans-serif;
     padding: 0;
     margin: 0;
-    background: url( '../img/common/background.png' ) no-repeat;
-    background-size: cover;
+    background: #d8d8d8;
 }
 
 .login {
@@ -171,7 +172,7 @@ body {
 
 .header-wrapper {
     padding: 10px 15px;
-    background: #565555;
+    background: #047bb6;
     font-size: 0;
 }
 
@@ -191,9 +192,8 @@ body {
 .logo-name {
     display: inline-block;
     font-size: 18px;
-    color: #ccc9de;
+    color: #fff;
     vertical-align: middle;
-    color: #ffe721;
 }
 
 .header-login-info {
@@ -212,8 +212,8 @@ body {
 
 .header-project-title {
     position: relative;
-    font-size: 24px;
-    color: #ffe721;
+    font-size: 22px;
+    color: #fff;
 }
 
 /* navigation menu */
@@ -229,7 +229,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    background: #464646;
+    background: #047bb6;
     border-top: 1px solid #000;
     text-align: right;
 }
@@ -250,7 +250,7 @@ body {
     display: block;
     padding: 10px 8px;
     text-align: center;
-    color: #ffe721;
+    color: #fff;
     text-decoration: none;
     height: 48px;
     box-sizing: border-box;
@@ -260,13 +260,13 @@ body {
 }
 
 .navigation-link:hover {
-    background: #ffe721;
+    background: #fff;
     color: #464646;
     border-right: 1px solid #565555;
 }
 
 .navigation-link.active {
-    background: #ffe721;
+    background: #fff;
     color: #464646;
     border-right: 1px solid #565555;
 }
@@ -309,9 +309,9 @@ body {
 
 .search-button {
     width: 100%;
-    background: #ffe721;
+    background: #ffd200;
     padding: 6px;
-    border: 2px solid #ffe721;
+    border: 2px solid #ffd200;
     cursor: pointer;
 }
 
@@ -328,7 +328,7 @@ body {
     display: inline-block;
     width: 18%;
     vertical-align: top;
-    font-size: 16px;
+    font-size: 14px;
     background: white;
     box-sizing: border-box;
     min-height: 550px;
@@ -372,9 +372,9 @@ body {
 }
 
 .sidebar-title {
-    font-size: 18px;
+    font-size: 16px;
     padding: 9px 6px;
-    background: #464646;
+    background: #047bb6;
     color: #fff;
     position: relative;
 }
@@ -390,7 +390,7 @@ body {
 }
 
 .sidebar-add:hover {
-    color: #ffe721;
+    color: #047bb6;
 }
 
 .content {
@@ -401,7 +401,7 @@ body {
     background: white;
     box-sizing: border-box;
     border-radius: 3px;
-    box-shadow: 0px 0px 5px white;
+    box-shadow: 0px 0px 5px #0c57ff;
     left: 19%;
     position: absolute;
     top: 150px;
@@ -410,9 +410,9 @@ body {
 }
 
 .content-title {
-    font-size: 18px;
+    font-size: 16px;
     padding: 6px 20px;
-    background: #565555;
+    background: #047bb6;
     color: #fff;
 }
 
@@ -482,8 +482,8 @@ body {
     display: inline-block;
     text-decoration: none;
     padding: 8px;
-    background: #ffe721;
-    color: #464646;
+    background: #047bb6;
+    color: #fff;
     border: 1px solid #CCC;
     box-shadow: 0 0 5px #CCC;
     width: 40%;
@@ -492,8 +492,8 @@ body {
 
 .form-button:hover {
     background: #fff;
-    border: 1px solid #ffe721;
-    box-shadow: 0 0 5px #ffe721;
+    border: 1px solid #047bb6;
+    box-shadow: 0 0 5px #047bb6;
 }
 
 .form-button-wrapper {
@@ -645,6 +645,7 @@ body {
     padding: 20px;
     box-sizing: border-box;
     text-align: center;
+    font-size: 14px;
 }
 .button-view-wrapper,
 .button-delete-wrapper {
@@ -762,7 +763,7 @@ div[contenteditable=true] {
 }
 
 .tooltip-text span:hover {
-    background: #ffe721;
+    background: #047bb6;
 }
 
 .tooltip-text span:last-child {
@@ -772,7 +773,7 @@ div[contenteditable=true] {
 .dataTables_wrapper .dataTables_paginate .paginate_button {
     padding: 0px 10px;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 14px;
     margin: 10px 0px;
 }
 .dashboard {
@@ -793,15 +794,15 @@ div[contenteditable=true] {
 
 .dashboard-title {
     padding: 10px;
-    background: #dbddff;
-    font-size: 16px;
-    font-weight: 800;
+    background: #047bb6;
+    font-size: 14px;
+    color: #fff;
 }
 .dashboard-count {
     padding: 20px;
     font-size: 38px;
     text-align: center;
-    background: #fff9cb;
+    background: #fff;
     color: #565555;
 }
 
@@ -879,7 +880,7 @@ div[contenteditable=true] {
     top: 50px;
     right: 25px;
     border: 1px solid #5795ff;
-    background: #5ca1de;
+    background: #3c46a9;
     color: #fff;
     border-radius: 2px;
     padding: 7px 10px;
@@ -888,14 +889,18 @@ div[contenteditable=true] {
     text-decoration: none;
     width: 130px;
     text-align: center;
+    font-size: 14px;
 }
 .add-more-upload {
     display: inline-block;
-    width: 110px;
+    width: 120px;
     background: rgb(79, 79, 247);
     border-radius: 4px;
     cursor: pointer;
     color: #fff;
     padding: 5px 20px;
     margin-top: 10px;
+}
+.dataTables_wrapper .dataTables_info {
+    font-size: 14px;
 }
