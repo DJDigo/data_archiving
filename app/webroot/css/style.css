@@ -172,7 +172,7 @@ body {
 
 .header-wrapper {
     padding: 10px 15px;
-    background: #060f6b;
+    background: #047bb6;
     font-size: 0;
 }
 
@@ -229,7 +229,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    background: #060f6b;
+    background: #047bb6;
     border-top: 1px solid #000;
     text-align: right;
 }
@@ -374,7 +374,7 @@ body {
 .sidebar-title {
     font-size: 16px;
     padding: 9px 6px;
-    background: #060f6b;
+    background: #047bb6;
     color: #fff;
     position: relative;
 }
@@ -390,7 +390,7 @@ body {
 }
 
 .sidebar-add:hover {
-    color: #060f6b;
+    color: #047bb6;
 }
 
 .content {
@@ -412,7 +412,7 @@ body {
 .content-title {
     font-size: 16px;
     padding: 6px 20px;
-    background: #060f6b;
+    background: #047bb6;
     color: #fff;
 }
 
@@ -482,7 +482,7 @@ body {
     display: inline-block;
     text-decoration: none;
     padding: 8px;
-    background: #060f6b;
+    background: #047bb6;
     color: #fff;
     border: 1px solid #CCC;
     box-shadow: 0 0 5px #CCC;
@@ -492,8 +492,8 @@ body {
 
 .form-button:hover {
     background: #fff;
-    border: 1px solid #060f6b;
-    box-shadow: 0 0 5px #060f6b;
+    border: 1px solid #047bb6;
+    box-shadow: 0 0 5px #047bb6;
 }
 
 .form-button-wrapper {
@@ -763,7 +763,7 @@ div[contenteditable=true] {
 }
 
 .tooltip-text span:hover {
-    background: #060f6b;
+    background: #047bb6;
 }
 
 .tooltip-text span:last-child {
@@ -794,7 +794,7 @@ div[contenteditable=true] {
 
 .dashboard-title {
     padding: 10px;
-    background: #060f6b;
+    background: #047bb6;
     font-size: 14px;
     color: #fff;
 }
