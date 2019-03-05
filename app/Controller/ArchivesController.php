@@ -149,8 +149,12 @@ class ArchivesController extends AppController {
                     'fields' => ['id']
                 ]);
                 $conditions['Location.category_id'] = $category_id;
-            } else if ($this->request->query['option'] == 2) {
+            } elseif ($this->request->query['option'] == 2) {
                 $conditions['Archive.image LIKE'] = '%'.$this->request->query['name'].'%';
+            } elseif ($this->request->query['option'] == 3) {
+                $conditions['Archive.control_number'] = $this->request->query['name'];
+            } elseif ($this->request->query['option'] == 4) {
+                $conditions['Archive.description LIKE'] = '%'.$this->request->query['name'].'%';
             }
         }
         if ($this->Session->read('Auth.User.role') == 2) {
