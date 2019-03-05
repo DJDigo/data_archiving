@@ -3,7 +3,7 @@
     
     <div class="content">
         <div class="content-title">
-            <h2>Add User</h2>
+            <h2>Add Files</h2>
         </div>
         <div class="content-wrapper">
             <?php echo $this->Form->create('Archive', [

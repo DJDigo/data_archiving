@@ -32,13 +32,10 @@
             <li class="navigation-item">
                 <a href="<?php echo $url ?>users/lists" class="navigation-link <?php echo $this->request->param('controller') == 'users' && ($this->request->param('action') == 'lists' || $this->request->param('action') == 'add' ) ? 'active': ''; ?>">MANAGED ACCOUNT</a>
             </li>
-            <?php if ($this->Session->read('Auth.User.role') == 1): ?>
-            <!-- <li class="navigation-item">
-                <a href="<?php echo $url ?>users/lists" class="navigation-link">Users List</a>
-            </li> -->
-            <?php endif; ?>
             <li class="navigation-item">
+            <?php if($this->Session->read('Auth.User.role') == 1): ?>
                 <a href="<?php echo $url ?>logs/" class="navigation-link">ACTIVITY</a>
+            <?php endif; ?>
             </li>
             <?php if ($this->Session->read('Auth.User.role') == 1): ?>
             <li class="navigation-item">
@@ -50,10 +47,10 @@
                     <form action="<?php echo $url ?>archives/search" method="GET">
                         <div class="search_selectbox-wrapper">
                             <select class="search_box" name="option">
-                                <option value="1" <?php echo (isset($_GET['option']) && $_GET['option'] == 1) ? "selected" : '' ?> >Categories</option>
+                                <option value="1" <?php echo (isset($_GET['option']) && $_GET['option'] == 1) ? "selected" : '' ?>>Categories</option>
                                 <option value="2" <?php echo (isset($_GET['option']) && $_GET['option'] == 2) ? "selected" : '' ?>>File Name</option>
-                                <!-- <option value="3" <?php echo (isset($_GET['option']) && $_GET['option'] == 2) ? "selected" : '' ?>>Control Number</option> -->
-                                <!-- <option value="4" <?php echo (isset($_GET['option']) && $_GET['option'] == 2) ? "selected" : '' ?>>Description</option> -->
+                                <option value="3" <?php echo (isset($_GET['option']) && $_GET['option'] == 3) ? "selected" : '' ?>>Control Number</option>
+                                <option value="4" <?php echo (isset($_GET['option']) && $_GET['option'] == 4) ? "selected" : '' ?>>Description</option>
                             </select>
                         </div>
                         <div class="search_input-wrapper">
