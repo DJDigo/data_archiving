@@ -54,7 +54,7 @@
                                         <li class="modal-content-list">
                                             <label class="modal-content-label">Control No:</label>
                                             <div class="modal-content-info">
-                                                <span><?php echo $data['Archive']['id'] ?></span>
+                                                <span><?php echo $data['Archive']['control_number'] ?></span>
                                             </div>
                                         </li>
                                         <li class="modal-content-list">
