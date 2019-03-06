@@ -18,7 +18,7 @@
                     <div class="form-input-wrapper js-fileupload">
                         <div class="form-upload-input">
                             <?php 
-                                echo $this->Form->input('image.upload', array(
+                                echo $this->Form->input('image.upload.', array(
                                     'label'  => false,
                                     'type'   => 'file',
                                     'accept' => "image/*",
@@ -129,7 +129,7 @@
         $('html').delegate('.add-more-upload', 'click', function () {
             let addFile = `
                 <div class="form-upload-input">
-                    <input type="file" class="js-upload-image">
+                    <input type="file" class="js-upload-image" name="data[image][upload][]">
                 </div>
             `
             $('.js-fileupload').append(addFile);

@@ -64,10 +64,10 @@ class ArchivesController extends AppController {
         ]);
 
         if ($this->request->is('post')) {
-            $data     = $this->request->data;
+            $data = $this->request->data;
             $this->Archive->set($data);
             $validate = $this->Archive->validates();
-            if (empty($data['image']['upload']['type'])) {
+            if (empty($data['image']['upload'][0]['type'])) {
                 $this->Archive->validationErrors['image'][0] = __("Image is required");
                 $validate = false;
             }
@@ -84,28 +84,41 @@ class ArchivesController extends AppController {
 
             if ($validate) {
                 $location = $this->Location->findById($data['Archive']['location_id']);
-                $this->Upload->upload($data['image']['upload']);
-                if($this->Upload->uploaded) {
-                    $image_name = $data['Archive']['name'];
-                    $this->Upload->file_new_name_body = str_replace(" ", "_", preg_replace('/\\.[^.\\s]{3,4}$/', '', $image_name));
-                    $this->Upload->process(APP . "webroot/files/".$location['Location']['path'].'/');
-                    $this->Upload->process();
-                    $ext = pathinfo($data['image']['upload']['name'], PATHINFO_EXTENSION);
-                    $data['Archive']['image'] = str_replace(" ", "_", preg_replace('/\\.[^.\\s]{3,4}$/', '', $image_name)).".".$ext;
-                    unset($data['Archive']['name']);
-                    unset($data['Archive']['category']);
-                    if ($this->Archive->save($data)) {
-                        $this->Flash->success('Your file has been successfully saved.');
-                        //saved logs
-                        $this->Log = ClassRegistry::init('Log');
-                        $user = $this->Session->read('Auth');
-                        $descriptions = $user['User']['username'].' Added '.$data['Archive']['image'];
-                        $logs['Log'] = [
-                            'description' => $descriptions
+                $archive_data = [];
+                foreach ($data['image']['upload'] as $key => $value) {
+                    $this->Upload->upload($value);
+                    if($this->Upload->uploaded) {
+                        $image_name = $data['Archive']['name'];
+                        if ($key > 0) {
+                            $image_name = explode('.', $data['Archive']['name']);
+                            $image_name = $image_name[0].'('.$key.')';
+                        }
+                        $this->Upload->file_new_name_body = str_replace(" ", "_", preg_replace('/\\.[^.\\s]{3,4}$/', '', $image_name));
+                        $this->Upload->process(APP . "webroot/files/".$location['Location']['path'].'/');
+                        $this->Upload->process();
+                        $ext = pathinfo($value['name'], PATHINFO_EXTENSION);
+                        $data['Archive']['image'] = str_replace(" ", "_", preg_replace('/\\.[^.\\s]{3,4}$/', '', $image_name)).".".$ext;
+                        // unset($data['Archive']['name']);
+                        // unset($data['Archive']['category']);
+                        $archive_data[]['Archive'] = [
+                            'location_id' => $data['Archive']['location_id'],
+                            'control_number' => $data['Archive']['control_number'],
+                            'image' => $data['Archive']['image'],
+                            'description' => $data['Archive']['description']
                         ];
-                        $this->Log->save($logs);
-                        return $this->redirect(['controller' => 'archives', 'action' => 'add']);
                     }
+                }
+                if ($this->Archive->saveMany($archive_data)) {
+                    $this->Flash->success('Your file has been successfully saved.');
+                    //saved logs
+                    $this->Log = ClassRegistry::init('Log');
+                    $user = $this->Session->read('Auth');
+                    $descriptions = $user['User']['username'].' Added '.$data['Archive']['image'];
+                    $logs['Log'] = [
+                        'description' => $descriptions
+                    ];
+                    $this->Log->save($logs);
+                    return $this->redirect(['controller' => 'archives', 'action' => 'add']);
                 }
             } else {
                 $this->Flash->error('Your file has been failed to saved.');
