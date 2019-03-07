@@ -91,7 +91,7 @@ class ArchivesController extends AppController {
                         $image_name = $data['Archive']['name'];
                         if ($key > 0) {
                             $image_name = explode('.', $data['Archive']['name']);
-                            $image_name = $image_name[0].'('.$key.')';
+                            $image_name = $image_name[0].$key;
                         }
                         $this->Upload->file_new_name_body = str_replace(" ", "_", preg_replace('/\\.[^.\\s]{3,4}$/', '', $image_name));
                         $this->Upload->process(APP . "webroot/files/".$location['Location']['path'].'/');
