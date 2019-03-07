@@ -84,7 +84,8 @@ $(function() {
             let getHeight = $(this).offset().top;
             let positionOfModal;
             clickedFolderText = clickedFolder.text();
-            getHeight >= 485 ? positionOfModal = getHeight - 117 : positionOfModal = tooltipPosition;
+            console.log(getHeight);
+            getHeight >= 485 ? positionOfModal = getHeight - 580 : positionOfModal = tooltipPosition;
             $(this).addClass('hasTooltip').append(tooltip);
 
             $('.tooltip').css({
@@ -108,9 +109,15 @@ $(function() {
             clickedFolder.parent().append(`<input type="text" class="sidebar-input" value="New Folder-1" autofocus>`);
         } else {
             var b = clickedFolder.parent().find('.sidebar-item:last-child').data('id');
-            var getLastNumber = b.split("-").pop();
-            getLastNumber =  parseInt(getLastNumber) + 1;
-           clickedFolder.parent().append(`<input type="text" class="sidebar-input" value="New Folder-`+ getLastNumber +`" autofocus>`);            
+            if ( isNaN(b) ) {
+                var getLastNumber = clickedFolder.parent().find('.sidebar-item').length;
+                getLastNumber =  parseInt(getLastNumber) + 1;
+                clickedFolder.parent().append(`<input type="text" class="sidebar-input" value="New Folder-`+ getLastNumber +`" autofocus>`);   
+            } else {
+                var getLastNumber = b.split("-").pop();
+                getLastNumber =  parseInt(getLastNumber) + 1;
+                clickedFolder.parent().append(`<input type="text" class="sidebar-input" value="New Folder-`+ getLastNumber +`" autofocus>`);            
+            }
         }
 
         $('.sidebar-input').focus();
@@ -217,7 +224,6 @@ $(function() {
         } else if ( $('#folders > .sidebar-list-main > .sidebar-item').length == 1 ) {
             var a = $('#folders > .sidebar-list-main > .sidebar-item:last-child').data('id').match(/[\d\.]+/g);
             a = parseInt(a, 10);
-            console.log(a);
             if ( a > 1) {
                 var number = a.toString();
                 var b = parseInt(number) + 1;
@@ -229,11 +235,15 @@ $(function() {
         } else {
             var a = $('#folders > .sidebar-list-main > .sidebar-item:last-child').data('id').match(/[\d\.]+/g);
             a = parseInt(a, 10);
-            if ( a != null ){
-                var number = a.toString();
-                var b = parseInt(number) + 1;
-                validateCreateMainFolder(b , url);
-            }
+            if ( isNaN(a) ) {
+                let addFolder = $('#folders > .sidebar-list-main > .sidebar-item').length + 1;
+                validateCreateMainFolder(addFolder , url);
+            } else {
+                let addFolder = $('#folders > .sidebar-list-main > .sidebar-item:last-child').data('id').match(/[\d\.]+/g);
+                addFolder = parseInt(addFolder, 10);
+                validateCreateMainFolder(addFolder + 1 , url);
+            } 
+            
         }
     });
     /**
